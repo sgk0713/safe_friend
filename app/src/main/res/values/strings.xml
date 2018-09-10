@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">safe_friend</string>
+
+    <!--LoginActivity-->
+    <string name="register_text">회원가입</string>
+    <string name="login_text">로그인</string>
+    <string name="email_hint">email</string>
+    <string name="password_hint">password</string>
 </resources>
