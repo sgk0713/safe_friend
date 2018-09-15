@@ -26,13 +26,13 @@ public class LoginPresenter implements LoginContract.Presenter {
     public void login() {
         model.requestFirebaseAuth(new LoginModel.AuthCallback() {
             @Override
-            public void onSuccessed(String email, String password) {
+            public void onSuccess(String email, String password) {
 
             }
 
             @Override
-            public void onFailed() {
-
+            public void onFail() {
+                view.showErrorToast("Fail..");
             }
         });
 

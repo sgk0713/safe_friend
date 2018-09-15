@@ -1,12 +1,16 @@
 package com.seoul_app_contest.safe_friend.Login;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.seoul_app_contest.safe_friend.MainActivity;
 import com.seoul_app_contest.safe_friend.R;
+import com.seoul_app_contest.safe_friend.Register.RegisterActivity;
 
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
 
@@ -47,17 +51,20 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     }
 
     @Override
-    public void showErrorToast() {
-
+    public void showErrorToast(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void redirectMainActivity() {
-
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
     public void redirectRegisterActivity() {
-
+        Intent intent = new Intent(this, RegisterActivity.class);
+        startActivity(intent);
     }
 }

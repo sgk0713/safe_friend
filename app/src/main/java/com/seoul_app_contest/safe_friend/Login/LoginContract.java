@@ -2,7 +2,7 @@ package com.seoul_app_contest.safe_friend.Login;
 
 public interface LoginContract {
     interface View {
-        void showErrorToast();
+        void showErrorToast(String msg);
         void redirectMainActivity();
         void redirectRegisterActivity();
     }

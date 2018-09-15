@@ -8,6 +8,7 @@
     tools:context=".Register.RegisterActivity">
 
     <EditText
+        android:hint="전화번호"
         android:id="@+id/register_phone_num_edt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -25,6 +26,7 @@
         app:layout_constraintTop_toBottomOf="@id/register_sex_rg"/>
 
     <EditText
+        android:hint="인증번호"
         android:id="@+id/register_auth_num_edt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -42,6 +44,7 @@
         app:layout_constraintTop_toBottomOf="@id/register_phone_num_edt"/>
 
     <EditText
+        android:hint="이름"
         android:id="@+id/register_name_edt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -50,7 +53,7 @@
         app:layout_constraintTop_toBottomOf="@id/register_password_edt"/>
 
     <EditText
-
+        android:hint="이메일"
         android:id="@+id/register_email_edt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -60,7 +63,7 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
-
+        android:hint="비밀번호"
         android:id="@+id/register_password_edt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -70,6 +73,7 @@
         app:layout_constraintTop_toBottomOf="@id/register_email_edt"/>
 
     <EditText
+        android:hint="년도"
         android:id="@+id/register_year_edt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -80,6 +84,7 @@
         app:layout_constraintTop_toBottomOf="@id/register_name_edt"/>
 
     <EditText
+        android:hint="월"
         android:id="@+id/register_month_edt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -89,6 +94,7 @@
         app:layout_constraintTop_toBottomOf="@id/register_name_edt"/>
 
     <EditText
+        android:hint="일"
         android:id="@+id/register_day_edt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -108,11 +114,13 @@
         app:layout_constraintTop_toBottomOf="@id/register_year_edt">
 
         <RadioButton
+            android:text="남자"
             android:id="@+id/register_man_rb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <RadioButton
+            android:text="여자"
             android:id="@+id/register_woman_rb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
