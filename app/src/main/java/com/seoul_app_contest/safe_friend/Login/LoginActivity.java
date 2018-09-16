@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.seoul_app_contest.safe_friend.MainActivity;
+import com.seoul_app_contest.safe_friend.Main.MainActivity;
 import com.seoul_app_contest.safe_friend.R;
 import com.seoul_app_contest.safe_friend.Register.RegisterActivity;
 

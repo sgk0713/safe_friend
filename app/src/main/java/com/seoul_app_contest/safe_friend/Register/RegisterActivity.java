@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.seoul_app_contest.safe_friend.MainActivity;
+import com.seoul_app_contest.safe_friend.Main.MainActivity;
 import com.seoul_app_contest.safe_friend.R;
 
 import butterknife.BindView;

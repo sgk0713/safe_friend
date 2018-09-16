@@ -1,6 +1,13 @@
 package com.seoul_app_contest.safe_friend.Register;
 
+import android.support.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
@@ -14,6 +21,8 @@ public class RegisterModel {
     private String birthDay;
     private String phoneNum;
     private String authNum;
+
+    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
 
     void setData(String email, String password, String name, String birthDay, String phoneNum) {
@@ -81,5 +90,23 @@ public class RegisterModel {
         void onSuccess(String authNum);
 
         void onFail();
+    }
+
+    void registerToFirestore(){
+
+    }
+
+    void register(){
+        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
     }
 }

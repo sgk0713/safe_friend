@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.seoul_app_contest.safe_friend">
 
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Main.MainActivity">
 
         </activity>
         <activity android:name=".SplashActivity">
@@ -22,6 +23,7 @@
         </activity>
         <activity android:name=".Register.RegisterActivity">
         </activity>
+
     </application>
 
 </manifest>
