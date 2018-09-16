@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.seoul_app_contest.safe_friend"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -31,6 +31,7 @@ dependencies {
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     implementation 'gun0912.ted:tedpermission:2.2.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0-rc02'
 }
 
 apply plugin: 'com.google.gms.google-services'

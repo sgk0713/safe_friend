@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/fragment_search_station_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/fragment_search_station_subway_btn"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selected_button"
+            android:text="@string/subway_station"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/fragment_search_station_bus_btn"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/nonselected_button"
+            android:text="@string/bus_station"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment_search_station_fl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ffffff">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_search_station_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </FrameLayout>
+</LinearLayout>
