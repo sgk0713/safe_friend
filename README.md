@@ -3,10 +3,10 @@
 본 repository는 2018년 서울시 앱 공모전에 출품될 안드로이드 기반 어플리케이션입니다.
 
 ### 팀원:
-- 김선국 
-- 서호진
-- 박범민
-- 홍혜림
+- 김선국 (기획 및 개발)
+- 서호진 (개발)
+- 박범민 (개발)
+- 홍혜림 (디자인)
 
 # 라이센스(License)
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">크리에이티브 커먼즈 저작자표시-동일조건변경허락 4.0 국제 라이선스</a>에 따라 이용할 수 있습니다.
