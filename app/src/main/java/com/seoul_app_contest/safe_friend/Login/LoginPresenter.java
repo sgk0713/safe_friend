@@ -24,17 +24,18 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     @Override
     public void login() {
-        model.requestFirebaseAuth(new LoginModel.AuthCallback() {
-            @Override
-            public void onSuccess(String email, String password) {
-
-            }
-
-            @Override
-            public void onFail() {
-                view.showErrorToast("Fail..");
-            }
-        });
+        view.redirectMainActivity();
+//        model.requestFirebaseAuth(new LoginModel.AuthCallback() {
+//            @Override
+//            public void onSuccess(String email, String password) {
+//
+//            }
+//
+//            @Override
+//            public void onFail() {
+//                view.showErrorToast("Fail..");
+//            }
+//        });
 
     }
 }
