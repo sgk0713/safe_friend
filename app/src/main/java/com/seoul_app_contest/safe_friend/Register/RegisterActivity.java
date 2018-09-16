@@ -3,6 +3,7 @@ package com.seoul_app_contest.safe_friend.Register;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -55,6 +56,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
     private void init() {
         presenter = new RegisterPresenter(this);
         ButterKnife.bind(this);
+
     }
 
     @Override
@@ -62,6 +64,11 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void enableBtn(int id) {
+        findViewById(id).setEnabled(true);
     }
 
     @Override

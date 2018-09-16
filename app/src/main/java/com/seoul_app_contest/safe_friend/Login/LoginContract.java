@@ -9,7 +9,6 @@ public interface LoginContract {
 
     interface Presenter {
         void setUserData(String email, String password);
-        void autoLogin();
         void login();
     }
 }

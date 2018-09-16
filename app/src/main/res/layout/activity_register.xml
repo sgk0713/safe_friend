@@ -8,75 +8,39 @@
     tools:context=".Register.RegisterActivity">
 
     <EditText
-        android:hint="전화번호"
-        android:id="@+id/register_phone_num_edt"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@id/register_phone_num_btn"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/register_sex_rg"/>
-
-    <Button
-        android:id="@+id/register_phone_num_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/register_phone_num_edt"
-        app:layout_constraintTop_toBottomOf="@id/register_sex_rg"/>
-
-    <EditText
-        android:hint="인증번호"
-        android:id="@+id/register_auth_num_edt"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@id/register_auth_num_btn"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/register_phone_num_edt"/>
-
-    <Button
-        android:id="@+id/register_auth_num_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/register_auth_num_edt"
-        app:layout_constraintTop_toBottomOf="@id/register_phone_num_edt"/>
-
-    <EditText
-        android:hint="이름"
-        android:id="@+id/register_name_edt"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/register_password_edt"/>
-
-    <EditText
-        android:hint="이메일"
         android:id="@+id/register_email_edt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:hint="이메일"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <EditText
-        android:hint="비밀번호"
         android:id="@+id/register_password_edt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:hint="비밀번호"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/register_email_edt"/>
 
     <EditText
-        android:hint="년도"
+        android:id="@+id/register_name_edt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="이름"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/register_password_edt"/>
+
+    <EditText
         android:id="@+id/register_year_edt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:hint="년도"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toStartOf="@id/register_month_edt"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -84,20 +48,20 @@
         app:layout_constraintTop_toBottomOf="@id/register_name_edt"/>
 
     <EditText
-        android:hint="월"
         android:id="@+id/register_month_edt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:hint="월"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toStartOf="@id/register_day_edt"
         app:layout_constraintStart_toEndOf="@id/register_year_edt"
         app:layout_constraintTop_toBottomOf="@id/register_name_edt"/>
 
     <EditText
-        android:hint="일"
         android:id="@+id/register_day_edt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:hint="일"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/register_month_edt"
@@ -114,19 +78,69 @@
         app:layout_constraintTop_toBottomOf="@id/register_year_edt">
 
         <RadioButton
-            android:text="남자"
             android:id="@+id/register_man_rb"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="남자"/>
 
         <RadioButton
-            android:text="여자"
             android:id="@+id/register_woman_rb"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="여자"/>
     </RadioGroup>
 
+    <EditText
+        android:id="@+id/register_address_edt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="주소"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/register_sex_rg"/>
+
+    <EditText
+        android:id="@+id/register_phone_num_edt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="전화번호"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toStartOf="@id/register_phone_num_btn"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/register_address_edt"/>
+
     <Button
+        android:enabled="false"
+        android:id="@+id/register_phone_num_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/register_phone_num_edt"
+        app:layout_constraintTop_toTopOf="@id/register_phone_num_edt"/>
+
+    <EditText
+        android:id="@+id/register_auth_num_edt"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="인증번호"
+        app:layout_constraintEnd_toStartOf="@id/register_auth_num_btn"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/register_phone_num_edt"/>
+
+    <Button
+        android:id="@+id/register_auth_num_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/register_auth_num_edt"
+        app:layout_constraintTop_toBottomOf="@id/register_phone_num_edt"/>
+
+
+    <Button
+        android:enabled="false"
         android:id="@+id/register_confirm_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

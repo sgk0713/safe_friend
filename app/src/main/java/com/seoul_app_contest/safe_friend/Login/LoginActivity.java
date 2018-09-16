@@ -20,7 +20,6 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     protected void onStart() {
         super.onStart();
         presenter = new LoginPresenter(this);
-        presenter.autoLogin();
     }
 
     @Override

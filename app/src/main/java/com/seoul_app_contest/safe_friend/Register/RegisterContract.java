@@ -3,6 +3,7 @@ package com.seoul_app_contest.safe_friend.Register;
 public interface RegisterContract {
     interface View {
         void redirectMainActivity();
+        void enableBtn(int id);
         void showErrorToast(String msg);
     }
     interface Presenter {

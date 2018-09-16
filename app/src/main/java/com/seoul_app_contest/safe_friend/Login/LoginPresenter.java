@@ -14,12 +14,6 @@ public class LoginPresenter implements LoginContract.Presenter {
         model.setUserData(email, password);
     }
 
-    @Override
-    public void autoLogin() {
-        if (model.existCurrentUser()){
-            view.redirectMainActivity();
-        }
-    }
 
 
     @Override
