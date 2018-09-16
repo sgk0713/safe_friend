@@ -71,11 +71,8 @@ public class SearchPlaceActivity extends AppCompatActivity implements Serializab
         getSupportFragmentManager().beginTransaction().add(R.id.activity_search_place_fl, recentListFragment).commit();
 
 
-
         StrictMode.enableDefaults();//이거 없음 파싱오류뜸
         parseStationInfo();
-
-
 
 //        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 //        stationRecyclerViewAdapter = new StationRecyclerViewAdapter(getApplicationContext(), resultArray, BUS);
