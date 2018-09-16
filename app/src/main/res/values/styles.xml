@@ -8,4 +8,29 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- LoginActivity -->
+    <style name="LoginEmailHint">
+        <item name="android:hint">@string/email_hint</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="LoginPasswordHint">
+        <item name="android:hint">@string/password_hint</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="LoginRegisterBtn">
+        <item name="android:text">@string/register_text</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="LoginBtn">
+        <item name="android:text">@string/login_text</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 </resources>
