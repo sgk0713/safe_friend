@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">safe_friend</string>
+
+    <!--LoginActivity-->
+    <string name="register_text">회원가입</string>
+    <string name="login_text">로그인</string>
+    <string name="email_hint">email</string>
+    <string name="password_hint">password</string>
     <string name="station_name">사당역</string>
     <string name="station_id">TEST 22763</string>
     <string name="station_toward">TEST 이수역 방면</string>
