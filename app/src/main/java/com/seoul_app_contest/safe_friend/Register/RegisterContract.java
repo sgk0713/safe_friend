@@ -6,7 +6,7 @@ public interface RegisterContract {
         void showErrorToast(String msg);
     }
     interface Presenter {
-        void setUserData(String email, String password, String name, String birthDay, String phoneNum);
+        void setUserData(String email, String password, String name, String birthDay);
         void requestAuthNum(String phoneNum);
         void checkAuthNum(String authNum);
         void addFirestore();

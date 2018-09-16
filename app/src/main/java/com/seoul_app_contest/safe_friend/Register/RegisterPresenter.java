@@ -10,16 +10,22 @@ public class RegisterPresenter implements RegisterContract.Presenter {
     }
 
     @Override
-    public void setUserData(String email, String password, String name, String birthDay, String phoneNum) {
-        model.setData(email, password, name, birthDay, phoneNum);
+    public void setUserData(String email, String password, String name, String birthDay) {
+        model.setData(email, password, name, birthDay);
     }
 
     @Override
     public void requestAuthNum(String phoneNum) {
-        model.sendAuthNum(new RegisterModel.AuthCallbackListener() {
+        model.setPhoneNum(phoneNum);
+        model.sendAuthNum(new RegisterModel.CallbackListener() {
             @Override
             public void onSuccess(String authNum) {
                 model.setAuthNum(authNum);
+            }
+
+            @Override
+            public void onSuccess() {
+
             }
 
             @Override
@@ -40,7 +46,21 @@ public class RegisterPresenter implements RegisterContract.Presenter {
 
     @Override
     public void addFirestore() {
+        model.register(new RegisterModel.CallbackListener() {
+            @Override
+            public void onSuccess(String authNum) {
 
-        view.redirectMainActivity();
+            }
+
+            @Override
+            public void onSuccess() {
+                view.redirectMainActivity();
+            }
+
+            @Override
+            public void onFail() {
+
+            }
+        });
     }
 }
