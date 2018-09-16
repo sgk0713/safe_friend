@@ -24,11 +24,23 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
     @BindView(R.id.register_phone_num_edt)
     EditText registerPhoneNumEdt;
     @BindView(R.id.register_auth_num_edt)
-    EditText registerAuthNumEdt;
+    EditText registerAuthNumEdt;;
+    @BindView(R.id.register_year_edt)
+    EditText registerYearEdt;;
+    @BindView(R.id.register_month_edt)
+    EditText registerMonthEdt;;
+    @BindView(R.id.register_day_edt)
+    EditText registerDayEdt;
 
     @OnClick(R.id.register_confirm_btn)
     void registerBtn() {
+        presenter.setUserData(registerEmailEdt.getText().toString(), registerPasswordEdt.getText().toString(),
+                registerNameEdt.getText().toString(),
+                registerYearEdt.getText().toString() + registerMonthEdt.getText().toString() + registerDayEdt.getText().toString());
         presenter.addFirestore();
+    }
+    @OnClick(R.id.register_phone_num_btn) void phoneNumBtn(){
+        presenter.requestAuthNum(registerPhoneNumEdt.getText().toString());
     }
 
     RegisterContract.Presenter presenter;
