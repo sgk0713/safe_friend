@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 import com.seoul_app_contest.safe_friend.R;
+import com.seoul_app_contest.safe_friend.SearchPlaceActivity;
 
 import java.util.ArrayList;
 
@@ -24,6 +25,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @OnClick(R.id.main_call_btn)
     void callBtn() {
         redirectCall();
+    }
+
+    @OnClick(R.id.main_app_btn)
+    void appBtn() {
+        redirectSearchPlaceActivity();
     }
 
     @Override
@@ -63,6 +69,12 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+        startActivity(intent);
+    }
+
+    @Override
+    public void redirectSearchPlaceActivity() {
+        Intent intent = new Intent(this, SearchPlaceActivity.class);
         startActivity(intent);
     }
 }
