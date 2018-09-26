@@ -57,6 +57,9 @@
             android:launchMode="singleInstance"
             android:excludeFromRecents="true"
             android:taskAffinity=""/>
+        <activity android:name=".waitingncomfirm.WatingActivity"/>
+        <activity android:name=".EndServiceActivity"/>
+        <activity android:name=".map.MapsActivity"/>
     </application>
 
 </manifest>

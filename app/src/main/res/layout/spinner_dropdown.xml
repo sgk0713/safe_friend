@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialogTopView"
+    android:background="@drawable/dialog_cancel_spinner_dropdown_border"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:layout_alignParentTop="true">
+
+    <CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/spinnerDropdownTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="취소 사유"
+
+        android:background="@android:color/holo_blue_light"
+        android:fontFamily="@font/nanumsquareb"
+        android:ellipsize="marquee"
+        android:singleLine="true" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginHorizontal="8dp"
+        android:background="@android:color/darker_gray"/>
+</RelativeLayout>

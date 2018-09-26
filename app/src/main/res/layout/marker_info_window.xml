@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingHorizontal="20dp"
+    android:paddingVertical="16dp"
+    android:background="@drawable/map_marker_infowindow">
+
+     <LinearLayout
+         android:layout_margin="4dp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:orientation="vertical"
+         android:weightSum="2">
+
+         <LinearLayout
+             android:id="@+id/infoA"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:orientation="horizontal"
+             android:layout_weight="1">
+             <TextView
+                 android:id="@+id/infoA_Type"
+                 android:layout_marginRight="8dp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:textSize="12dp"
+                 android:fontFamily="@font/nanumsquareb"
+                 android:text="지킴이"/>
+             <TextView
+                 android:id="@+id/infoA_Name"
+                 android:layout_marginRight="8dp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:textSize="16dp"
+                 android:fontFamily="@font/nanumsquareeb"
+                 android:text="김한솔"/>
+             <TextView
+                 android:layout_marginRight="8dp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:background="@android:color/white"
+                 android:textSize="12dp"
+                 android:fontFamily="@font/nanumsquareeb"
+                 android:text=" "/>
+             <TextView
+                 android:id="@+id/infoA_Phone"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:textSize="12dp"
+                 android:fontFamily="@font/nanumsquareb"
+                 android:text="010-1203-4506"/>
+         </LinearLayout>
+     </LinearLayout>
+    <LinearLayout
+        android:id="@+id/info_b"
+        android:layout_margin="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/infoB_Type"
+                android:layout_marginRight="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:fontFamily="@font/nanumsquareb"
+                android:text="지킴이"/>
+            <TextView
+                android:id="@+id/infoB_Name"
+                android:layout_marginRight="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:fontFamily="@font/nanumsquareeb"
+                android:text="김한솔"/>
+            <TextView
+                android:layout_marginRight="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/white"
+                android:textSize="12dp"
+                android:fontFamily="@font/nanumsquareeb"
+                android:text=" "/>
+            <TextView
+                android:id="@+id/infoB_Phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12dp"
+                android:fontFamily="@font/nanumsquareb"
+                android:text="010-1203-4506"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

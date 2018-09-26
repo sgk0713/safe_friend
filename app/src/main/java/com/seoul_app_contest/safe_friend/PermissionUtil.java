@@ -16,7 +16,7 @@ import android.support.v4.app.ActivityCompat;
 
 public class PermissionUtil {
     public static final int REQUEST_LOCATION= 1;
-    private static String[] PERMISSIONS_LOCATION = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+    private static String[] PERMISSONS_LOCATION = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
 
     public static int checkSelfPermission(@NonNull Context context, @NonNull String permission) {
         if (permission == null)
@@ -54,7 +54,7 @@ public class PermissionUtil {
     }
 
     public static void requestLocationPermissions(Activity activity) {
-        ActivityCompat.requestPermissions(activity, PERMISSIONS_LOCATION,REQUEST_LOCATION);
+        ActivityCompat.requestPermissions(activity, PERMISSONS_LOCATION,REQUEST_LOCATION);
     }
 
     public static boolean verifyPermission(int[] grantresults){
