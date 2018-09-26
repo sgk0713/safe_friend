@@ -4,8 +4,10 @@ public interface SplashContract {
     interface View {
         void redirectLoginActivity();
         void redirectMainActivity();
+        void showDialog(String title, String msg);
     }
     interface Presenter{
+        void checkRemote();
         void checkAutoLogin();
     }
 }

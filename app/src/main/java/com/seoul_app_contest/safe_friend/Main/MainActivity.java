@@ -5,9 +5,18 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.gun0912.tedpermission.PermissionListener;
@@ -17,10 +26,17 @@ import com.seoul_app_contest.safe_friend.SearchPlaceActivity;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity implements MainContract.View {
+public class MainActivity extends AppCompatActivity implements MainContract.View, NavigationView.OnNavigationItemSelectedListener {
+
+    MainContract.Presenter presenter;
+
+    @BindView(R.id.main_drawer)DrawerLayout drawerLayout;
+    @BindView(R.id.nav_view)NavigationView navigationView;
+    @BindView(R.id.toolbar)Toolbar toolbar;
 
     @OnClick(R.id.main_call_btn)
     void callBtn() {
@@ -37,6 +53,15 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        presenter = new MainPresenter(this);
+        setSupportActionBar(toolbar);
+
+        navigationView.setNavigationItemSelectedListener(this);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
+                R.string.open, R.string.close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
         PermissionListener permissionListener = new PermissionListener() {
             @Override
             public void onPermissionGranted() {
@@ -77,4 +102,20 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         Intent intent = new Intent(this, SearchPlaceActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        switch (menuItem.getItemId()){
+            case R.id.logout_menu:{
+                presenter.signOut();
+                break;
+            }
+        }
+
+        if (drawerLayout.isDrawerOpen(Gravity.START)) {
+            drawerLayout.closeDrawer(Gravity.START);
+        }
+        return false;
+    }
+
 }

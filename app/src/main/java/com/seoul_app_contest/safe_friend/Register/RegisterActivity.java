@@ -3,8 +3,11 @@ package com.seoul_app_contest.safe_friend.Register;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.seoul_app_contest.safe_friend.Main.MainActivity;
@@ -20,27 +23,65 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
     EditText registerEmailEdt;
     @BindView(R.id.register_password_edt)
     EditText registerPasswordEdt;
+    @BindView(R.id.register_password_confirm_edt)
+    EditText registerPasswordConfirmEdt;
+
     @BindView(R.id.register_name_edt)
     EditText registerNameEdt;
     @BindView(R.id.register_phone_num_edt)
     EditText registerPhoneNumEdt;
     @BindView(R.id.register_auth_num_edt)
-    EditText registerAuthNumEdt;;
+    EditText registerAuthNumEdt;
+
     @BindView(R.id.register_year_edt)
-    EditText registerYearEdt;;
+    EditText registerYearEdt;
     @BindView(R.id.register_month_edt)
-    EditText registerMonthEdt;;
+    EditText registerMonthEdt;
     @BindView(R.id.register_day_edt)
     EditText registerDayEdt;
 
+    @BindView(R.id.register_postcode_edt)
+    EditText registerPostcodeEdt;
+    @BindView(R.id.register_address_edt)
+    EditText registerAddressEdt;
+
+//    @BindView(R.id.register_man_rb)
+//    RadioButton registerManRb;
+//    @BindView(R.id.register_woman_rb)
+//    RadioButton registerWomanRb;
+//
+//    @BindView(R.id.register_use_agree_rb)
+//    RadioButton registerUseAgreeRb;
+//    @BindView(R.id.register_privacy_agree_rb)
+//    RadioButton registerPrivacyAgreeRb;
+
+    @OnClick({R.id.register_man_rb, R.id.register_woman_rb})
+    void genderCheck(View view) {
+        presenter.setGender(view.getId());
+    }
+
+    @OnClick(R.id.register_use_agree_rb)
+    void useAgreeCheck() {
+        presenter.setUseAgree();
+    }
+
+    @OnClick(R.id.register_privacy_agree_rb)
+    void privacyAgreeCheck() {
+        presenter.setPrivacyAgree();
+    }
+
+    @OnClick(R.id.register_email_valid_btn)
+    void registerEmailValidBtn() {
+        presenter.checkValidEmail(registerEmailEdt.getText().toString());
+    }
+
     @OnClick(R.id.register_confirm_btn)
     void registerBtn() {
-        presenter.setUserData(registerEmailEdt.getText().toString(), registerPasswordEdt.getText().toString(),
-                registerNameEdt.getText().toString(),
-                registerYearEdt.getText().toString() + registerMonthEdt.getText().toString() + registerDayEdt.getText().toString());
-        presenter.addFirestore();
+
     }
-    @OnClick(R.id.register_phone_num_btn) void phoneNumBtn(){
+
+    @OnClick(R.id.register_phone_num_btn)
+    void phoneNumBtn() {
         presenter.requestAuthNum(registerPhoneNumEdt.getText().toString());
     }
 
@@ -72,7 +113,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
     }
 
     @Override
-    public void showErrorToast(String msg) {
+    public void showToast(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 }

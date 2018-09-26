@@ -4,12 +4,17 @@ public interface RegisterContract {
     interface View {
         void redirectMainActivity();
         void enableBtn(int id);
-        void showErrorToast(String msg);
+        void showToast(String msg);
     }
     interface Presenter {
-        void setUserData(String email, String password, String name, String birthDay);
+        void setUserData(String email, String password, String name, String gender, String birthDay, String address, String phoneNum);
+        void checkValidEmail(String email);
         void requestAuthNum(String phoneNum);
         void checkAuthNum(String authNum);
-        void addFirestore();
+        void setUseAgree();
+        void setPrivacyAgree();
+        void setGender(int id);
+        void signUp();
+
     }
 }

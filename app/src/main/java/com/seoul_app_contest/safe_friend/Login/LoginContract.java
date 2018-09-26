@@ -8,7 +8,6 @@ public interface LoginContract {
     }
 
     interface Presenter {
-        void setUserData(String email, String password);
-        void login();
+        void signIn(String email, String password);
     }
 }

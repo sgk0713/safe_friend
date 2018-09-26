@@ -6,6 +6,6 @@ public interface MainContract {
         void redirectSearchPlaceActivity();
     }
     interface Presenter {
-
+        void signOut();
     }
 }

@@ -12,6 +12,21 @@ public class SplashPresenter implements SplashContract.Presenter {
     }
 
     @Override
+    public void checkRemote() {
+        model.initRemote(new UserModel.RemoteCallbackListener() {
+            @Override
+            public void on(String title, String msg) {
+                view.showDialog(title, msg);
+            }
+
+            @Override
+            public void off() {
+                checkAutoLogin();
+            }
+        });
+    }
+
+    @Override
     public void checkAutoLogin() {
         if (model.existCurrentUser()){
             view.redirectMainActivity();

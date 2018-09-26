@@ -1,66 +1,96 @@
 package com.seoul_app_contest.safe_friend.Register;
 
+import com.seoul_app_contest.safe_friend.R;
+import com.seoul_app_contest.safe_friend.UserModel;
+
 public class RegisterPresenter implements RegisterContract.Presenter {
     RegisterContract.View view;
-    RegisterModel model;
+    UserModel model;
 
     public RegisterPresenter(RegisterContract.View view) {
         this.view = view;
-        this.model = new RegisterModel();
+        this.model = new UserModel();
+    }
+
+
+    @Override
+    public void setUserData(String email, String password, String name, String gender, String birthDay, String address, String phoneNum) {
+
     }
 
     @Override
-    public void setUserData(String email, String password, String name, String birthDay) {
-        model.setData(email, password, name, birthDay);
-    }
+    public void checkValidEmail(final String email) {
+        if (model.checkEmailType(email)) {
+            model.checkEmail(email, new UserModel.CheckEmailCallbackListener() {
+                @Override
+                public void exist() {
+                    model.setCheckEmail(false);
+                    view.showToast("존재하는 이메일 입니다.");
+                }
 
-    @Override
-    public void requestAuthNum(String phoneNum) {
-        model.setPhoneNum(phoneNum);
-        model.sendAuthNum(new RegisterModel.CallbackListener() {
-            @Override
-            public void onSuccess(String authNum) {
-                model.setAuthNum(authNum);
-            }
-
-            @Override
-            public void onSuccess() {
-
-            }
-
-            @Override
-            public void onFail() {
-
-            }
-        });
-    }
-
-    @Override
-    public void checkAuthNum(String authNum) {
-        if (model.isValidAuthNum(authNum)){
-
-        }else{
-
+                @Override
+                public void notExist() {
+                    model.setCheckEmail(true);
+                    view.showToast("사용할 수 있는 이메일 입니다.");
+                    model.setEmail(email);
+                }
+            });
+        } else {
+            view.showToast("이메일 형식을 올바르게 적어주세요.");
         }
     }
 
     @Override
-    public void addFirestore() {
-        model.register(new RegisterModel.CallbackListener() {
-            @Override
-            public void onSuccess(String authNum) {
+    public void requestAuthNum(final String phoneNum) {
+        if (model.checkPhoneNumType(phoneNum)) {
+            model.sendAuthNum(phoneNum, new UserModel.SendAuthNumCallbackListener() {
+                @Override
+                public void onSuccess() {
+                    view.showToast("메세지가 전송되었습니다.");
+                    view.enableBtn(R.id.register_auth_num_btn);
+                    model.setPhoneNum(phoneNum);
+                }
 
-            }
-
-            @Override
-            public void onSuccess() {
-                view.redirectMainActivity();
-            }
-
-            @Override
-            public void onFail() {
-
-            }
-        });
+                @Override
+                public void onFail(String e) {
+                    view.showToast(e);
+                }
+            });
+        } else {
+            view.showToast("올바른 전화번호를 입력해주세요.");
+        }
     }
+
+    @Override
+    public void checkAuthNum(String authNum) {
+        if (model.checkAuthNum(authNum)) {
+            view.enableBtn(R.id.register_confirm_btn);
+        } else {
+            view.showToast("인증 번호를 정확하게 입력해주세요.");
+        }
+    }
+
+    @Override
+    public void setUseAgree() {
+        model.setCheckUseAgree();
+    }
+
+    @Override
+    public void setPrivacyAgree() {
+        model.setCheckPrivacyAgree();
+    }
+
+    @Override
+    public void setGender(int id) {
+        if (id == R.id.register_man_rb){
+            model.setMan();
+        }else {
+            model.setWoman();
+        }
+    }
+
+    @Override
+    public void signUp() {
+    }
+
 }

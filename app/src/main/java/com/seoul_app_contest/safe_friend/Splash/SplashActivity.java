@@ -1,6 +1,8 @@
 package com.seoul_app_contest.safe_friend.Splash;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -16,7 +18,8 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SplashContract.Presenter presenter = new SplashPresenter(this);
-        presenter.checkAutoLogin();
+        presenter.checkRemote();
+//        presenter.checkAutoLogin();
     }
 
     @Override
@@ -31,5 +34,20 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void showDialog(String title, String msg) {
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(title)
+                .setMessage(msg)
+                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                }).show();
     }
 }

@@ -19,4 +19,8 @@
     <string name="end_sentence">안심 귀가 신청하시겠습니까?</string>
     <string name="confirm">확인</string>
     <string name="time_sample">22:00</string>
+
+
+    <string name="open">open</string>
+    <string name="close">close</string>
 </resources>

@@ -43,8 +43,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.setUserData(emailEdt.getText().toString(), passwordEdt.getText().toString());
-                presenter.login();
+                presenter.signIn(emailEdt.getText().toString(), passwordEdt.getText().toString());
             }
         });
     }
