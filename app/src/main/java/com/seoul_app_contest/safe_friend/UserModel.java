@@ -38,6 +38,7 @@ public class UserModel {
     String address;
     String phoneNum;
     String authNum;
+    int state;
     boolean checkUseAgree = false;
     boolean checkPrivacyAgree = false;
 
