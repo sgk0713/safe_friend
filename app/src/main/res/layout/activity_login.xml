@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="8dp"
+    android:padding="32dp"
     tools:context=".Login.LoginActivity">
 
     <ImageView
@@ -17,24 +17,38 @@
 
 
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/login_user_btn"
+        android:drawableStart="@drawable/ic_chevron_right_black_24dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#ffffff"
+        android:background="@drawable/selected_login_button"
         android:elevation="10dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@id/login_protector_btn"
+        app:layout_constraintStart_toStartOf="@id/card_view"
+        app:layout_constraintBottom_toTopOf="@id/card_view"/>
+
+    <Button
+        app:layout_constraintStart_toEndOf="@id/login_user_btn"
+        android:id="@+id/login_protector_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/default_login_button"
+        android:elevation="10dp"
+        app:layout_constraintEnd_toEndOf="@id/card_view"
         app:layout_constraintBottom_toTopOf="@id/card_view"/>
 
     <android.support.v7.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:outlineAmbientShadowColor="#ff0000"
-        android:outlineSpotShadowColor="#ff0000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:padding="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -62,15 +76,30 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:theme="@style/LoginRegisterBtn"/>
+        android:theme="@style/LoginRegisterBtn"
+        app:layout_constraintStart_toEndOf="@id/login_find_btn"
+        app:layout_constraintEnd_toEndOf="@id/card_view"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+    <Button
+        android:id="@+id/login_find_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="아이디/비밀번호 찾기"
+        app:layout_constraintStart_toStartOf="@id/card_view"
+        app:layout_constraintEnd_toStartOf="@id/login_register_btn"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <Button
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/login_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:background="@drawable/button_background"
         android:theme="@style/LoginBtn"
-        app:layout_constraintTop_toBottomOf="@id/card_view"/>
+        app:layout_constraintTop_toBottomOf="@id/card_view"
+        app:layout_constraintBottom_toTopOf="@id/login_register_btn"/>
 
 </android.support.constraint.ConstraintLayout>

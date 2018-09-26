@@ -17,6 +17,7 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splash);
         SplashContract.Presenter presenter = new SplashPresenter(this);
         presenter.checkRemote();
 //        presenter.checkAutoLogin();

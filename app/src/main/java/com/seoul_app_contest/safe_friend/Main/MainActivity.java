@@ -112,8 +112,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             }
         }
 
-        if (drawerLayout.isDrawerOpen(Gravity.START)) {
-            drawerLayout.closeDrawer(Gravity.START);
+        if (drawerLayout.isDrawerOpen(Gravity.END)) {
+            drawerLayout.closeDrawer(Gravity.END);
         }
         return false;
     }
