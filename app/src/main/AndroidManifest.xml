@@ -21,37 +21,62 @@
             android:value="AIzaSyBG6cZCzWNFSO4Mf-0NsksB_JZWdNdtmQ8"/>
 
         <activity android:name=".Main.MainActivity">
+
         </activity>
+
         <activity android:name=".SearchPlaceActivity">
+
         </activity>
+
         <activity
             android:name=".Splash.SplashActivity">
             <!--android:theme="@style/SplashTheme">-->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
         <activity android:name=".Register.RegisterActivity"
             android:launchMode="singleInstance"
             android:excludeFromRecents="true"
-            android:taskAffinity=""/>
+            android:taskAffinity="">
+
+        </activity>
+
         <activity android:name=".SetTimeActivity"
             android:launchMode="singleInstance"
             android:excludeFromRecents="true"
-            android:taskAffinity=""/>
+            android:taskAffinity="">
+
+        </activity>
+
         <activity android:name=".LastConfirmActivity"
             android:launchMode="singleInstance"
             android:excludeFromRecents="true"
-            android:taskAffinity=""/>
-        <activity android:name=".waitingncomfirm.WatingActivity"/>
-        <activity android:name=".EndServiceActivity"/>
-        <activity android:name=".map.MapsActivity"/>
+            android:taskAffinity="">
+        </activity>
+
+        <activity android:name=".waitingncomfirm.WatingActivity">
+
+        </activity>
+
+        <activity android:name=".EndServiceActivity">
+
+        </activity>
+
+        <activity android:name=".map.MapsActivity">
+
+        </activity>
+
         <activity android:name=".Login.LoginActivity">
+
         </activity>
+
         <activity android:name=".ProtectorMain.ProtectorMainActivity">
+
         </activity>
+
     </application>
 
 </manifest>

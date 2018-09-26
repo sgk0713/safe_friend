@@ -7,6 +7,6 @@
         android:id="@+id/mainFragmet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-       android:name="com.example.home.realtimelocationtest.waitingncomfirm.WatingFragment" />
+       android:name="com.seoul_app_contest.safe_friend.waitingncomfirm.WatingFragment" />
 
 </FrameLayout>
