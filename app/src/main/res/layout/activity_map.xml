@@ -1,13 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MapsActivity" >
+    tools:context=".map.MapsActivity">
 
-    <fragment android:name="com.google.android.gms.maps.SupportMapFragment"
+    <fragment
         android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-</LinearLayout>
+    <android.support.constraint.Guideline
+        android:id="@+id/topBarGuideline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.10" />
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/topBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/map_topbar_rounded"
+        app:layout_constraintBottom_toTopOf="@id/topBarGuideline"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.Guideline
+            android:id="@+id/markerImageGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/bottomGuideline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.75" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/topGuideline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.25" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/menuImageGuideline"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.90" />
+
+        <ImageView
+            android:id="@+id/topBarMarkerImage"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/ic_map_marker"
+            app:layout_constraintBottom_toTopOf="@id/bottomGuideline"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintLeft_toRightOf="@id/markerImageGuideline"
+            app:layout_constraintTop_toBottomOf="@id/topGuideline" />
+
+        <TextView
+            android:id="@+id/topBarTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="12dp"
+            android:fontFamily="@font/nanumsquareeb"
+            android:text="지킴이님의 현재 위치입니다."
+            android:textAlignment="viewStart"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/bottomGuideline"
+            app:layout_constraintLeft_toRightOf="@id/topBarMarkerImage" />
+
+        <ImageButton
+            android:id="@+id/mapMenuButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/ic_map_menu_button"
+            app:layout_constraintBottom_toTopOf="@id/bottomGuideline"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintRight_toLeftOf="@id/menuImageGuideline"
+            app:layout_constraintTop_toBottomOf="@id/topGuideline" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.Guideline
+        android:id="@+id/refreshImageTopGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.12" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/refreshImageGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.16" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/refreshImageBottomGuideline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.18" />
+
+    <ImageButton
+        android:id="@+id/mapRefreshButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/map_refresh_button"
+        app:layout_constraintBottom_toTopOf="@id/refreshImageBottomGuideline"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintRight_toLeftOf="@id/refreshImageGuideline"
+        app:layout_constraintTop_toBottomOf="@id/refreshImageTopGuideline" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/cancelImageGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.84" />
+
+    <ImageButton
+        android:id="@+id/mapCancelButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/map_cancel_button"
+        app:layout_constraintBottom_toTopOf="@id/refreshImageBottomGuideline"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintLeft_toRightOf="@id/cancelImageGuideline"
+        app:layout_constraintTop_toBottomOf="@id/refreshImageTopGuideline" />
+
+
+</android.support.constraint.ConstraintLayout>

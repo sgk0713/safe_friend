@@ -1,0 +1,19 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <layer-list>
+            <!-- CONTENT LAYER -->
+            <item>
+                <shape>
+                    <stroke android:width="3dp" android:color="#ffd073"/>
+                    <solid android:color="#FFFFFF" />
+                </shape>
+            </item>
+
+
+        </layer-list>
+
+    </item>
+
+
+</selector>
