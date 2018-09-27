@@ -40,8 +40,8 @@ public class StationRecyclerViewAdapter extends RecyclerView.Adapter<StationRecy
         final int position = i;
         if(stationType == 0){//bus
             holder.icon.setImageResource(R.drawable.ic_bus);
-            holder.stationName.setText(arrayList.get(i).getStNm());
-            holder.stationId.setText(arrayList.get(i).getArsId() + " | ");
+            holder.stationName.setText(arrayList.get(i).stop_nm);
+            holder.stationId.setText(arrayList.get(i).stop_no + " | ");
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

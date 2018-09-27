@@ -37,7 +37,8 @@ import java.util.ArrayList;
 
 
 public class SearchPlaceActivity extends AppCompatActivity implements Serializable{
-    private final String SERVICEKEY = "ihMOsX64n9aSddXcmGiG5z%2FMpo6B8m85NS8XOzlb%2Bdv7TccIsphc1nVGkuttxtWGNMgn1Pw8GLMlakZ4HTI0hQ%3D%3D";
+    private final String SERVICE_KEY = "716271596273676b39356d6e6c7851";
+
 //    private final int BUS = 0;
 //    private final int SUBWAY = 1;
 
@@ -69,10 +70,6 @@ public class SearchPlaceActivity extends AppCompatActivity implements Serializab
         searchStationFragment = new SearchStationFragment();
 
         getSupportFragmentManager().beginTransaction().add(R.id.activity_search_place_fl, recentListFragment).commit();
-
-
-        StrictMode.enableDefaults();//이거 없음 파싱오류뜸
-        parseStationInfo();
 
 //        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 //        stationRecyclerViewAdapter = new StationRecyclerViewAdapter(getApplicationContext(), resultArray, BUS);
@@ -120,108 +117,6 @@ public class SearchPlaceActivity extends AppCompatActivity implements Serializab
             searchImageView.setImageResource(android.R.drawable.ic_menu_search);
             isSearching = false;
         }
-    }
-
-    private void parseStationInfo(){
-        Boolean isAsrId, isPosX, isPosY, isStId, isStNm, isTmX, isTmY;
-        isAsrId = isPosX = isPosY = isStId = isStNm = isTmX = isTmY = false;
-        String asrId, posX, posY, stId, stNm, tmX, tmY;
-        asrId = posX = posY = stId = stNm = tmX = tmY = null;
-        try{
-            Log.d("PARSING", "PARSING1");
-            URL url = new URL("http://ws.bus.go.kr/api/rest/stationinfo/getLowStationByName?"
-                    +"ServiceKey=" + SERVICEKEY
-                    +"&stSrch=%EC%84%9C%EB%B6%80");
-            Log.d("PARSING", "PARSING2");
-
-            XmlPullParserFactory parserCreator = XmlPullParserFactory.newInstance();
-            Log.d("PARSING", "PARSING3");
-            XmlPullParser parser = parserCreator.newPullParser();
-            Log.d("PARSING", "PARSING4");
-            parser.setInput(url.openStream(), "UTF-8");
-            Log.d("PARSING", "PARSING5");
-
-            int parserEvent = parser.getEventType();
-            System.out.println("파싱시작합니다.");
-            Log.d("PARSING", "PARSING6");
-            while (parserEvent != XmlPullParser.END_DOCUMENT){
-                Log.d("PARSING", "PARSING7");
-                switch(parserEvent){
-                    case XmlPullParser.START_TAG://parser가 시작 태그를 만나면 실행
-                        Log.d("PARSING", "START");
-                        if(parser.getName().equals("arsId")){
-                            isAsrId = true;
-
-                        }
-                        if(parser.getName().equals("posX")){
-                            isPosX = true;
-                        }
-                        if(parser.getName().equals("posY")){
-                            isPosY = true;
-                        }
-                        if(parser.getName().equals("stId")){
-                            isStId = true;
-                        }
-                        if(parser.getName().equals("stNm")){
-                            isStNm = true;
-                        }
-                        if(parser.getName().equals("tmX")){
-                            isTmX = true;
-                        }
-                        if(parser.getName().equals("tmY")){
-                            isTmY = true;
-                        }
-                        if(parser.getName().equals("message")){ //message 태그를 만나면 에러 출력
-                            System.out.println("에러");
-                            //여기에 에러코드에 따라 다른 메세지를 출력하도록 할 수 있다.
-                        }
-                        break;
-
-                    case XmlPullParser.TEXT://parser가 내용에 접근했을때
-                        Log.d("PARSING", "TEXT");
-                        if(isAsrId){ //isTitle이 true일 때 태그의 내용을 저장.
-                            asrId = parser.getText();
-                            isAsrId = false;
-                        }
-                        if(isPosX){ //isAddress이 true일 때 태그의 내용을 저장.
-                            posX = parser.getText();
-                            isPosX = false;
-                        }
-                        if(isPosY){ //isMapx이 true일 때 태그의 내용을 저장.
-                            posY = parser.getText();
-                            isPosY = false;
-                        }
-                        if(isStId){ //isMapy이 true일 때 태그의 내용을 저장.
-                            stId = parser.getText();
-                            isStId = false;
-                        }
-                        if(isStNm){ //isMapy이 true일 때 태그의 내용을 저장.
-                            stNm = parser.getText();
-                            isStNm = false;
-                        }
-                        if(isTmX){ //isMapy이 true일 때 태그의 내용을 저장.
-                            tmX = parser.getText();
-                            isTmX = false;
-                        }
-                        if(isTmY){ //isMapy이 true일 때 태그의 내용을 저장.
-                            tmY = parser.getText();
-                            isTmY = false;
-                        }
-                        break;
-                    case XmlPullParser.END_TAG:
-                        Log.d("PARSING", "END");
-                        if(parser.getName().equals("itemList")){
-                            busInfoArray.add(new StationDto(asrId, posX, posY, stId, stNm, tmX, tmY));
-                        }
-                        break;
-                }
-                parserEvent = parser.next();
-                Log.d("PARSING", "NEXT");
-            }
-        }catch (Exception e){
-            System.out.println("while문 에러");
-        }
-
     }
 }
 

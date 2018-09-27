@@ -2,6 +2,7 @@ package com.seoul_app_contest.safe_friend.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -22,6 +23,7 @@ import android.widget.EditText;
 import com.seoul_app_contest.safe_friend.R;
 import com.seoul_app_contest.safe_friend.SearchPlaceActivity;
 import com.seoul_app_contest.safe_friend.SetTimeActivity;
+import com.seoul_app_contest.safe_friend.adapter.DataAdapter;
 import com.seoul_app_contest.safe_friend.adapter.StationRecyclerViewAdapter;
 import com.seoul_app_contest.safe_friend.dto.StationDto;
 
@@ -73,8 +75,8 @@ public class SearchStationFragment extends Fragment{
 
         searchEditText = activity.findViewById(R.id.activity_search_place_search_edt);
 
-        busInfoArray= (ArrayList<StationDto>) getArguments().get("busInfoArray");
-        Log.d("arraySIZE", busInfoArray.size()+"");
+        final DataAdapter mDbHelper = new DataAdapter(activity);
+        mDbHelper.createDatabase();
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         stationRecyclerViewAdapter = new StationRecyclerViewAdapter(getContext(), resultArray, BUS);
@@ -87,18 +89,28 @@ public class SearchStationFragment extends Fragment{
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Log.d("textwatcher", "check");
-                resultArray.clear();
-                for(StationDto item: busInfoArray){
-                    if(item.getStNm().contains(s))
-                        resultArray.add(item);
-                }
-                stationRecyclerViewAdapter.notifyDataSetChanged();
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                Log.d("textwatcher", "check");
+                resultArray.clear();
+                String str = s.toString();
+                if(str.length()>0) {
+                    mDbHelper.open();
+                    Cursor cursor = mDbHelper.getDataWithQuery("select * from businfo where stop_nm like '%" + str + "%'");
+                    mDbHelper.close();
+                    for (int i = 0; i < cursor.getCount(); i++) {
+                        String stop_no = cursor.getString(1);
+                        String stop_nm = cursor.getString(2);
+                        String xcode = String.valueOf(cursor.getFloat(3));
+                        String ycode = String.valueOf(cursor.getFloat(4));
+                        resultArray.add(new StationDto(stop_no, stop_nm, xcode, ycode, null));
+                        cursor.moveToNext();
+                    }
+                }
+                stationRecyclerViewAdapter.notifyDataSetChanged();
             }
         });
 
@@ -106,8 +118,8 @@ public class SearchStationFragment extends Fragment{
             @Override
             public void onClick(View view, int position) {
                 Intent intent = new Intent(activity, SetTimeActivity.class);
-                intent.putExtra("stationName", resultArray.get(position).getStNm());
-                Log.d("station_name", resultArray.get(position).getStNm());
+                intent.putExtra("stationName", resultArray.get(position).stop_nm);
+                Log.d("station_name", resultArray.get(position).stop_nm);
 
                 startActivity(intent);
             }
