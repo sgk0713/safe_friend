@@ -2,7 +2,7 @@ package com.seoul_app_contest.safe_friend.Register;
 
 public interface RegisterContract {
     interface View {
-        void redirectMainActivity();
+        void redirectLoginActivity();
         void redirectPostcodeActivity();
         void enableBtn(int id);
         void showToast(String msg);
@@ -16,6 +16,12 @@ public interface RegisterContract {
         void setPrivacyAgree();
         void setGender(int id);
         void signUp();
+        void setBirthDay(String year, String month, String day);
+        void setName(String name);
+        void setPassword(String password);
+        void setPasswordConfirm(String passwordConfirm);
+        void setAddress(String address);
+        void setCountryCode(String countryCode);
 
     }
 }

@@ -186,6 +186,7 @@
 
 
                 <EditText
+                    android:maxLength="4"
                     android:id="@+id/register_year_edt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -202,6 +203,7 @@
                     android:background="@color/black"/>
 
                 <EditText
+                    android:maxLength="2"
                     android:id="@+id/register_month_edt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -218,6 +220,7 @@
                     android:background="@color/black"/>
 
                 <EditText
+                    android:maxLength="2"
                     android:id="@+id/register_day_edt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -252,9 +255,11 @@
                 android:orientation="horizontal">
 
                 <Spinner
+                    android:id="@+id/register_country_code_sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1"
+                    android:entries="@array/country_code"/>
 
                 <View
                     android:layout_width="1dp"
