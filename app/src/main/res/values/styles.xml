@@ -40,6 +40,8 @@
     <dimen name="followerBtnMargin">10dp</dimen>
     <dimen name="buttonWidth">124dp</dimen>
     <dimen name="buttonHeight">36dp</dimen>
+    <dimen name="process_width">160dp</dimen>
+    <dimen name="process_height">20dp</dimen>
     <style name="spinnerDropDownItemStyle" parent="android:TextAppearance.Widget.TextView.SpinnerItem"/>
     <style name="spinnerItemStyle" parent="android:Widget.TextView.SpinnerItem"/>
 </resources>

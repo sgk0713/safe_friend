@@ -6,21 +6,28 @@
     <string name="login_text">로그인</string>
     <string name="email_hint">email</string>
     <string name="password_hint">password</string>
-    <string name="station_name">사당역</string>
+    <string name="station_example">정거장 이름, 정류장 번호 검색</string>
+    <string name="recent_list">클릭하여 검색</string>
     <string name="station_id">TEST 22763</string>
     <string name="station_toward">TEST 이수역 방면</string>
     <string name="subway_station">지하철역</string>
     <string name="bus_station">버스정류장</string>
+    <string name="service_name">안심귀가서비스</string>
     <string name="time_set">시간 설정</string>
-    <string name="notice_for_timer">※서비스 시간인 22:00 ~ 01:00 까지 선택할 수 있습니다.</string>
+    <string name="notice_for_timer">※ 안심귀가 서비스는 <b>월요일 2:00 ~ 24:00,\n화-일요일 22:00 ~ 01:00</b> 까지만\n이용 가능합니다.</string>
+    <string name="request_confirm">신청 확인</string>
     <string name="next">다음</string>
     <string name="at">에서</string>
     <string name="on">에</string>
-    <string name="end_sentence">안심 귀가 신청하시겠습니까?</string>
+    <string name="end_sentence"><b>안심 귀가 신청</b>합니다.</string>
     <string name="confirm">확인</string>
     <string name="time_sample">22:00</string>
     <string name="step_one">1.출발지 선정</string>
-
+    <string name="step_two">2.시간 설정</string>
+    <string name="step_three">3.신청 확인</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
 
     <string name="open">open</string>
     <string name="close">close</string>

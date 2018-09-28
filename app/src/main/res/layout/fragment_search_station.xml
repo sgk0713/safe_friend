@@ -12,23 +12,26 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/fragment_search_station_subway_btn"
-            android:layout_margin="0dp"
-            android:padding="0dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/selected_button"
-            android:text="@string/subway_station"
-            android:layout_weight="1"/>
-        <Button
             android:id="@+id/fragment_search_station_bus_btn"
             android:layout_margin="0dp"
             android:padding="0dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/nonselected_button"
+            android:background="@drawable/selected_button"
             android:text="@string/bus_station"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:stateListAnimator="@null"/>
+
+        <Button
+            android:id="@+id/fragment_search_station_subway_btn"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/nonselected_button"
+            android:text="@string/subway_station"
+            android:layout_weight="1"
+            android:stateListAnimator="@null"/>
 
     </LinearLayout>
 

@@ -6,16 +6,113 @@
     android:layout_height="match_parent"
     tools:context=".SetTimeActivity">
 
-    <TextView
-        android:id="@+id/activity_set_time_title_tv"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/activity_set_time_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/buttonBackground"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:elevation="0dp">
+
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:theme="@style/AppTheme"
+            app:elevation="0dp"
+            app:titleTextColor="@color/white">
+
+            <LinearLayout
+                android:layout_width="@dimen/process_width"
+                android:layout_height="@dimen/process_height"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="@dimen/process_height"
+                    android:layout_height="@dimen/process_height"
+                    android:text="@string/one"
+                    android:textSize="12sp"
+                    android:textColor="@color/buttonBackground"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:background="@drawable/process_circle_background"/>
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="2dp"
+                    android:background="#ffefb4"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/process_height"
+                    android:text="@string/step_two"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:background="@drawable/process_current_background" />
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="2dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:background="#ffefb4"/>
+                <TextView
+                    android:layout_width="@dimen/process_height"
+                    android:layout_height="@dimen/process_height"
+                    android:text="@string/three"
+                    android:textSize="12sp"
+                    android:textColor="@color/buttonBackground"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:background="@drawable/process_circle_background"/>
+            </LinearLayout>
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/activity_set_time_title_ll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/time_set"
-        android:textSize="50sp"
         app:layout_constraintBottom_toTopOf="@id/activity_set_time_timer_tp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_set_time_appbar"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="3dp"
+            android:layout_marginBottom="4dp"
+            android:background="@color/buttonBackground"
+            android:layout_gravity="center_vertical"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="0dp"
+            android:layout_margin="0dp"
+            android:text="@string/service_name"
+            android:textSize="24sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="0dp"
+            android:layout_margin="0dp"
+            android:text="@string/time_set"
+            android:textColor="@color/buttonBackground"
+            android:textStyle="bold"
+            android:textSize="40sp"
+            android:layout_gravity="top"
+            />
+    </LinearLayout>
+
 
     <TimePicker
         android:id="@+id/activity_set_time_timer_tp"
@@ -25,7 +122,7 @@
         app:layout_constraintBottom_toBottomOf="@id/activity_set_time_notice_tv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_set_time_title_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_set_time_title_ll" />
 
     <TextView
         android:id="@+id/activity_set_time_notice_tv"
@@ -34,7 +131,8 @@
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:text="@string/notice_for_timer"
-        android:textSize="16sp"
+        android:textSize="12sp"
+        android:gravity="center"
         app:layout_constraintTop_toBottomOf="@+id/activity_set_time_timer_tp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,12 +142,15 @@
         android:id="@+id/activity_set_time_confirm_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="32dp"
         android:text="@string/next"
+        android:textColor="@color/lightMainColor"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:background="#e2e2ff"
-        app:layout_constraintTop_toBottomOf="@+id/activity_set_time_notice_tv"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        android:background="@drawable/button_background"
+        app:layout_constraintTop_toBottomOf="@id/activity_set_time_notice_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </android.support.constraint.ConstraintLayout>

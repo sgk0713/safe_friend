@@ -8,6 +8,7 @@
     <color name="white">#ffffff</color>
 
     <color name="buttonBackground">#ffa200</color>
+    <color name="lightMainColor">#ffefb4</color>
 
     <color name="background">#FEFDFA</color>
 </resources>

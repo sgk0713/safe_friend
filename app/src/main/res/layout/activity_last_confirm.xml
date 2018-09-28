@@ -4,95 +4,224 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     tools:context=".LastConfirmActivity">
 
-    <ImageView
-        android:id="@+id/activity_last_confirm_iv"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/checkbox_on_background" />
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/activity_last_confirm_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/buttonBackground"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:elevation="0dp">
 
-    <TextView
-        android:id="@+id/activity_last_confirm_station_name_tv"
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:theme="@style/AppTheme"
+            app:elevation="0dp"
+            app:titleTextColor="@color/white">
+
+            <LinearLayout
+                android:layout_width="@dimen/process_width"
+                android:layout_height="@dimen/process_height"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="@dimen/process_height"
+                    android:layout_height="@dimen/process_height"
+                    android:text="@string/one"
+                    android:textSize="12sp"
+                    android:textColor="@color/buttonBackground"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:background="@drawable/process_circle_background"/>
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="2dp"
+                    android:background="#ffefb4"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"/>
+
+                <TextView
+                    android:layout_width="@dimen/process_height"
+                    android:layout_height="@dimen/process_height"
+                    android:text="@string/two"
+                    android:textSize="12sp"
+                    android:textColor="@color/buttonBackground"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:background="@drawable/process_circle_background"/>
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="2dp"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:background="#ffefb4"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/process_height"
+                    android:text="@string/step_three"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:background="@drawable/process_current_background" />
+
+            </LinearLayout>
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:id="@+id/activity_last_confirm_title_ll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/station_name"
-        android:textSize="32sp"
-        app:layout_constraintBottom_toTopOf="@+id/activity_last_confirm_time_tv"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/activity_last_confirm_ll_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_last_confirm_iv" />
+        app:layout_constraintTop_toBottomOf="@+id/activity_last_confirm_appbar"
+        app:layout_constraintVertical_chainStyle="spread">
 
+        <View
+            android:layout_width="20dp"
+            android:layout_height="3dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="4dp"
+            android:background="@color/buttonBackground" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:gravity="center"
+            android:padding="0dp"
+            android:text="@string/service_name"
+            android:textSize="24sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:text="@string/request_confirm"
+            android:textColor="@color/buttonBackground"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/activity_last_confirm_ll_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/underline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/activity_last_confirm_title_ll"
+        app:layout_constraintEnd_toStartOf="@id/activity_last_confirm_at_tv"
+        app:layout_constraintBottom_toTopOf="@id/activity_last_confirm_ll_2"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_location"/>
+        <TextView
+            android:id="@+id/activity_last_confirm_station_name_tv"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/bus_station"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_weight="1"/>
+        
+    </LinearLayout>
     <TextView
         android:id="@+id/activity_last_confirm_at_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginRight="100dp"
-        android:text="@string/at"
-        app:layout_constraintBottom_toTopOf="@+id/activity_last_confirm_time_tv"
+        app:layout_constraintStart_toEndOf="@id/activity_last_confirm_ll_1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activity_last_confirm_station_name_tv" />
+        app:layout_constraintBottom_toBottomOf="@id/activity_last_confirm_ll_1"
+        android:text="@string/at"/>
 
-    <TextView
-        android:id="@+id/activity_last_confirm_time_tv"
+    <LinearLayout
+        android:id="@+id/activity_last_confirm_ll_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="@string/time_sample"
-        android:textSize="32sp"
-        app:layout_constraintBottom_toTopOf="@+id/activity_last_confirm_endsetence_tv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        android:background="@drawable/underline"
+        app:layout_constraintTop_toBottomOf="@id/activity_last_confirm_ll_1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/activity_last_confirm_on_tv"
+        app:layout_constraintBottom_toTopOf="@+id/activity_last_confirm_confirm_tv"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_time"/>
+        <TextView
+            android:id="@+id/activity_last_confirm_time_tv"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/time_sample"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:maxLines="1"
+            android:layout_weight="1"/>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/activity_last_confirm_on_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginRight="80dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/on"
-        app:layout_constraintBottom_toTopOf="@+id/activity_last_confirm_endsetence_tv"
+        app:layout_constraintStart_toEndOf="@id/activity_last_confirm_ll_2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.23"
-        app:layout_constraintStart_toEndOf="@+id/activity_last_confirm_time_tv"
-        app:layout_constraintTop_toTopOf="@+id/activity_last_confirm_time_tv"
-        app:layout_constraintVertical_bias="0.571" />
-
+        app:layout_constraintBottom_toBottomOf="@id/activity_last_confirm_ll_2"
+        android:text="@string/on"/>
     <TextView
-        android:id="@+id/activity_last_confirm_endsetence_tv"
+        android:id="@+id/activity_last_confirm_confirm_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="44dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
         android:text="@string/end_sentence"
-        app:layout_constraintBottom_toTopOf="@+id/activity_last_confirm_btn"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintTop_toBottomOf="@id/activity_last_confirm_ll_2"
+        app:layout_constraintBottom_toTopOf="@id/activity_last_confirm_btn" />
     <Button
         android:id="@+id/activity_last_confirm_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
         android:text="@string/confirm"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/lightMainColor"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:background="@drawable/button_background"
+        app:layout_constraintTop_toBottomOf="@id/activity_last_confirm_confirm_tv"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent"/>
 </android.support.constraint.ConstraintLayout>
