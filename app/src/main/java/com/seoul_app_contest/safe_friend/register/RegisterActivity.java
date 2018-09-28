@@ -1,20 +1,21 @@
-package com.seoul_app_contest.safe_friend.Register;
+package com.seoul_app_contest.safe_friend.register;
 
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.seoul_app_contest.safe_friend.Login.LoginActivity;
-import com.seoul_app_contest.safe_friend.Main.MainActivity;
+import com.seoul_app_contest.safe_friend.login.LoginActivity;
 import com.seoul_app_contest.safe_friend.R;
 import com.seoul_app_contest.safe_friend.dto.PostDto;
 import com.seoul_app_contest.safe_friend.postcode.PostcodeActivity;
@@ -26,6 +27,7 @@ import butterknife.OnClick;
 public class RegisterActivity extends AppCompatActivity implements RegisterContract.View {
 
     PostDto postDto;
+    @BindView(R.id.register_logo_tv)TextView logoTv;
 
     @BindView(R.id.register_email_edt)
     EditText registerEmailEdt;
@@ -114,6 +116,11 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
     private void init() {
         presenter = new RegisterPresenter(this);
         ButterKnife.bind(this);
+        final SpannableStringBuilder sp = new SpannableStringBuilder("세이프랜드");
+        sp.setSpan(new ForegroundColorSpan(getColor(R.color.title_green)), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sp.setSpan(new ForegroundColorSpan(getColor(R.color.title_blue)), 1, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sp.setSpan(new ForegroundColorSpan(getColor(R.color.mainColor)), 2, 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        logoTv.append(sp);
         registerCountryCodeSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {

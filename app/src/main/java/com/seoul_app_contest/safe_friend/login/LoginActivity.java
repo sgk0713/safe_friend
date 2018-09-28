@@ -1,16 +1,21 @@
-package com.seoul_app_contest.safe_friend.Login;
+package com.seoul_app_contest.safe_friend.login;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.seoul_app_contest.safe_friend.Main.MainActivity;
+import com.seoul_app_contest.safe_friend.main.MainActivity;
 import com.seoul_app_contest.safe_friend.R;
-import com.seoul_app_contest.safe_friend.Register.RegisterActivity;
+import com.seoul_app_contest.safe_friend.register.RegisterActivity;
+import com.seoul_app_contest.safe_friend.protector_main.ProtectorMainActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,6 +26,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     private LoginContract.Presenter presenter;
     @BindView(R.id.login_user_btn)Button userBtn;
     @BindView(R.id.login_protector_btn)Button protectorBtn;
+    @BindView(R.id.login_logo_tv)TextView loginLogoTv;
 
     @OnClick({R.id.login_user_btn, R.id.login_protector_btn})void loginModeBtn(View view){
         presenter.changeLoginMode(view.getId());
@@ -41,6 +47,11 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
     private void init() {
         ButterKnife.bind(this);
+        final SpannableStringBuilder sp = new SpannableStringBuilder("세이프랜드");
+        sp.setSpan(new ForegroundColorSpan(getColor(R.color.title_green)), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sp.setSpan(new ForegroundColorSpan(getColor(R.color.title_blue)), 1, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sp.setSpan(new ForegroundColorSpan(getColor(R.color.mainColor)), 2, 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        loginLogoTv.append(sp);
         final EditText emailEdt = findViewById(R.id.login_email_edt);
         final EditText passwordEdt = findViewById(R.id.login_password_edt);
         Button registerBtn = findViewById(R.id.login_register_btn);
@@ -67,6 +78,13 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     @Override
     public void redirectMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void redirectProtectorMainActivity() {
+        Intent intent = new Intent(this, ProtectorMainActivity.class);
         startActivity(intent);
         finish();
     }

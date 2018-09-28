@@ -1,7 +1,6 @@
-package com.seoul_app_contest.safe_friend.Main;
+package com.seoul_app_contest.safe_friend.main;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -14,17 +13,19 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
-import com.seoul_app_contest.safe_friend.Login.LoginActivity;
+import com.seoul_app_contest.safe_friend.login.LoginActivity;
 import com.seoul_app_contest.safe_friend.R;
 import com.seoul_app_contest.safe_friend.SearchPlaceActivity;
 import com.seoul_app_contest.safe_friend.profile.ProfileActivity;
@@ -127,8 +128,12 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void showExplanationDialog() {
+        final SpannableStringBuilder sp = new SpannableStringBuilder("안심귀가서비스란,");
+        sp.setSpan(new ForegroundColorSpan(getColor(R.color.mainColor)), 0, 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_explanation, null, false);
+        ((TextView)dialogView.findViewById(R.id.dialog_explanation_service_tv)).setText(sp);
         Button explanationConfirmBtn = dialogView.findViewById(R.id.dialog_explanation_confirm_btn);
         builder.setView(dialogView);
         builder.setCancelable(false);

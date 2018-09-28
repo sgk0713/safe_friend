@@ -1,4 +1,4 @@
-package com.seoul_app_contest.safe_friend.Main;
+package com.seoul_app_contest.safe_friend.main;
 
 public interface MainContract {
     interface View {

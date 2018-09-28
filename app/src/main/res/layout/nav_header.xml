@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:background="@color/main_background"
     android:layout_height="wrap_content">
 
     <LinearLayout
@@ -26,6 +27,9 @@
         app:layout_constraintTop_toBottomOf="@id/nav_linear"/>
 
     <TextView
+        android:fontFamily="@font/nanumsquareb"
+        android:textStyle="bold"
+        android:textSize="18sp"
         android:id="@+id/nav_name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,6 +44,7 @@
         app:layout_constraintVertical_chainStyle="packed"/>
 
     <TextView
+        android:textColor="@color/side_menu_email"
         android:id="@+id/nav_email_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -65,7 +70,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="32dp"
-        android:background="@color/black"
+        android:background="@color/lineColor"
         app:layout_constraintTop_toBottomOf="@id/nav_profile_iv"/>
 
     <LinearLayout
@@ -91,7 +96,7 @@
             android:layout_height="1dp"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
-            android:background="@color/black"/>
+            android:background="@color/lineColor"/>
 
         <Button
             android:id="@+id/nav_logout_btn"
@@ -108,7 +113,7 @@
             android:layout_height="1dp"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
-            android:background="@color/black"
+            android:background="@color/lineColor"
             android:layout_marginBottom="128dp"/>
     </LinearLayout>
 

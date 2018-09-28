@@ -1,4 +1,4 @@
-package com.seoul_app_contest.safe_friend.Register;
+package com.seoul_app_contest.safe_friend.register;
 
 public interface RegisterContract {
     interface View {

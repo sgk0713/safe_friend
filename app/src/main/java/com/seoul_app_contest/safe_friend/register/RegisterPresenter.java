@@ -1,8 +1,7 @@
-package com.seoul_app_contest.safe_friend.Register;
+package com.seoul_app_contest.safe_friend.register;
 
 import com.seoul_app_contest.safe_friend.R;
 import com.seoul_app_contest.safe_friend.UserModel;
-import com.seoul_app_contest.safe_friend.dto.PostDto;
 
 public class RegisterPresenter implements RegisterContract.Presenter {
     RegisterContract.View view;

@@ -6,14 +6,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="32dp"
-    tools:context=".Login.LoginActivity">
+    android:background="@color/main_background"
+    tools:context=".login.LoginActivity">
 
-    <ImageView
-        android:id="@+id/login_logo_iv"
+    <TextView
+        android:id="@+id/login_logo_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
 
     <Button
@@ -69,13 +73,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
+                android:paddingBottom="16dp"
                 android:theme="@style/LoginEmailHint"/>
 
             <EditText
                 android:id="@+id/login_password_edt"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
+                android:paddingBottom="16dp"
                 android:theme="@style/LoginPasswordHint"/>
         </LinearLayout>
 
@@ -84,9 +91,11 @@
 
     <Button
         android:id="@+id/login_register_btn"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
+        android:textColor="@color/text_for_signup"
         android:theme="@style/LoginRegisterBtn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/card_view"
@@ -98,6 +107,7 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:text="아이디/비밀번호 찾기"
+        android:textColor="@color/text_for_signup"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/login_register_btn"
         app:layout_constraintStart_toStartOf="@id/card_view"/>
@@ -105,7 +115,7 @@
     <Button
         android:id="@+id/login_btn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/buttonHeight"
         android:background="@drawable/button_background"
         android:textColor="@color/white"
         android:theme="@style/LoginBtn"

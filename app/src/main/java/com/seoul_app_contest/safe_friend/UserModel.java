@@ -17,10 +17,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
-import com.seoul_app_contest.safe_friend.Register.RegisterActivity;
+import com.seoul_app_contest.safe_friend.register.RegisterActivity;
 import com.seoul_app_contest.safe_friend.dto.UserDto;
 
-import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
@@ -52,6 +51,7 @@ public class UserModel {
 
     private FirebaseAuth firebaseAuth;
     private CollectionReference firestore;
+    private CollectionReference firestore_;
     private FirebaseRemoteConfig firebaseRemoteConfig;
 
     public UserModel() {
@@ -98,6 +98,9 @@ public class UserModel {
         void on(String title, String msg);
 
         void off();
+    }
+    public String getCurrentUserEmail(){
+        return firebaseAuth.getCurrentUser().getEmail();
     }
 
     public boolean existCurrentUser() {
@@ -210,6 +213,42 @@ public class UserModel {
                 signInCallbackListener.onFail(e.toString());
             }
         });
+    }
+
+    public void protectorSignIn(String email, String password, final SignInCallbackListener signInCallbackListener) {
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    signInCallbackListener.onSuccess();
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                signInCallbackListener.onFail(e.toString());
+            }
+        });
+    }
+
+    public void isProtector(String email, final IsProtectorCallbackListener isProtectorCallbackListener){
+        firestore_ = FirebaseFirestore.getInstance().collection("PROTECTORS");
+        firestore_.whereEqualTo("email", email).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.getResult().isEmpty()){
+                    isProtectorCallbackListener.notExist();
+                }else {
+                    isProtectorCallbackListener.exist();
+                }
+            }
+        });
+    }
+
+    public interface IsProtectorCallbackListener{
+        void exist();
+
+        void notExist();
     }
 
     public interface SignInCallbackListener {

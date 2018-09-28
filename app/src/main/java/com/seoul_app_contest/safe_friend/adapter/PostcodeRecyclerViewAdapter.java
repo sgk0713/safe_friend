@@ -1,8 +1,6 @@
 package com.seoul_app_contest.safe_friend.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,9 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.seoul_app_contest.safe_friend.R;
-import com.seoul_app_contest.safe_friend.Register.RegisterActivity;
 import com.seoul_app_contest.safe_friend.dto.PostDto;
-import com.seoul_app_contest.safe_friend.postcode.PostcodeActivity;
 
 import java.util.ArrayList;
 

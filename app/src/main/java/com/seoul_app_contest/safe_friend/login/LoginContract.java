@@ -1,4 +1,4 @@
-package com.seoul_app_contest.safe_friend.Login;
+package com.seoul_app_contest.safe_friend.login;
 
 public interface LoginContract {
     interface View {
@@ -6,11 +6,14 @@ public interface LoginContract {
 
         void redirectMainActivity();
 
+        void redirectProtectorMainActivity();
+
         void redirectRegisterActivity();
 
         void changeLoginMode();
 
         void selectUserLogin();
+
         void selectProtectorLogin();
     }
 

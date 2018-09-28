@@ -11,10 +11,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.seoul_app_contest.safe_friend.R;
-import com.seoul_app_contest.safe_friend.Register.RegisterActivity;
+import com.seoul_app_contest.safe_friend.register.RegisterActivity;
 import com.seoul_app_contest.safe_friend.adapter.PostcodeRecyclerViewAdapter;
 import com.seoul_app_contest.safe_friend.dto.PostDto;
 
@@ -24,19 +23,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -45,16 +33,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.simplexml.SimpleXmlConverterFactory;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
-import retrofit2.http.Url;
 
 public class PostcodeActivity extends AppCompatActivity implements PostcodeRecyclerViewAdapter.ReturnDataListener {
     private String apiUrl = "http://openapi.epost.go.kr/postal/retrieveNewAdressAreaCdService/retrieveNewAdressAreaCdService/getNewAddressListAreaCd?ServiceKey=zx0GlL2RVyBHKsGY1QUduUR0txiL4ZEByp%2BZ5M1v%2FUbM4XxEV%2Brv%2FoFP5iKMpzGdeKvGpXg1wKL7E%2ByWoLdjEw%3D%3D&searchSe=road&srchwrd=";

@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     android:layoutDirection="rtl"
-    tools:context=".Main.MainActivity"
+    tools:context=".main.MainActivity"
     tools:openDrawer="end">
 
     <android.support.design.widget.CoordinatorLayout
@@ -46,9 +46,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="안심귀가서비스"
+                android:fontFamily="@font/nanumsquareb"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nanumsquareeb"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 android:textColor="@color/mainColor"
@@ -61,7 +64,7 @@
             
             <Button
                 android:id="@+id/main_app_btn"
-                android:layout_width="100dp"
+                android:layout_width="80dp"
                 android:layout_height="100dp"
                 android:background="@drawable/app"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -69,15 +72,42 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
+            <TextView
+                android:layout_marginTop="8dp"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:text="바로신청"
+                android:fontFamily="@font/nanumsquareb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/main_app_btn"
+                app:layout_constraintStart_toStartOf="@id/main_app_btn"
+                app:layout_constraintEnd_toEndOf="@id/main_app_btn"/>
+
             <Button
                 android:id="@+id/main_call_btn"
-                android:layout_width="100dp"
+                android:layout_width="90dp"
                 android:layout_height="100dp"
                 android:background="@drawable/call"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/main_app_btn"
                 app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:layout_marginTop="8dp"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:text="전화신청"
+                android:fontFamily="@font/nanumsquareb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/main_call_btn"
+                app:layout_constraintStart_toStartOf="@id/main_call_btn"
+                app:layout_constraintEnd_toEndOf="@id/main_call_btn"/>
+
         </android.support.constraint.ConstraintLayout>
 
     </android.support.design.widget.CoordinatorLayout>
