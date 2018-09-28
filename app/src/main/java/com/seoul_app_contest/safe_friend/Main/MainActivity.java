@@ -10,6 +10,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +18,8 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.gun0912.tedpermission.PermissionListener;
@@ -54,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         presenter = new MainPresenter(this);
+        presenter.showExplanationDialog();
         setSupportActionBar(toolbar);
 
         navigationView.setNavigationItemSelectedListener(this);
@@ -83,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void redirectCall() {
-        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:01024347280"));
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:01024347280"));
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -101,6 +105,22 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public void redirectSearchPlaceActivity() {
         Intent intent = new Intent(this, SearchPlaceActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void showExplanationDialog() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_explanation, null, false);
+        Button explanationConfirmBtn = dialogView.findViewById(R.id.dialog_explanation_confirm_btn);
+        builder.setView(dialogView);
+        builder.setCancelable(false);
+        final AlertDialog alertDialog = builder.show();
+        explanationConfirmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
     }
 
     @Override

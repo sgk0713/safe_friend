@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="64dp">
+
+    <View
+        android:background="@color/mainColor"
+        android:layout_width="32dp"
+        android:layout_height="6dp" />
+
+    <TextView
+        android:layout_marginTop="32dp"
+        android:textSize="25sp"
+        android:text="세이프랜드"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_marginTop="8dp"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="안심귀가 서비스란,"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    
+    <TextView
+        android:layout_marginTop="50dp"
+        android:text="밤 10시부터 새벽 1시, 범죄 취약 지역의 청소년 및 여성이 신청할 경우, 버스, 택시 승강장, 지하철 등에서 거주지까지 안전하게 바래다 주는 서비스입니다."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/dialog_explanation_confirm_btn"
+        android:layout_marginTop="32dp"
+        android:textColor="@color/white"
+        android:background="@drawable/button_background"
+        android:text="확인"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
