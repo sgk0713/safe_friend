@@ -28,6 +28,7 @@ public class UserModel {
     private static final String WELCOME_MESSAGE_CAPS_KEY = "welcome_message_caps";
     private static final String WELCOME_TITLE_KEY = "welcome_title";
 
+    int userType;
     String uid;
     String email;
     String password;
@@ -318,5 +319,13 @@ public class UserModel {
 
     public void signOut(){
         firebaseAuth.signOut();
+    }
+
+    public void setUserType(int userType) {
+        this.userType = userType;
+    }
+
+    public int getUserType() {
+        return userType;
     }
 }

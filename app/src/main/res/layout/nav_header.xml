@@ -9,14 +9,20 @@
         android:id="@+id/nav_linear"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#ff0000"
+        android:background="@color/mainColor"
         android:gravity="start|center_vertical">
 
         <ImageView
-            android:src="@drawable/ic_chevron_right_black_24dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/ic_dehaze_black_24dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
+    <View
+        app:layout_constraintTop_toBottomOf="@id/nav_linear"
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:background="@color/subColor" />
 
     <TextView
         android:layout_marginTop="32dp"
@@ -58,5 +64,6 @@
         app:layout_constraintTop_toBottomOf="@id/nav_profile_iv"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
+
 
 </android.support.constraint.ConstraintLayout>

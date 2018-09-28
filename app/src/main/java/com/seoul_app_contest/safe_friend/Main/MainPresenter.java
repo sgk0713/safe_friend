@@ -12,6 +12,11 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     @Override
+    public void showExplanationDialog() {
+        view.showExplanationDialog();
+    }
+
+    @Override
     public void signOut() {
         model.signOut();
     }

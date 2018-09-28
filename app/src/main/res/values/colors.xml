@@ -10,4 +10,7 @@
     <color name="buttonBackground">#ffa200</color>
 
     <color name="background">#FEFDFA</color>
+
+    <color name="mainColor">#ffa200</color>
+    <color name="subColor">#ffce79</color>
 </resources>

@@ -38,14 +38,35 @@
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+            <TextView
+                android:textSize="18sp"
+                android:id="@+id/main_tv"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/main_app_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="안심귀가서비스"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textColor="@color/mainColor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/main_tv"
+                android:text="신청하기"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            
             <Button
                 android:id="@+id/main_app_btn"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:background="@drawable/app"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/main_call_btn"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/main_call_btn"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <Button
@@ -54,8 +75,8 @@
                 android:layout_height="100dp"
                 android:background="@drawable/call"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/main_app_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/main_app_btn"
                 app:layout_constraintTop_toTopOf="parent"/>
         </android.support.constraint.ConstraintLayout>
 

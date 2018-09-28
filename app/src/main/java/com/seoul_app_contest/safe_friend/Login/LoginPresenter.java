@@ -1,5 +1,6 @@
 package com.seoul_app_contest.safe_friend.Login;
 
+import com.seoul_app_contest.safe_friend.R;
 import com.seoul_app_contest.safe_friend.UserModel;
 
 public class LoginPresenter implements LoginContract.Presenter {
@@ -16,20 +17,36 @@ public class LoginPresenter implements LoginContract.Presenter {
     @Override
     public void signIn(String email, String password) {
         if (email.length() != 0 && password.length() != 0) {
-            model.signIn(email, password, new UserModel.SignInCallbackListener() {
-                @Override
-                public void onSuccess() {
-                    view.redirectMainActivity();
-                }
+            if (model.getUserType() == 0) { // 유저일때
+                model.signIn(email, password, new UserModel.SignInCallbackListener() {
+                    @Override
+                    public void onSuccess() {
+                        view.redirectMainActivity();
+                    }
 
-                @Override
-                public void onFail(String e) {
-                    view.showErrorToast("잘못된 정보입니다." + e);
-                }
-            });
+                    @Override
+                    public void onFail(String e) {
+                        view.showErrorToast("잘못된 정보입니다." + e);
+                    }
+                });
+            }else { // 지킴이일때
+
+            }
+
         }else {
             view.showErrorToast("모든 정보를 입력해주세요.");
         }
 
+    }
+
+    @Override
+    public void changeLoginMode(int id) {
+        if (id == R.id.login_user_btn){
+            view.selectUserLogin();
+            model.setUserType(0);
+        }else {
+            model.setUserType(1);
+            view.selectProtectorLogin();
+        }
     }
 }

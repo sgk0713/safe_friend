@@ -27,11 +27,7 @@
         <activity android:name=".Splash.SplashActivity">
 
             <!-- android:theme="@style/SplashTheme"> -->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
         </activity>
         <activity
             android:name=".Register.RegisterActivity"
@@ -59,9 +55,16 @@
         </activity>
         <activity android:name=".Login.LoginActivity">
         </activity>
-        <activity android:name=".ProtectorMain.ProtectorMainActivity">
+        <activity android:name=".protector_main.ProtectorMainActivity">
+
         </activity>
         <activity android:name=".profile.ProfileActivity">
+        </activity>
+        <activity android:name=".postcode.PostcodeActivity"> <intent-filter>
+            <action android:name="android.intent.action.MAIN"/>
+
+            <category android:name="android.intent.category.LAUNCHER"/>
+        </intent-filter>
         </activity>
     </application>
 

@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.seoul_app_contest.safe_friend.Main.MainActivity;
 import com.seoul_app_contest.safe_friend.R;
+import com.seoul_app_contest.safe_friend.postcode.PostcodeActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,6 +55,10 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
 //    RadioButton registerUseAgreeRb;
 //    @BindView(R.id.register_privacy_agree_rb)
 //    RadioButton registerPrivacyAgreeRb;
+
+    @OnClick(R.id.register_postcode_btn)void postcodeBtn(){
+        redirectPostcodeActivity();
+    }
 
     @OnClick({R.id.register_man_rb, R.id.register_woman_rb})
     void genderCheck(View view) {
@@ -105,6 +110,12 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void redirectPostcodeActivity() {
+        Intent intent = new Intent(this, PostcodeActivity.class);
+        startActivity(intent);
     }
 
     @Override

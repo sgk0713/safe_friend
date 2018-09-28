@@ -18,25 +18,36 @@
 
     <Button
         android:id="@+id/login_user_btn"
-        android:drawableStart="@drawable/ic_chevron_right_black_24dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/selected_login_button"
-        android:elevation="10dp"
         android:layout_marginEnd="8dp"
+        android:background="@drawable/selected_login_button"
+        android:drawableStart="@drawable/ic_chevron_right_black_24dp"
+        android:elevation="10dp"
+        android:gravity="start|center_vertical"
+        android:paddingStart="16dp"
+        android:text="사용자"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/card_view"
         app:layout_constraintEnd_toStartOf="@id/login_protector_btn"
-        app:layout_constraintStart_toStartOf="@id/card_view"
-        app:layout_constraintBottom_toTopOf="@id/card_view"/>
+        app:layout_constraintStart_toStartOf="@id/card_view"/>
 
     <Button
-        app:layout_constraintStart_toEndOf="@id/login_user_btn"
         android:id="@+id/login_protector_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/default_login_button"
+        android:drawableStart="@drawable/ic_chevron_right_black_24dp"
         android:elevation="10dp"
+        android:gravity="start|center_vertical"
+        android:paddingStart="16dp"
+        android:text="지킴이"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/card_view"
         app:layout_constraintEnd_toEndOf="@id/card_view"
-        app:layout_constraintBottom_toTopOf="@id/card_view"/>
+        app:layout_constraintStart_toEndOf="@id/login_user_btn"/>
 
     <android.support.v7.widget.CardView
         android:id="@+id/card_view"
@@ -48,10 +59,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:padding="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="16dp">
 
             <EditText
                 android:id="@+id/login_email_edt"
@@ -77,29 +88,30 @@
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:theme="@style/LoginRegisterBtn"
-        app:layout_constraintStart_toEndOf="@id/login_find_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/card_view"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toEndOf="@id/login_find_btn"/>
+
     <Button
         android:id="@+id/login_find_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:text="아이디/비밀번호 찾기"
-        app:layout_constraintStart_toStartOf="@id/card_view"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/login_register_btn"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="@id/card_view"/>
 
     <Button
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:id="@+id/login_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
         android:background="@drawable/button_background"
+        android:textColor="@color/white"
         android:theme="@style/LoginBtn"
-        app:layout_constraintTop_toBottomOf="@id/card_view"
-        app:layout_constraintBottom_toTopOf="@id/login_register_btn"/>
+        app:layout_constraintBottom_toTopOf="@id/login_register_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/card_view"/>
 
 </android.support.constraint.ConstraintLayout>
