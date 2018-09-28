@@ -15,7 +15,7 @@ public class SetTimeActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_time);
-        final String stationName = getIntent().getStringExtra("stationName");
+        final String stop_nm = getIntent().getStringExtra("stop_nm");
 
         timePicker = findViewById(R.id.activity_set_time_timer_tp);
         nextBtn = findViewById(R.id.activity_set_time_confirm_btn);
@@ -39,7 +39,7 @@ public class SetTimeActivity extends AppCompatActivity{
                 }else hour = timePicker.getHour() + "";
 
                 String time = hour + " : " + min;
-                intent.putExtra("stationName", stationName);
+                intent.putExtra("stop_nm", stop_nm);
                 intent.putExtra("time", time);
                 startActivity(intent);
             }

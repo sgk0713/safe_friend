@@ -65,6 +65,19 @@ public class StationRecyclerViewAdapter extends RecyclerView.Adapter<StationRecy
                     }
                 }
             });
+        }else {
+            holder.icon.setImageResource(R.drawable.ic_location);
+            holder.stationName.setText(arrayList.get(i).stop_nm);
+            holder.stationId.setText(arrayList.get(i).stop_no);
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(itemClick != null){
+                        itemClick.onClick(v, position);
+                    }
+                }
+            });
         }
 
     }

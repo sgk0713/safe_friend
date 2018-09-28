@@ -18,6 +18,8 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.seoul_app_contest.safe_friend.Helper.DBHelperLastItem;
 import com.seoul_app_contest.safe_friend.R;
 import com.seoul_app_contest.safe_friend.SearchPlaceActivity;
 import com.seoul_app_contest.safe_friend.SetTimeActivity;
@@ -33,6 +35,7 @@ public class SearchStationFragment extends Fragment{
 
     private final int BUS = 0;
     private final int SUBWAY = 1;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -55,6 +58,9 @@ public class SearchStationFragment extends Fragment{
     RecyclerView recyclerView;
     Boolean isBusClicked = true;
 
+    DBHelperLastItem dbHelperLastItem;
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -71,8 +77,14 @@ public class SearchStationFragment extends Fragment{
         InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.showSoftInput(searchEditText, 0);
 
+
+        //저장된 디비
         final DataAdapter mDbHelper = new DataAdapter(activity);
         mDbHelper.createDatabase();
+
+        //로컬디비
+        dbHelperLastItem = new DBHelperLastItem(activity, "lastitem.db", null, 1);
+
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         busStationRecyclerViewAdapter = new StationRecyclerViewAdapter(getContext(), resultArray, BUS);
@@ -136,8 +148,17 @@ public class SearchStationFragment extends Fragment{
         busStationRecyclerViewAdapter.setItemClick(new StationRecyclerViewAdapter.ItemClick() {
             @Override
             public void onClick(View view, int position) {
+
+
+                dbHelperLastItem.sortAsLRU(resultArray.get(position).stop_no, resultArray.get(position).stop_nm,
+                        Float.valueOf(resultArray.get(position).xcode), Float.valueOf(resultArray.get(position).ycode));
+                Log.d("TESTEST", "클릭됨");
+
                 Intent intent = new Intent(activity, SetTimeActivity.class);
-                intent.putExtra("stationName", resultArray.get(position).stop_nm);
+                intent.putExtra("stop_nm", resultArray.get(position).stop_nm);
+                intent.putExtra("stop_no", resultArray.get(position).stop_no);
+                intent.putExtra("xcode", resultArray.get(position).xcode);
+                intent.putExtra("ycode", resultArray.get(position).ycode);
                 Log.d("station_name", resultArray.get(position).stop_nm);
                 startActivity(intent);
             }
@@ -146,14 +167,18 @@ public class SearchStationFragment extends Fragment{
         subwayStationRecyclerViewAdapter.setItemClick(new StationRecyclerViewAdapter.ItemClick() {
             @Override
             public void onClick(View view, int position) {
+                dbHelperLastItem.sortAsLRU(resultArray.get(position).line, resultArray.get(position).stop_nm,
+                        Float.valueOf(resultArray.get(position).xcode), Float.valueOf(resultArray.get(position).ycode));
+
                 Intent intent = new Intent(activity, SetTimeActivity.class);
-                intent.putExtra("stationName", resultArray.get(position).stop_nm);
+                intent.putExtra("stop_nm", resultArray.get(position).stop_nm);
+                intent.putExtra("stop_no", resultArray.get(position).stop_no);
+                intent.putExtra("xcode", resultArray.get(position).xcode);
+                intent.putExtra("ycode", resultArray.get(position).ycode);
                 Log.d("station_name", resultArray.get(position).stop_nm);
                 startActivity(intent);
             }
         });
-
-
         return rootView;
     }//onCreateView() end;
 

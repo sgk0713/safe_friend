@@ -1,26 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item>
-        <shape android:shape="rectangle" >
-            <solid android:color="#f2f2f2" />
-        </shape>
-    </item>
-
     <item  android:top="-3dp" android:left="-3dp" android:right="-3dp">
         <shape>
-            <solid android:color="@color/lightMainColor" />
+            <solid android:color="@color/subColor" />
             <stroke
                 android:width="1dp"
-                android:color="@color/buttonBackground" />
+                android:color="@color/mainColor" />
         </shape>
     </item>
-    <!--<item  android:top="-2dp" android:left="-2dp" android:right="-2dp">-->
-        <!--<shape>-->
-            <!--<solid android:color="@android:color/transparent" />-->
-            <!--<stroke-->
-                <!--android:width="1dp"-->
-                <!--android:color="#3a94e8" />-->
-        <!--</shape>-->
-    <!--</item>-->
 </layer-list>

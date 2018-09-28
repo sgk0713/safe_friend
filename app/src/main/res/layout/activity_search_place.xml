@@ -12,7 +12,7 @@
         android:id="@+id/activity_search_place_appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/buttonBackground"
+        android:background="@color/mainColor"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:elevation="0dp">
 
@@ -37,6 +37,7 @@
                     android:textSize="12sp"
                     android:textStyle="bold"
                     android:gravity="center"
+                    android:textColor="@color/text_for_process"
                     android:layout_gravity="center"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
@@ -44,15 +45,15 @@
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="2dp"
-                    android:background="#ffefb4"
+                    android:background="@color/line_for_process"
                     android:layout_gravity="center"
                     android:layout_weight="1"/>
                 <TextView
-                    android:layout_width="@dimen/process_height"
-                    android:layout_height="@dimen/process_height"
+                    android:layout_width="@dimen/process_circle"
+                    android:layout_height="@dimen/process_circle"
                     android:text="@string/two"
                     android:textSize="12sp"
-                    android:textColor="@color/buttonBackground"
+                    android:textColor="@color/mainColor"
                     android:gravity="center"
                     android:layout_gravity="center"
                     android:background="@drawable/process_circle_background"/>
@@ -61,13 +62,13 @@
                     android:layout_height="2dp"
                     android:layout_weight="1"
                     android:layout_gravity="center"
-                    android:background="#ffefb4"/>
+                    android:background="@color/line_for_process"/>
                 <TextView
-                    android:layout_width="@dimen/process_height"
-                    android:layout_height="@dimen/process_height"
+                    android:layout_width="@dimen/process_circle"
+                    android:layout_height="@dimen/process_circle"
                     android:text="@string/three"
                     android:textSize="12sp"
-                    android:textColor="@color/buttonBackground"
+                    android:textColor="@color/mainColor"
                     android:gravity="center"
                     android:layout_gravity="center"
                     android:background="@drawable/process_circle_background"/>
@@ -80,7 +81,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:background="#ffefb4"
+        android:background="@color/subColor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activity_search_place_appbar"
@@ -113,7 +114,9 @@
                 android:layout_margin="8dp"
                 android:inputType="text"
                 android:hint="@string/recent_list"
+                android:gravity="center"
                 android:textSize="16sp"
+                android:textColor="@color/my_profile_main_title"
                 android:background="@null"/>
         </LinearLayout>
 

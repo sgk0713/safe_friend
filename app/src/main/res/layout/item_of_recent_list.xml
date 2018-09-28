@@ -13,39 +13,21 @@
 
         <TextView
             android:id="@+id/item_of_recent_list_station_name_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:text="@string/bus_station"
+            android:textColor="@color/text_for_agreement"
             android:layout_weight="1"/>
-
-        <LinearLayout
-            android:id="@+id/item_of_recent_list_ll"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:orientation="horizontal"
-            android:layout_weight="1">
-
-            <TextView
-                android:id="@+id/item_of_recent_list_station_id_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/station_id"
-                android:layout_gravity="center_vertical"/>
-            <View
-                android:id="@+id/item_of_recent_list_bar"
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:layout_margin="8dp"
-                android:background="#000000"/>
-            <TextView
-                android:id="@+id/item_of_recent_list_station_toward_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="@string/station_toward" />
-
-        </LinearLayout>
+        <TextView
+            android:id="@+id/item_of_recent_list_station_id_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/station_id"
+            android:textColor="@color/text_for_agreement"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"/>
     </LinearLayout>
+
 
     <ImageView
         android:id="@+id/item_of_recent_remove_iv"

@@ -50,6 +50,14 @@
     <color name="my_profile_setting">#939598</color><!--147,149,152-->
     <color name="my_profile_item_title">#6d6e71</color><!--109, 110, 113-->
 
+    <!--리스트-->
+    <color name="text_on_list">#58595b</color><!--88,89,91-->
+
+    <!--절차 색상-->
+    <color name="text_for_process">#3a383c</color><!--58,56,60-->
+    <color name="line_for_process">#f9ca78</color><!--249,202,120-->
+
+
     <!--서비스 취소 다이얼 로그-->
     <color name="drop_down_list_unselected">#6d6f71</color><!--109, 111, 113-->
     <color name="drop_down_list_selected">#000000</color><!--black-->

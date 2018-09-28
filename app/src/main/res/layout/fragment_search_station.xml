@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/selected_button"
             android:text="@string/bus_station"
+            android:textColor="@color/black"
             android:layout_weight="1"
             android:stateListAnimator="@null"/>
 
@@ -30,6 +31,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/nonselected_button"
             android:text="@string/subway_station"
+            android:textColor="@color/black"
             android:layout_weight="1"
             android:stateListAnimator="@null"/>
 
@@ -39,7 +41,7 @@
         android:id="@+id/fragment_search_station_fl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffffff">
+        android:background="@color/main_background">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/fragment_search_station_rv"

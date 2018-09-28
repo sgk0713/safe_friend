@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_background"
     tools:context=".SetTimeActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/activity_set_time_appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/buttonBackground"
+        android:background="@color/mainColor"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:elevation="0dp">
 
@@ -29,11 +30,11 @@
                 android:layout_height="@dimen/process_height"
                 android:orientation="horizontal">
                 <TextView
-                    android:layout_width="@dimen/process_height"
-                    android:layout_height="@dimen/process_height"
+                    android:layout_width="@dimen/process_circle"
+                    android:layout_height="@dimen/process_circle"
                     android:text="@string/one"
                     android:textSize="12sp"
-                    android:textColor="@color/buttonBackground"
+                    android:textColor="@color/mainColor"
                     android:gravity="center"
                     android:layout_gravity="center"
                     android:background="@drawable/process_circle_background"/>
@@ -41,7 +42,7 @@
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="2dp"
-                    android:background="#ffefb4"
+                    android:background="@color/line_for_process"
                     android:layout_gravity="center"
                     android:layout_weight="1"/>
                 <TextView
@@ -50,6 +51,7 @@
                     android:text="@string/step_two"
                     android:textSize="12sp"
                     android:textStyle="bold"
+                    android:textColor="@color/text_for_process"
                     android:gravity="center"
                     android:layout_gravity="center"
                     android:paddingLeft="10dp"
@@ -60,13 +62,13 @@
                     android:layout_height="2dp"
                     android:layout_weight="1"
                     android:layout_gravity="center"
-                    android:background="#ffefb4"/>
+                    android:background="@color/line_for_process"/>
                 <TextView
-                    android:layout_width="@dimen/process_height"
-                    android:layout_height="@dimen/process_height"
+                    android:layout_width="@dimen/process_circle"
+                    android:layout_height="@dimen/process_circle"
                     android:text="@string/three"
                     android:textSize="12sp"
-                    android:textColor="@color/buttonBackground"
+                    android:textColor="@color/mainColor"
                     android:gravity="center"
                     android:layout_gravity="center"
                     android:background="@drawable/process_circle_background"/>
@@ -84,33 +86,34 @@
         app:layout_constraintTop_toBottomOf="@+id/activity_set_time_appbar"
         android:orientation="vertical">
 
+
         <View
             android:layout_width="20dp"
             android:layout_height="3dp"
+            android:layout_gravity="center_vertical"
             android:layout_marginBottom="4dp"
-            android:background="@color/buttonBackground"
-            android:layout_gravity="center_vertical"/>
+            android:background="@color/mainColor" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="0dp"
             android:layout_margin="0dp"
+            android:gravity="center"
+            android:padding="0dp"
             android:text="@string/service_name"
-            android:textSize="24sp"
-            android:gravity="center"/>
+            android:textColor="@color/service_title"
+            android:textSize="24sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="0dp"
-            android:layout_margin="0dp"
-            android:text="@string/time_set"
-            android:textColor="@color/buttonBackground"
-            android:textStyle="bold"
-            android:textSize="40sp"
             android:layout_gravity="top"
-            />
+            android:layout_margin="0dp"
+            android:padding="0dp"
+            android:text="@string/time_set"
+            android:textColor="@color/mainColor"
+            android:textSize="40sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 
@@ -143,7 +146,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/next"
-        android:textColor="@color/lightMainColor"
+        android:textColor="@color/text_in_button"
         android:paddingLeft="40dp"
         android:paddingRight="40dp"
         android:textSize="20sp"

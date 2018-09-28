@@ -20,14 +20,14 @@ public class LastConfirmActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_last_confirm);
 
-        String stationName = getIntent().getStringExtra("stationName");
+        String stop_nm = getIntent().getStringExtra("stop_nm");
         String time = getIntent().getStringExtra("time");
 
         stationNameTv = findViewById(R.id.activity_last_confirm_station_name_tv);
         timeTv = findViewById(R.id.activity_last_confirm_time_tv);
         confirmBtn = findViewById(R.id.activity_last_confirm_btn);
 
-        stationNameTv.setText(stationName);
+        stationNameTv.setText(stop_nm);
         timeTv.setText(time);
         confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
