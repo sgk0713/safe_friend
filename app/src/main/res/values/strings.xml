@@ -14,7 +14,7 @@
     <string name="bus_station">버스정류장</string>
     <string name="service_name">안심귀가서비스</string>
     <string name="time_set">시간 설정</string>
-    <string name="notice_for_timer">※ 안심귀가 서비스는 <b>월요일 2:00 ~ 24:00,\n화-일요일 22:00 ~ 01:00</b> 까지만\n이용 가능합니다.</string>
+    <string name="notice_for_timer">※ 안심귀가 서비스는 <b>월요일 22:00 ~ 24:00,\n화-일요일 22:00 ~ 01:00</b> 까지\n이용 가능합니다.</string>
     <string name="request_confirm">신청 확인</string>
     <string name="next">다음</string>
     <string name="at">에서</string>

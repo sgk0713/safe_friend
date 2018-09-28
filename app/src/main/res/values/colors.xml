@@ -7,11 +7,56 @@
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
 
-    <color name="buttonBackground">#ffa200</color>
+
     <color name="lightMainColor">#ffefb4</color>
 
     <color name="background">#FEFDFA</color>
 
-    <color name="mainColor">#ffa200</color>
-    <color name="subColor">#ffce79</color>
+
+    <!--공통-->
+    <color name="mainColor">#ffb211</color><!--255,178,17-->
+    <color name="subColor">#ffe9c4</color><!--255,233,196-->
+    <color name="main_background">#fefdfa</color><!--254, 253, 250-->
+
+    <!--세이프렌드 타이틀-->
+    <color name="title_green">#3c9148</color><!--60,145,72-->
+    <color name="title_blue">#ffe9c4</color><!--0,138,207-->
+
+    <!--회원가입-->
+    <color name="text_for_item_title">#6d6e71</color><!--109, 110, 113-->
+    <color name="text_for_agreement">#58595b</color><!--88,89,91-->
+    <color name="country_code">#3f3f3f</color><!--63, 63, 63-->
+    <color name="hint_year_month_day">#bcbec0</color><!--188, 190, 192--><!--년,월,일-->
+
+    <!--버튼-->
+    <color name="buttonBackground">#ffb211</color><!--255,178,17-->
+    <color name="text_in_button">#ffffff</color><!--255, 255, 255-->
+
+    <!--우편번호 찾기-->
+    <color name="postcode_text_for_hint">#6d6e71</color><!--109, 110, 113-->
+
+    <!--로그인-->
+    <color name="text_for_signup">#939598</color><!--147, 149. 152-->
+
+    <!--서비스 타이틀 색-->
+    <color name="service_title">#414042</color><!--65, 64, 66-->
+
+    <!--사이드 메뉴 액티비티-->
+    <color name="side_menu_email">#a7a9ac</color><!--167, 169, 172-->
+    <color name="lineColor">#939598</color><!--147, 149, 152--><!--라인색상, 내정보 라인 동일-->
+
+    <!--내정보-->
+    <color name="my_profile_main_title">#3a383c</color><!--58,56,60--><!--메인색상바탕에 있는 글자랑 자주쓰임-->
+    <color name="my_profile_setting">#939598</color><!--147,149,152-->
+    <color name="my_profile_item_title">#6d6e71</color><!--109, 110, 113-->
+
+    <!--서비스 취소 다이얼 로그-->
+    <color name="drop_down_list_unselected">#6d6f71</color><!--109, 111, 113-->
+    <color name="drop_down_list_selected">#000000</color><!--black-->
+
+    <!--취소완료, 귀가완료-->
+    <color name="success_main_background">#ffc141</color><!--255, 193, 65-->
+    <color name="text_under_icon">#6d6e71</color><!--109, 110, 113-->
+    <color name="text_under_icon_selected">#000000</color><!--black-->
+
 </resources>
