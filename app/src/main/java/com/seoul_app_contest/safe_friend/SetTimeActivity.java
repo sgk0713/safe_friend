@@ -7,15 +7,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TimePicker;
 
+import com.seoul_app_contest.safe_friend.confirmmap.ConfirmMapActivity;
+
 public class SetTimeActivity extends AppCompatActivity{
     TimePicker timePicker;
     Button nextBtn;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_time);
-        final String stop_nm = getIntent().getStringExtra("stop_nm");
+
 
         timePicker = findViewById(R.id.activity_set_time_timer_tp);
         nextBtn = findViewById(R.id.activity_set_time_confirm_btn);
@@ -39,8 +40,11 @@ public class SetTimeActivity extends AppCompatActivity{
                 }else hour = timePicker.getHour() + "";
 
                 String time = hour + " : " + min;
-                intent.putExtra("stop_nm", stop_nm);
                 intent.putExtra("time", time);
+                intent.putExtra("stop_nm", getIntent().getStringExtra("stop_nm"));
+                intent.putExtra("stop_no", getIntent().getStringExtra("stop_no"));
+                intent.putExtra("xcode", getIntent().getStringExtra("xcode"));
+                intent.putExtra("ycode", getIntent().getStringExtra("ycode"));
                 startActivity(intent);
             }
         });
@@ -61,11 +65,6 @@ public class SetTimeActivity extends AppCompatActivity{
 
             }
         });
-
-
-
-
-
     }
 
 }

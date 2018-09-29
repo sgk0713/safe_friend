@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.SQLException;
 import android.util.Log;
 
-import com.seoul_app_contest.safe_friend.Helper.DatabaseHelper;
+import com.seoul_app_contest.safe_friend.helper.DatabaseHelper;
 
 import java.io.IOException;
 

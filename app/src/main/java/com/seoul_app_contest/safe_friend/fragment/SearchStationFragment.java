@@ -19,10 +19,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.seoul_app_contest.safe_friend.Helper.DBHelperLastItem;
+import com.seoul_app_contest.safe_friend.helper.DBHelperLastItem;
 import com.seoul_app_contest.safe_friend.R;
 import com.seoul_app_contest.safe_friend.SearchPlaceActivity;
-import com.seoul_app_contest.safe_friend.SetTimeActivity;
 import com.seoul_app_contest.safe_friend.adapter.DataAdapter;
 import com.seoul_app_contest.safe_friend.adapter.StationRecyclerViewAdapter;
 import com.seoul_app_contest.safe_friend.confirmmap.ConfirmMapActivity;

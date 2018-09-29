@@ -1,11 +1,14 @@
 package com.seoul_app_contest.safe_friend;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.seoul_app_contest.safe_friend.waitingncomfirm.WatingActivity;
 
 import org.w3c.dom.Text;
 
@@ -32,7 +35,13 @@ public class LastConfirmActivity extends AppCompatActivity {
         confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"대기화면으로 이동할 버튼", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LastConfirmActivity.this, WatingActivity.class);
+                intent.putExtra("stop_nm", getIntent().getStringExtra("stop_nm"));
+                intent.putExtra("stop_no", getIntent().getStringExtra("stop_no"));
+                intent.putExtra("xcode", getIntent().getStringExtra("xcode"));
+                intent.putExtra("ycode", getIntent().getStringExtra("ycode"));
+                startActivity(intent);
+                finish();
             }
         });
 

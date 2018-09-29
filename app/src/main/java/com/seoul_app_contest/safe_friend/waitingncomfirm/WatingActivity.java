@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.seoul_app_contest.safe_friend.R;
 
 import java.util.Timer;
@@ -16,12 +17,13 @@ import java.util.TimerTask;
 public class WatingActivity extends AppCompatActivity {
     FragmentManager fm;
 
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_waiting);
         fm = getSupportFragmentManager();
-
 
 
 
