@@ -36,10 +36,12 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"
+            android:layout_marginRight="8dp"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/activity_confirmmap_confirm_btn"
             android:orientation="vertical">
             <TextView
                 android:layout_width="wrap_content"
@@ -52,13 +54,15 @@
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
                 android:text="사당역 9번 출구"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:textColor="@color/mainColor"/>
         </LinearLayout>
         <Button
             android:id="@+id/activity_confirmmap_confirm_btn"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:textColor="@color/white"
             android:text="확인"

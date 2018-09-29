@@ -87,7 +87,7 @@ public class SearchPlaceActivity extends AppCompatActivity implements Serializab
     void switchFragmentTo(Fragment frag){
         if(frag == searchStationFragment && !isSearching){//역검색화면으로 전환
             isSearching = true;
-            searchImageView.setImageResource(R.drawable.ic_location_un);
+            searchImageView.setImageResource(R.drawable.ic_pin_point);
             searchImageView.setFocusableInTouchMode(false);
             searchEditText.setHint(R.string.station_example);
             searchEditText.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
@@ -95,7 +95,7 @@ public class SearchPlaceActivity extends AppCompatActivity implements Serializab
             getSupportFragmentManager().beginTransaction().replace(R.id.activity_search_place_fl, frag).commit();
         }else if(frag == recentListFragment && isSearching) {//최근 검색목록으로 전환
             isSearching = false;
-            searchImageView.setImageResource(android.R.drawable.ic_menu_search);
+            searchImageView.setImageResource(R.drawable.ic_search);
             InputMethodManager imm = (InputMethodManager) getSystemService(SearchPlaceActivity.this.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(searchEditText.getWindowToken(), 0);
             searchEditText.setFocusableInTouchMode(false);
