@@ -133,13 +133,12 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     public void showWithdrawalDialog() {
         View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_withdrawal, null, false);
         final EditText withdrawalPasswordEdt = dialogView.findViewById(R.id.withdrawal_password_edt);
-        Button withdrawalCancelBtn = dialogView.findViewById(R.id.withdrawal_cancel_btn);
+        ImageButton withdrawalCancelBtn = dialogView.findViewById(R.id.withdrawal_cancel_btn);
         Button withdrawalConfirmBtn = dialogView.findViewById(R.id.withdrawal_confirm_btn);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setCancelable(false);
-        builder.setView(dialogView)
-                .show();
+        builder.setView(dialogView);
         final AlertDialog alertDialog = builder.show();
         withdrawalCancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
