@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/dialogTopView"
     android:background="@drawable/dialog_cancel_spinner_dropdown_border"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
+    android:layout_height="40dp"
     android:layout_alignParentTop="true">
 
     <CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -12,17 +11,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="취소 사유"
-
-        android:background="@android:color/holo_blue_light"
-        android:fontFamily="@font/nanumsquareb"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginBottom="4dp"
+        android:layout_above="@id/spinnerDropdownTextBar"
+        android:textColor="#6d6f71"
+        android:fontFamily="@font/nanumsquare_b"
         android:ellipsize="marquee"
         android:singleLine="true" />
 
     <View
+        android:id="@+id/spinnerDropdownTextBar"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginHorizontal="8dp"
-        android:background="@android:color/darker_gray"/>
+        android:background="#FFFFFF"/>
 </RelativeLayout>

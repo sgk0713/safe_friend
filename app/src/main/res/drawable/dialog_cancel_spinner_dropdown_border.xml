@@ -5,8 +5,7 @@
             <!-- CONTENT LAYER -->
             <item>
                 <shape>
-                    <stroke android:width="2dp" android:color="#ffd073"/>
-                    <solid android:color="#FFFFFF" />
+                    <solid android:color="@color/subColor" />
                 </shape>
             </item>
 

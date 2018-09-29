@@ -26,7 +26,7 @@
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:textSize="12dp"
-                 android:fontFamily="@font/nanumsquareb"
+                 android:fontFamily="@font/nanumsquare_b"
                  android:text="지킴이"/>
              <TextView
                  android:id="@+id/infoA_Name"
@@ -34,7 +34,7 @@
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:textSize="16dp"
-                 android:fontFamily="@font/nanumsquareeb"
+                 android:fontFamily="@font/nanumsquare_eb"
                  android:text="김한솔"/>
              <TextView
                  android:layout_marginRight="8dp"
@@ -42,14 +42,14 @@
                  android:layout_height="wrap_content"
                  android:background="@android:color/white"
                  android:textSize="12dp"
-                 android:fontFamily="@font/nanumsquareeb"
+                 android:fontFamily="@font/nanumsquare_eb"
                  android:text=" "/>
              <TextView
                  android:id="@+id/infoA_Phone"
                  android:layout_width="wrap_content"
                  android:layout_height="wrap_content"
                  android:textSize="12dp"
-                 android:fontFamily="@font/nanumsquareb"
+                 android:fontFamily="@font/nanumsquare_b"
                  android:text="010-1203-4506"/>
          </LinearLayout>
      </LinearLayout>
@@ -72,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="12dp"
-                android:fontFamily="@font/nanumsquareb"
+                android:fontFamily="@font/nanumsquare_b"
                 android:text="지킴이"/>
             <TextView
                 android:id="@+id/infoB_Name"
@@ -80,7 +80,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
-                android:fontFamily="@font/nanumsquareeb"
+                android:fontFamily="@font/nanumsquare_eb"
                 android:text="김한솔"/>
             <TextView
                 android:layout_marginRight="8dp"
@@ -88,14 +88,14 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
                 android:textSize="12dp"
-                android:fontFamily="@font/nanumsquareeb"
+                android:fontFamily="@font/nanumsquare_eb"
                 android:text=" "/>
             <TextView
                 android:id="@+id/infoB_Phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="12dp"
-                android:fontFamily="@font/nanumsquareb"
+                android:fontFamily="@font/nanumsquare_b"
                 android:text="010-1203-4506"/>
         </LinearLayout>
     </LinearLayout>

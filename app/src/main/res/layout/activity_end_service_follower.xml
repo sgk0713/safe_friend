@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFC042">
@@ -16,38 +17,58 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/nanumsquareb"
+        android:fontFamily="@font/nanumsquare_b"
         android:textSize="20sp"
         android:text="세이프렌드와 함께하는"
         app:layout_constraintBottom_toTopOf="@id/endServiceTitleGuideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/endServiceTextView"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/nanumsquareeb"
-        android:text="안심귀가"
-        android:textColor="#FFFFFF"
-        android:textSize="48sp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/endServiceTitleGuideline" />
+        app:layout_constraintTop_toBottomOf="@id/endServiceTitleGuideline">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawablePadding="16dip"
-        android:drawableRight="@drawable/ic_map_cancel_button"
-        android:fontFamily="@font/nanumsquareeb"
-        android:text="완료"
-        android:textColor="#FFFFFF"
-        android:textSize="48sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.421"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/endServiceTextView" />
+        <TextView
+            android:id="@+id/endServiceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumsquare_eb"
+            android:text="안심귀가"
+            android:textColor="#FFFFFF"
+            android:textSize="48sp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/nanumsquare_eb"
+                android:text="완료"
+                android:textColor="#FFFFFF"
+                android:textSize="48sp" />
+
+            <ImageView
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:src="@drawable/ic_finish" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+
 
 
 </android.support.constraint.ConstraintLayout>
