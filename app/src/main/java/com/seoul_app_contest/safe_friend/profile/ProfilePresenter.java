@@ -1,5 +1,10 @@
 package com.seoul_app_contest.safe_friend.profile;
 
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
+
+import com.seoul_app_contest.safe_friend.R;
 import com.seoul_app_contest.safe_friend.UserModel;
 import com.seoul_app_contest.safe_friend.dto.PostDto;
 import com.seoul_app_contest.safe_friend.dto.UserDto;
@@ -23,6 +28,8 @@ public class ProfilePresenter implements ProfileContract.Presenter {
             public void exist() {
                 view.changeSubTitle();
                 view.showSticker();
+                view.hideModifyBtn();
+                view.hideWithdrawalBtn();
 
                 model.getCurrentUserData("PROTECTORS", new UserModel.GetCurrentUserCallbackListener() {
                     @Override
@@ -72,7 +79,7 @@ public class ProfilePresenter implements ProfileContract.Presenter {
 
                     @Override
                     public void getDto(UserDto userDto) {
-                        view.setStickerNum("좋아요 " + userDto.getLikeNum() + "개  " + "친절해요 " + userDto.getKindNum() + "최고에요 " + userDto.getBestNum());
+                        view.setStickerNum("좋아요 " + userDto.getLikeNum() + "개  " + "친절해요 " + userDto.getKindNum() +"개 " + "최고에요 " + userDto.getBestNum() +"개");
                     }
                 });
             }
@@ -133,21 +140,6 @@ public class ProfilePresenter implements ProfileContract.Presenter {
             }
         });
 
-    }
-
-    @Override
-    public void hideWithdrawalBtn() {
-        model.isProtector(model.getCurrentUserEmail(), new UserModel.IsProtectorCallbackListener() {
-            @Override
-            public void exist() {
-                view.hideWithdrawalBtn();
-            }
-
-            @Override
-            public void notExist() {
-
-            }
-        });
     }
 
     @Override

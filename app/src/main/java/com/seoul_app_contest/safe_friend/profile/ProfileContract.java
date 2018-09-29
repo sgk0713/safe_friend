@@ -17,6 +17,7 @@ public interface ProfileContract {
         void showToast(String msg);
         void showWithdrawalDialog();
         void hideWithdrawalBtn();
+        void hideModifyBtn();
         void modifyMode();
         void showMode();
         void redirectPostcodeActivity();
@@ -26,7 +27,6 @@ public interface ProfileContract {
     }
     interface Presenter{
         void setUserData();
-        void hideWithdrawalBtn();
         void withdrawal(String password);
         void modifyMode();
         void showMode();

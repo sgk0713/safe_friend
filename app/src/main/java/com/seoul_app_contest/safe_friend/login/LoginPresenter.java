@@ -18,17 +18,28 @@ public class LoginPresenter implements LoginContract.Presenter {
     public void signIn(final String email, final String password) {
         if (email.length() != 0 && password.length() != 0) {
             if (model.getUserType() == 0) { // 유저일때
-                model.signIn(email, password, new UserModel.SignInCallbackListener() {
+                model.isUser(email, new UserModel.IsUserCallbackListener() {
                     @Override
-                    public void onSuccess() {
-                        view.redirectMainActivity();
+                    public void exist() {
+                        model.signIn(email, password, new UserModel.SignInCallbackListener() {
+                            @Override
+                            public void onSuccess() {
+                                view.redirectMainActivity();
+                            }
+
+                            @Override
+                            public void onFail(String e) {
+                                view.showErrorToast("잘못된 정보입니다." + e);
+                            }
+                        });
                     }
 
                     @Override
-                    public void onFail(String e) {
-                        view.showErrorToast("잘못된 정보입니다." + e);
+                    public void notExist() {
+                        view.showErrorToast("존재하지 않는 이메일입니다.");
                     }
                 });
+
             }else { // 지킴이일때
                 model.isProtector(email, new UserModel.IsProtectorCallbackListener() {
                     @Override

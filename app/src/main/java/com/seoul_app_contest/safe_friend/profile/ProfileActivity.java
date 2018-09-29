@@ -6,6 +6,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -74,6 +77,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     @OnClick(R.id.profile_phone_num_btn)
     void phoneNumBtn() {
         presenter.requestAuthNum(phoneNumTv.getText().toString());
+        presenter.setModifyPhoneNum(phoneNumTv.getText().toString());
     }
 
     @OnClick(R.id.profile_auth_num_btn)
@@ -94,7 +98,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
 
     }
 
-
+    @BindView(R.id.profile_modify_btn)Button modifyBtn;
     @OnClick(R.id.profile_modify_btn)
     void modifyBtn() {
         if (isModfiyMode) {
@@ -121,7 +125,6 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
         presenter = new ProfilePresenter(this);
         ButterKnife.bind(this);
         presenter.setUserData();
-        presenter.hideWithdrawalBtn();
         setSupportActionBar(toolbar);
     }
 
@@ -167,7 +170,11 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
 
     @Override
     public void setStickerNum(String stickerNum) {
-        stickerNumTv.setText(stickerNum);
+        final SpannableStringBuilder sp = new SpannableStringBuilder(stickerNum);
+        sp.setSpan(new ForegroundColorSpan(getColor(R.color.mainColor)), stickerNum.indexOf("좋"),stickerNum.indexOf("좋")+3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sp.setSpan(new ForegroundColorSpan(getColor(R.color.mainColor)), stickerNum.indexOf("친"), stickerNum.indexOf("친")+4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sp.setSpan(new ForegroundColorSpan(getColor(R.color.mainColor)), stickerNum.indexOf("최"), stickerNum.indexOf("최")+5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        stickerNumTv.setText(sp);
     }
 
     @Override
@@ -209,6 +216,11 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     @Override
     public void hideWithdrawalBtn() {
         withdrawalBtn.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void hideModifyBtn() {
+        modifyBtn.setVisibility(View.GONE);
     }
 
     @Override

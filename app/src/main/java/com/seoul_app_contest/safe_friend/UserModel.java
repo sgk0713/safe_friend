@@ -289,6 +289,24 @@ public class UserModel {
         void exist();
 
         void notExist();
+    }public void isUser(String email, final IsUserCallbackListener isUserCallbackListener){
+        firestore = FirebaseFirestore.getInstance().collection("USERS");
+        firestore.whereEqualTo("email", email).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.getResult().isEmpty()){
+                    isUserCallbackListener.notExist();
+                }else {
+                    isUserCallbackListener.exist();
+                }
+            }
+        });
+    }
+
+    public interface IsUserCallbackListener{
+        void exist();
+
+        void notExist();
     }
 
     public interface SignInCallbackListener {
