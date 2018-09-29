@@ -1,5 +1,6 @@
 package com.seoul_app_contest.safe_friend;
 
+import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,9 +19,8 @@ import java.util.ArrayList;
 
 
 public class SearchPlaceActivity extends AppCompatActivity implements Serializable{
-    private final String SERVICE_KEY = "716271596273676b39356d6e6c7851";
     private final String TAG = "DEBUGGING_TEST";
-
+    public static Activity _SearchPlaceActivity;
     RecentListFragment recentListFragment;
     SearchStationFragment searchStationFragment;
 
@@ -37,6 +37,7 @@ public class SearchPlaceActivity extends AppCompatActivity implements Serializab
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_place);
+        _SearchPlaceActivity = SearchPlaceActivity.this;
 
         isSearching = false;
 

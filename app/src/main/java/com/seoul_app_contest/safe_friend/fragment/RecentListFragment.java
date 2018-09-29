@@ -80,6 +80,7 @@ public class RecentListFragment extends Fragment {
                 intent.putExtra("stop_no", resultArray.get(position).stop_no);
                 intent.putExtra("xcode", resultArray.get(position).xcode);
                 intent.putExtra("ycode", resultArray.get(position).ycode);
+                intent.putExtra("line", resultArray.get(position).line);
                 Log.d("station_name", resultArray.get(position).stop_nm);
                 startActivity(intent);
             }

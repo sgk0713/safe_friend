@@ -40,7 +40,10 @@ public class LastConfirmActivity extends AppCompatActivity {
                 intent.putExtra("stop_no", getIntent().getStringExtra("stop_no"));
                 intent.putExtra("xcode", getIntent().getStringExtra("xcode"));
                 intent.putExtra("ycode", getIntent().getStringExtra("ycode"));
+                intent.putExtra("line", getIntent().getStringExtra("line"));
                 startActivity(intent);
+                SearchPlaceActivity._SearchPlaceActivity.finish();
+                SetTimeActivity._SetTimeActivity.finish();
                 finish();
             }
         });

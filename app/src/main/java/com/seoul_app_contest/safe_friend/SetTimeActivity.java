@@ -11,14 +11,14 @@ import android.widget.TimePicker;
 import com.seoul_app_contest.safe_friend.confirmmap.ConfirmMapActivity;
 
 public class SetTimeActivity extends AppCompatActivity{
+    public static Activity _SetTimeActivity;
     TimePicker timePicker;
     Button nextBtn;
-    public static Activity _SetTimeActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        _SetTimeActivity = SetTimeActivity.this;
         setContentView(R.layout.activity_set_time);
+        _SetTimeActivity = SetTimeActivity.this;
 
 
         timePicker = findViewById(R.id.activity_set_time_timer_tp);
