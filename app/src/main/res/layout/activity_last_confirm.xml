@@ -136,7 +136,7 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_gravity="center"
-            android:src="@drawable/ic_location"/>
+            android:src="@drawable/ic_location_un"/>
         <TextView
             android:id="@+id/activity_last_confirm_station_name_tv"
             android:layout_width="150dp"

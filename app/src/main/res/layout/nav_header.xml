@@ -57,7 +57,7 @@
         android:id="@+id/nav_profile_iv"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src="@drawable/call"
+        android:src="@drawable/ic_call"
         app:layout_constraintBottom_toBottomOf="@id/nav_email_tv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/nav_email_tv"

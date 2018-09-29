@@ -2,8 +2,8 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:state_pressed="true"
-        android:drawable="@drawable/ic_location"/>
+        android:drawable="@drawable/ic_location_un"/>
     <item
         android:state_pressed="false"
-        android:drawable="@drawable/ic_close"/>
+        android:drawable="@drawable/ic_cancel_un"/>
 </selector>
