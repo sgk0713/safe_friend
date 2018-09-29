@@ -107,10 +107,10 @@ public class UserModel {
     }
     public void getCurrentUserData(String coll, final GetCurrentUserCallbackListener getCurrentUserCallbackListener){
         firestore = FirebaseFirestore.getInstance().collection(coll);
-        firestore.document(firebaseAuth.getCurrentUser().getUid()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+        firestore.document(firebaseAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                UserDto userDto = documentSnapshot.toObject(UserDto.class);
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                UserDto userDto = task.getResult().toObject(UserDto.class);
                 getCurrentUserCallbackListener.getName(userDto.getName());
                 getCurrentUserCallbackListener.getGender(userDto.getGender());
                 getCurrentUserCallbackListener.getAddress(userDto.getAddress());
@@ -458,7 +458,18 @@ public class UserModel {
     }
 
     public void withdrawalFirestore(){
-        firestore.document(firebaseAuth.getCurrentUser().getUid()).delete();
-        firebaseAuth.getCurrentUser().delete();
+        String uid = firebaseAuth.getCurrentUser().getUid();
+        firestore.document(uid).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                firebaseAuth.getCurrentUser().delete();
+                signOut();
+            }
+        });
+    }
+
+    public void updateUserData(String address, String phoneNum) {
+        firestore.document(firebaseAuth.getCurrentUser().getUid()).update("address", address);
+        firestore.document(firebaseAuth.getCurrentUser().getUid()).update("phoneNum", phoneNum);
     }
 }

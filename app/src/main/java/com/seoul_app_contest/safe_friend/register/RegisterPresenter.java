@@ -43,6 +43,7 @@ public class RegisterPresenter implements RegisterContract.Presenter {
     @Override
     public void requestAuthNum(final String phoneNum) {
         if (model.checkPhoneNumType(phoneNum)) {
+            view.showToast("요청중입니다..");
             model.sendAuthNum(phoneNum, new UserModel.SendAuthNumCallbackListener() {
                 @Override
                 public void onSuccess() {

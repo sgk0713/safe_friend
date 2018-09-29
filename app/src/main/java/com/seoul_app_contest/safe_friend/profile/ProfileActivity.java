@@ -1,5 +1,7 @@
 package com.seoul_app_contest.safe_friend.profile;
 
+import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +16,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.seoul_app_contest.safe_friend.R;
+import com.seoul_app_contest.safe_friend.dto.PostDto;
+import com.seoul_app_contest.safe_friend.login.LoginActivity;
+import com.seoul_app_contest.safe_friend.postcode.PostcodeActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,11 +37,11 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     @BindView(R.id.profile_gender_tv)
     TextView genderTv;
     @BindView(R.id.profile_address_tv)
-    TextView addressTv;
+    EditText addressTv;
     @BindView(R.id.profile_address_tv_)
     TextView addressTv_;
     @BindView(R.id.profile_phone_num_tv)
-    TextView phoneNumTv;
+    EditText phoneNumTv;
     @BindView(R.id.profile_use_num_tv)
     TextView useNumTv;
     @BindView(R.id.profile_use_num_tv_)
@@ -48,16 +53,62 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     @BindView(R.id.profile_sticker_ll)
     LinearLayout profileStickerLl;
 
+    @BindView(R.id.profile_withdrawal_btn)
+    Button withdrawalBtn;
+
+    @BindView(R.id.profile_address_btn)
+    Button profileAddressBtn;
+    @BindView(R.id.profile_phone_num_btn)
+    Button profilePhoneNumBtn;
+    @BindView(R.id.profile_auth_num_ll)
+    LinearLayout profileAuthNumLl;
+
+    @BindView(R.id.profile_auth_num_edt)
+    EditText authNumEdt;
+
     @OnClick(R.id.profile_prev_btn)
     void prev() {
         finish();
     }
 
-    @OnClick(R.id.profile_withdrawal_btn)
-    void withdrawalBtn() {
-        showWithdrawalDialog();
+    @OnClick(R.id.profile_phone_num_btn)
+    void phoneNumBtn() {
+        presenter.requestAuthNum(phoneNumTv.getText().toString());
     }
 
+    @OnClick(R.id.profile_auth_num_btn)
+    void authNumBtn() {
+        presenter.checkAuthNum(authNumEdt.getText().toString());
+    }
+
+    boolean isModfiyMode = false;
+
+    @OnClick(R.id.profile_withdrawal_btn)
+    void withdrawalBtn() {
+        if (isModfiyMode) {
+            presenter.setModifyAddress(addressTv.getText().toString());
+            presenter.modifyProfile();
+        } else {
+            showWithdrawalDialog();
+        }
+
+    }
+
+
+    @OnClick(R.id.profile_modify_btn)
+    void modifyBtn() {
+        if (isModfiyMode) {
+            presenter.showMode();
+        } else {
+            presenter.modifyMode();
+        }
+        isModfiyMode = !isModfiyMode;
+    }
+
+    @OnClick(R.id.profile_address_btn)
+    void addressBtn() {
+        redirectPostcodeActivity();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +121,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
         presenter = new ProfilePresenter(this);
         ButterKnife.bind(this);
         presenter.setUserData();
+        presenter.hideWithdrawalBtn();
         setSupportActionBar(toolbar);
     }
 
@@ -152,5 +204,56 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
                 presenter.withdrawal(withdrawalPasswordEdt.getText().toString());
             }
         });
+    }
+
+    @Override
+    public void hideWithdrawalBtn() {
+        withdrawalBtn.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void modifyMode() {
+        withdrawalBtn.setText("수정하기");
+        profilePhoneNumBtn.setVisibility(View.VISIBLE);
+        profileAddressBtn.setVisibility(View.VISIBLE);
+        profileAuthNumLl.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showMode() {
+        withdrawalBtn.setText("회원탈퇴");
+        addressTv.setEnabled(false);
+        phoneNumTv.setEnabled(false);
+        profilePhoneNumBtn.setVisibility(View.GONE);
+        profileAddressBtn.setVisibility(View.GONE);
+        profileAuthNumLl.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void redirectPostcodeActivity() {
+        Intent intent = new Intent(this, PostcodeActivity.class);
+        startActivityForResult(intent, 102);
+    }
+
+    @Override
+    public void changeAddress(String address) {
+        addressTv.setEnabled(true);
+        addressTv.setText(address);
+    }
+
+    @Override
+    public void redirectLoginActivity() {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (resultCode == RESULT_OK) {
+            if (requestCode == 102) {
+                presenter.setModifyAddress((PostDto) data.getParcelableExtra("post"));
+            }
+        }
     }
 }

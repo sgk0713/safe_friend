@@ -164,6 +164,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <TextView
@@ -174,18 +175,36 @@
                     android:text="주소"
                     android:theme="@style/RegisterTextTheme"/>
 
-                <TextView
-                    android:id="@+id/profile_address_tv"
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="경기도 안산시 상록구 사동"/>
+                    android:layout_weight="2">
+
+                    <EditText
+                        android:id="@+id/profile_address_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:enabled="false"
+                        android:text="경기도 안산시 상록구 사동"/>
+
+                    <Button
+                        android:id="@+id/profile_address_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/buttonHeight"
+                        android:background="@drawable/button_background"
+                        android:text="우편번호검색"
+                        android:visibility="gone"/>
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <TextView
@@ -195,12 +214,72 @@
                     android:text="번호"
                     android:theme="@style/RegisterTextTheme"/>
 
-                <TextView
-                    android:id="@+id/profile_phone_num_tv"
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="010-2434-7280"/>
+                    android:layout_weight="2">
+                    <Spinner
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/profile_country_code_sp"
+                        android:entries="@array/country_code" />
+
+                    <EditText
+                        android:id="@+id/profile_phone_num_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:enabled="false"
+                        android:text="010-2434-7280"/>
+
+                    <Button
+                        android:id="@+id/profile_phone_num_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/buttonHeight"
+                        android:background="@drawable/button_background"
+                        android:text="전송"
+                        android:visibility="visible"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/profile_auth_num_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="인증번호"
+                    android:theme="@style/RegisterTextTheme"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2">
+
+                    <EditText
+                        android:id="@+id/profile_auth_num_edt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"/>
+
+                    <Button
+                        android:id="@+id/profile_auth_num_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/buttonHeight"
+                        android:background="@drawable/button_background"
+                        android:text="확인"/>
+                </LinearLayout>
+
             </LinearLayout>
 
             <View
@@ -230,13 +309,14 @@
                     android:layout_weight="2"
                     android:text="3"/>
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/profile_sticker_ll"
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="0dp"

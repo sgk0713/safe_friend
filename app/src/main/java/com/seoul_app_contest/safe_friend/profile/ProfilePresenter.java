@@ -1,6 +1,7 @@
 package com.seoul_app_contest.safe_friend.profile;
 
 import com.seoul_app_contest.safe_friend.UserModel;
+import com.seoul_app_contest.safe_friend.dto.PostDto;
 import com.seoul_app_contest.safe_friend.dto.UserDto;
 
 public class ProfilePresenter implements ProfileContract.Presenter {
@@ -133,10 +134,26 @@ public class ProfilePresenter implements ProfileContract.Presenter {
     }
 
     @Override
+    public void hideWithdrawalBtn() {
+        model.isProtector(model.getCurrentUserEmail(), new UserModel.IsProtectorCallbackListener() {
+            @Override
+            public void exist() {
+                view.hideWithdrawalBtn();
+            }
+
+            @Override
+            public void notExist() {
+
+            }
+        });
+    }
+
+    @Override
     public void withdrawal(String password) {
         model.signIn(model.getCurrentUserEmail(), password, new UserModel.SignInCallbackListener() {
             @Override
             public void onSuccess() {
+                view.redirectLoginActivity();
                 model.withdrawalFirestore();
             }
 
@@ -145,5 +162,49 @@ public class ProfilePresenter implements ProfileContract.Presenter {
                 view.showToast("탈퇴에 실패했습니다...");
             }
         });
+    }
+
+    @Override
+    public void modifyMode() {
+        view.modifyMode();
+    }
+
+    @Override
+    public void showMode() {
+        view.showMode();
+    }
+
+    @Override
+    public void requestAuthNum(String phoneNum) {
+//        model.sen
+    }
+
+    @Override
+    public void checkAuthNum(String authNum) {
+        if (model.checkAuthNum(authNum)) {
+            view.showToast("확인되었습니다.");
+        }else {
+            view.showToast("올바른 인증번호를 입력해주세요.");
+        }
+    }
+
+    @Override
+    public void modifyProfile() {
+        model.updateUserData(model.getAddress(), model.getPhoneNum());
+    }
+
+    @Override
+    public void setModifyAddress(PostDto postDto) {
+        view.changeAddress(postDto.getLnmAdres());
+    }
+
+    @Override
+    public void setModifyAddress(String modifyAddress) {
+        model.setAddress(modifyAddress);
+    }
+
+    @Override
+    public void setModifyPhoneNum(String phoneNum) {
+        model.setPhoneNum(phoneNum);
     }
 }

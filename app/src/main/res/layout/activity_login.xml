@@ -21,13 +21,13 @@
 
 
     <Button
+        android:stateListAnimator="@null"
         android:id="@+id/login_user_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:background="@drawable/selected_login_button"
         android:drawableStart="@drawable/ic_chevron_right_black_24dp"
-        android:elevation="10dp"
         android:gravity="start|center_vertical"
         android:paddingStart="16dp"
         android:text="사용자"
@@ -38,12 +38,12 @@
         app:layout_constraintStart_toStartOf="@id/card_view"/>
 
     <Button
+        android:stateListAnimator="@null"
         android:id="@+id/login_protector_btn"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/default_login_button"
         android:drawableStart="@drawable/ic_chevron_right_black_24dp"
-        android:elevation="10dp"
         android:gravity="start|center_vertical"
         android:paddingStart="16dp"
         android:text="지킴이"
