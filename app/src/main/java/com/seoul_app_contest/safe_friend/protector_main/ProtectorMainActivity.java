@@ -16,6 +16,7 @@ import android.widget.Toolbar;
 
 import com.seoul_app_contest.safe_friend.R;
 import com.seoul_app_contest.safe_friend.RequestModel;
+import com.seoul_app_contest.safe_friend.UserModel;
 import com.seoul_app_contest.safe_friend.adapter.ProtectorRecyclerViewAdapter;
 import com.seoul_app_contest.safe_friend.login.LoginActivity;
 import com.seoul_app_contest.safe_friend.main.MainActivity;
@@ -55,6 +56,10 @@ public class ProtectorMainActivity extends AppCompatActivity implements Navigati
 
 
         setSupportActionBar(toolbar);
+        TextView navNameTv = navigationView.getHeaderView(0).findViewById(R.id.nav_name_tv);
+        TextView navEmailTv = navigationView.getHeaderView(0).findViewById(R.id.nav_email_tv);
+        navEmailTv.setText(new UserModel().getCurrentUserEmail());
+//        navNameTv.setText(new UserModel().getU);
 
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.getHeaderView(0).findViewById(R.id.nav_logout_btn).setOnClickListener(new View.OnClickListener() {
