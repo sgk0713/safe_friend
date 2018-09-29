@@ -8,6 +8,8 @@ public class ProfilePresenter implements ProfileContract.Presenter {
     ProfileContract.View view;
     UserModel model;
 
+    boolean isPhoneAuth = true;
+
     public ProfilePresenter(ProfileContract.View view) {
         this.view = view;
         model = new UserModel();
@@ -176,6 +178,7 @@ public class ProfilePresenter implements ProfileContract.Presenter {
 
     @Override
     public void requestAuthNum(String phoneNum) {
+        isPhoneAuth = false;
 //        model.sen
     }
 
@@ -183,6 +186,7 @@ public class ProfilePresenter implements ProfileContract.Presenter {
     public void checkAuthNum(String authNum) {
         if (model.checkAuthNum(authNum)) {
             view.showToast("확인되었습니다.");
+            isPhoneAuth = true;
         }else {
             view.showToast("올바른 인증번호를 입력해주세요.");
         }
@@ -190,7 +194,14 @@ public class ProfilePresenter implements ProfileContract.Presenter {
 
     @Override
     public void modifyProfile() {
-        model.updateUserData(model.getAddress(), model.getPhoneNum());
+        if (isPhoneAuth) {
+
+            model.updateUserData(model.getAddress(), model.getPhoneNum());
+            view.showToast("수정되었습니다.");
+            view.showMode();
+        }else {
+            view.showToast("전화번호 인증을 완료해주세요.");
+        }
     }
 
     @Override

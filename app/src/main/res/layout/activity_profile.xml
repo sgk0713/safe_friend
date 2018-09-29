@@ -125,6 +125,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:fontFamily="@font/nanumsquare_b"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -132,6 +133,7 @@
                     android:theme="@style/RegisterTextTheme"/>
 
                 <TextView
+                    android:fontFamily="@font/nanumsquare_l"
                     android:id="@+id/profile_gender_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -146,6 +148,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:fontFamily="@font/nanumsquare_b"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -153,6 +156,7 @@
                     android:theme="@style/RegisterTextTheme"/>
 
                 <TextView
+                    android:fontFamily="@font/nanumsquare_l"
                     android:id="@+id/profile_birthday_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -168,6 +172,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:fontFamily="@font/nanumsquare_b"
                     android:id="@+id/profile_address_tv_"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -181,6 +186,7 @@
                     android:layout_weight="2">
 
                     <EditText
+                        android:fontFamily="@font/nanumsquare_l"
                         android:id="@+id/profile_address_tv"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -208,6 +214,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:fontFamily="@font/nanumsquare_b"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -220,12 +227,14 @@
                     android:layout_weight="2">
                     <Spinner
 
+                        android:fontFamily="@font/nanumsquare_l"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/profile_country_code_sp"
                         android:entries="@array/country_code" />
 
                     <EditText
+                        android:fontFamily="@font/nanumsquare_l"
                         android:id="@+id/profile_phone_num_tv"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -255,6 +264,7 @@
                 android:visibility="gone">
 
                 <TextView
+                    android:fontFamily="@font/nanumsquare_b"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -267,6 +277,7 @@
                     android:layout_weight="2">
 
                     <EditText
+                        android:fontFamily="@font/nanumsquare_l"
                         android:id="@+id/profile_auth_num_edt"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -295,6 +306,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:fontFamily="@font/nanumsquare_b"
                     android:id="@+id/profile_use_num_tv_"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -303,6 +315,7 @@
                     android:theme="@style/RegisterTextTheme"/>
 
                 <TextView
+                    android:fontFamily="@font/nanumsquare_l"
                     android:id="@+id/profile_use_num_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -319,6 +332,7 @@
                 android:visibility="gone">
 
                 <TextView
+                    android:fontFamily="@font/nanumsquare_b"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -326,6 +340,7 @@
                     android:theme="@style/RegisterTextTheme"/>
 
                 <TextView
+                    android:fontFamily="@font/nanumsquare_l"
                     android:id="@+id/profile_sticker_num_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -336,6 +351,7 @@
         </LinearLayout>
 
         <Button
+            android:fontFamily="@font/nanumgothic_r"
             android:id="@+id/profile_withdrawal_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -46,7 +46,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:text="안심귀가서비스"
-                android:fontFamily="@font/nanumsquare_b"
+                android:fontFamily="@font/nanumsquare_r"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView

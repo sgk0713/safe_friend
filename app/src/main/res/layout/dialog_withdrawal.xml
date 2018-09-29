@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize">
         <TextView
+            android:fontFamily="@font/nanumsquare_b"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -39,17 +40,22 @@
         android:paddingEnd="64dp"
         android:gravity="center_horizontal">
         <TextView
+            android:fontFamily="@font/nanumsquare_l"
             android:gravity="center"
             android:text="세이프랜드 탈퇴를 하시면 회원정보가 초기화 되어 더이상 복구하실 수 없으며, 세이프랜드 서비스를 이용할 수 없습니다."
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
+            android:fontFamily="@font/nanumsquare_l"
+
             android:layout_marginTop="16dp"
             android:gravity="center"
             android:text="정말로 탈퇴를 원하시면 비밀번호 입력 후 확인 버튼을 눌러주세요."
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <EditText
+            android:fontFamily="@font/nanumsquare_l"
+
             android:gravity="center"
             android:hint="비밀번호 입력"
             android:paddingBottom="16dp"

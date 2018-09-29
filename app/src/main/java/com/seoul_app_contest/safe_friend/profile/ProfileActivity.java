@@ -214,6 +214,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     @Override
     public void modifyMode() {
         withdrawalBtn.setText("수정하기");
+        phoneNumTv.setEnabled(true);
         profilePhoneNumBtn.setVisibility(View.VISIBLE);
         profileAddressBtn.setVisibility(View.VISIBLE);
         profileAuthNumLl.setVisibility(View.VISIBLE);
