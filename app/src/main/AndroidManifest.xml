@@ -21,24 +21,24 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAryKd7PHVafnq0YmeZmAQP188gU7fb5jQ"/>
 
-        <activity android:name=".Main.MainActivity">
+        <activity android:name=".main.MainActivity">
 
         </activity>
 
         <activity android:name=".SearchPlaceActivity">
+
+        </activity>
+
+        <activity android:name=".splash.SplashActivity">
+            <!-- android:theme="@style/SplashTheme"> -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <activity android:name=".Splash.SplashActivity">
-            <!-- android:theme="@style/SplashTheme"> -->
-
-        </activity>
-
         <activity
-            android:name=".Register.RegisterActivity"
+            android:name=".register.RegisterActivity"
             android:excludeFromRecents="true"
             android:taskAffinity="">
 
@@ -69,7 +69,7 @@
 
         </activity>
 
-        <activity android:name=".Login.LoginActivity">
+        <activity android:name=".login.LoginActivity">
 
         </activity>
 
@@ -78,6 +78,9 @@
         </activity>
 
         <activity android:name=".postcode.PostcodeActivity">
+
+        </activity>
+        <activity android:name=".protector_main.ProtectorMainActivity">
 
         </activity>
 

@@ -31,6 +31,10 @@
 
     <string name="open">open</string>
     <string name="close">close</string>
+    <string-array name="country_code">
+        <item>+82(kr)</item>
+    </string-array>
+
     <!--activity_end_service_user-->
     <string name="message">지킴이님에게\n감사의 마음을 전하세요.</string>
 </resources>

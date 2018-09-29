@@ -1,6 +1,7 @@
 package com.seoul_app_contest.safe_friend;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -13,13 +14,15 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
-import com.seoul_app_contest.safe_friend.Register.RegisterActivity;
+import com.seoul_app_contest.safe_friend.register.RegisterActivity;
+import com.seoul_app_contest.safe_friend.dto.UserDto;
 
-import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
@@ -40,6 +43,7 @@ public class UserModel {
     String phoneNum;
     String authNum;
     int state;
+    String countryCode;
     boolean checkUseAgree = false;
     boolean checkPrivacyAgree = false;
 
@@ -50,6 +54,7 @@ public class UserModel {
 
     private FirebaseAuth firebaseAuth;
     private CollectionReference firestore;
+    private CollectionReference firestore_;
     private FirebaseRemoteConfig firebaseRemoteConfig;
 
     public UserModel() {
@@ -58,7 +63,7 @@ public class UserModel {
         firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
     }
 
-    public void initRemote(final RemoteCallbackListener remoteCallbackListener){
+    public void initRemote(final RemoteCallbackListener remoteCallbackListener) {
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
                 .setDeveloperModeEnabled(BuildConfig.DEBUG)
                 .build();
@@ -79,7 +84,7 @@ public class UserModel {
                 });
     }
 
-     private void displayWelcomeMessage(RemoteCallbackListener remoteCallbackListener) {
+    private void displayWelcomeMessage(RemoteCallbackListener remoteCallbackListener) {
         // [START get_config_values]
         String welcomeMessage = firebaseRemoteConfig.getString(WELCOME_MESSAGE_KEY);
         String welcomeTitle = firebaseRemoteConfig.getString(WELCOME_TITLE_KEY);
@@ -92,9 +97,45 @@ public class UserModel {
         }
     }
 
-    public interface RemoteCallbackListener{
+    public interface RemoteCallbackListener {
         void on(String title, String msg);
+
         void off();
+    }
+    public String getCurrentUserEmail(){
+        return firebaseAuth.getCurrentUser().getEmail();
+    }
+    public void getCurrentUserData(String coll, final GetCurrentUserCallbackListener getCurrentUserCallbackListener){
+        firestore = FirebaseFirestore.getInstance().collection(coll);
+        firestore.document(firebaseAuth.getCurrentUser().getUid()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                UserDto userDto = documentSnapshot.toObject(UserDto.class);
+                getCurrentUserCallbackListener.getName(userDto.getName());
+                getCurrentUserCallbackListener.getGender(userDto.getGender());
+                getCurrentUserCallbackListener.getAddress(userDto.getAddress());
+                getCurrentUserCallbackListener.getBirthDay(userDto.getBirthDay());
+                getCurrentUserCallbackListener.getPhoneNum(userDto.getPhoneNum());
+                getCurrentUserCallbackListener.getUseNum(userDto.getUseNum());
+                getCurrentUserCallbackListener.getLikeNum(userDto.getLikeNum());
+                getCurrentUserCallbackListener.getKindNum(userDto.getKindNum());
+                getCurrentUserCallbackListener.getBestNum(userDto.getBestNum());
+                getCurrentUserCallbackListener.getDto(userDto);
+            }
+        });
+    }
+
+    public interface GetCurrentUserCallbackListener{
+        void getName(String name);
+        void getGender(String gender);
+        void getBirthDay(String birthday);
+        void getAddress(String address);
+        void getPhoneNum(String phoneNum);
+        void getUseNum(int useNum);
+        void getLikeNum(int likeNum);
+        void getKindNum(int kindNum);
+        void getBestNum(int BsetNum);
+        void getDto(UserDto userDto);
     }
 
     public boolean existCurrentUser() {
@@ -116,16 +157,51 @@ public class UserModel {
     }
 
     public boolean checkNotNull() {
-        return email != null && password != null && name != null &&
+        Log.d("BEOM123", "email : " + email);
+        Log.d("BEOM123", "password : " + password);
+        Log.d("BEOM123", "name : " + name);
+        Log.d("BEOM123", "birthDay : " + birthDay);
+        Log.d("BEOM123", "gender : " + gender);
+        Log.d("BEOM123", "address : " + address);
+        Log.d("BEOM123", "phoneNum : " + phoneNum);
+        Log.d("BEOM123", "authNum : " + authNum);
+        Log.d("BEOM123", "checkUseAgree : " + checkUseAgree);
+        Log.d("BEOM123", "checkPrivacyAgree : " + checkPrivacyAgree);
+        return email != null && password != null && passwordConfirm != null && name != null &&
                 birthDay != null && gender != null && address != null
                 && phoneNum != null && authNum != null;
     }
 
-    public boolean checkPasswordConfirm(){
+    public boolean checkBirthDay() {
+//        return Pattern.matches(" /^(19|20)\\d{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[0-1])", birthDay);
+        return Pattern.matches("^[1-2]{1}[0-9]{3}[0-1]{1}[0-9]{1}[0-3]{1}[0-9]{1}$", birthDay);
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean checkAgree() {
+        return checkUseAgree && checkPrivacyAgree;
+    }
+
+    public boolean checkPasswordLength() {
+        return password.length() >= 6;
+    }
+
+    public boolean checkPasswordConfirm() {
         return password.equals(passwordConfirm);
     }
 
-    public boolean checkAuthNum(String authNum){
+    public boolean checkAuthNum(String authNum) {
         return this.authNum.equals(authNum);
     }
 
@@ -139,21 +215,22 @@ public class UserModel {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 boolean flag = false;
                 for (DocumentSnapshot documentSnapshot : task.getResult()) {
-                    if (email.equals(documentSnapshot.get("email"))){
+                    if (email.equals(documentSnapshot.get("email"))) {
                         flag = true;
                     }
                 }
-                if (flag){
+                if (flag) {
                     checkEmailCallbackListener.exist();
-                }else {
+                } else {
                     checkEmailCallbackListener.notExist();
                 }
             }
         });
     }
 
-    public interface CheckEmailCallbackListener{
+    public interface CheckEmailCallbackListener {
         void exist();
+
         void notExist();
     }
 
@@ -178,8 +255,45 @@ public class UserModel {
         });
     }
 
+    public void protectorSignIn(String email, String password, final SignInCallbackListener signInCallbackListener) {
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    signInCallbackListener.onSuccess();
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                signInCallbackListener.onFail(e.toString());
+            }
+        });
+    }
+
+    public void isProtector(String email, final IsProtectorCallbackListener isProtectorCallbackListener){
+        firestore_ = FirebaseFirestore.getInstance().collection("PROTECTORS");
+        firestore_.whereEqualTo("email", email).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.getResult().isEmpty()){
+                    isProtectorCallbackListener.notExist();
+                }else {
+                    isProtectorCallbackListener.exist();
+                }
+            }
+        });
+    }
+
+    public interface IsProtectorCallbackListener{
+        void exist();
+
+        void notExist();
+    }
+
     public interface SignInCallbackListener {
         void onSuccess();
+
         void onFail(String e);
     }
 
@@ -192,17 +306,24 @@ public class UserModel {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                signUpCallbackListener.onFail();
+                signUpCallbackListener.onFail(e.toString());
             }
         });
     }
 
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public interface SignUpCallbackListener {
         void onSuccess();
-        void onFail();
+
+        void onFail(String e);
     }
 
     public void sendAuthNum(String phoneNum, final SendAuthNumCallbackListener sendAuthNumCallbackListener) {
+        Log.d("BEOM123", "countryCode : " + countryCode);
+
         PhoneAuthProvider.OnVerificationStateChangedCallbacks callbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
             public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
@@ -217,7 +338,7 @@ public class UserModel {
             }
         };
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                "+82" + phoneNum.substring(1),
+                countryCode + phoneNum.substring(1),
                 60,
                 TimeUnit.SECONDS,
                 new RegisterActivity(),
@@ -225,15 +346,15 @@ public class UserModel {
         );
     }
 
-    public interface SendAuthNumCallbackListener{
+    public interface SendAuthNumCallbackListener {
         void onSuccess();
+
         void onFail(String e);
     }
 
-    public void addFirestore(final AddFirestoreCallbackListener addFirestoreCallbackListener){
-        String uid = firestore.getId();
-        this.uid = uid;
-        firestore.document(uid).set(this).addOnCompleteListener(new OnCompleteListener<Void>() {
+    public void addFirestore(final AddFirestoreCallbackListener addFirestoreCallbackListener) {
+        this.uid = firebaseAuth.getCurrentUser().getUid();
+        firestore.document(uid).set(new UserDto(uid, email, name, birthDay, gender, address, phoneNum, 0)).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 addFirestoreCallbackListener.onSuccess();
@@ -241,15 +362,17 @@ public class UserModel {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                addFirestoreCallbackListener.onFail();
+                addFirestoreCallbackListener.onFail(e.toString());
             }
         });
     }
 
-    public interface AddFirestoreCallbackListener{
+    public interface AddFirestoreCallbackListener {
         void onSuccess();
-        void onFail();
+
+        void onFail(String e);
     }
+
     public String getEmail() {
         return email;
     }
@@ -289,7 +412,8 @@ public class UserModel {
     public void setEmail(String email) {
         this.email = email;
     }
-    public void setPhoneNum(String phoneNum){
+
+    public void setPhoneNum(String phoneNum) {
         this.phoneNum = phoneNum;
     }
 
@@ -314,10 +438,10 @@ public class UserModel {
     }
 
     public void setBirthDay(String year, String month, String day) {
-        this.birthDay = year + "." + month + "." + day;
+        this.birthDay = year + "" + month + "" + day;
     }
 
-    public void signOut(){
+    public void signOut() {
         firebaseAuth.signOut();
     }
 
@@ -327,5 +451,14 @@ public class UserModel {
 
     public int getUserType() {
         return userType;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
+
+    public void withdrawalFirestore(){
+        firestore.document(firebaseAuth.getCurrentUser().getUid()).delete();
+        firebaseAuth.getCurrentUser().delete();
     }
 }

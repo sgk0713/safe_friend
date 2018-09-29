@@ -1,4 +1,4 @@
-package com.seoul_app_contest.safe_friend.Splash;
+package com.seoul_app_contest.safe_friend.splash;
 
 import com.seoul_app_contest.safe_friend.UserModel;
 
@@ -29,7 +29,17 @@ public class SplashPresenter implements SplashContract.Presenter {
     @Override
     public void checkAutoLogin() {
         if (model.existCurrentUser()){
-            view.redirectMainActivity();
+            model.isProtector(model.getCurrentUserEmail(), new UserModel.IsProtectorCallbackListener() {
+                @Override
+                public void exist() {
+                    view.redirectProtectorMainActivity();
+                }
+
+                @Override
+                public void notExist() {
+                    view.redirectMainActivity();
+                }
+            });
         }else {
             view.redirectLoginActivity();
         }

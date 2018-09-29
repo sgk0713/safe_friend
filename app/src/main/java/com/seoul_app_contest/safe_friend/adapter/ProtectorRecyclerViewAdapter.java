@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.seoul_app_contest.safe_friend.R;
@@ -51,7 +52,8 @@ public class ProtectorRecyclerViewAdapter extends RecyclerView.Adapter<Protector
     public class ProtectorRecyclerViewHolder extends RecyclerView.ViewHolder{
         @BindView(R.id.protector_list_time_tv)TextView timeTv;
         @BindView(R.id.protector_list_location_tv)TextView locationTv;
-        @BindView(R.id.protector_list_confirm_btn)Button confirmBtn;
+//        @BindView(R.id.protector_list_confirm_btn)Button confirmBtn;
+        @BindView(R.id.protector_list_confirm_ll)LinearLayout confirmLl;
 
         public ProtectorRecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
