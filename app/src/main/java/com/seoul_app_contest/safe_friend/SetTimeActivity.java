@@ -1,5 +1,6 @@
 package com.seoul_app_contest.safe_friend;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,9 +13,11 @@ import com.seoul_app_contest.safe_friend.confirmmap.ConfirmMapActivity;
 public class SetTimeActivity extends AppCompatActivity{
     TimePicker timePicker;
     Button nextBtn;
+    public static Activity _SetTimeActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        _SetTimeActivity = SetTimeActivity.this;
         setContentView(R.layout.activity_set_time);
 
 

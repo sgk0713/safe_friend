@@ -63,8 +63,12 @@ public class ConfirmMapActivity extends AppCompatActivity implements OnMapReadyC
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ConfirmMapActivity.this, SetTimeActivity.class);
-
+                intent.putExtra("stop_nm", stop_nm);
+                intent.putExtra("stop_no", stop_no);
+                intent.putExtra("xcode", intent.getStringExtra("xcode"));
+                intent.putExtra("ycode", intent.getStringExtra("ycode"));
                 startActivity(intent);
+                finish();
             }
         });
 
