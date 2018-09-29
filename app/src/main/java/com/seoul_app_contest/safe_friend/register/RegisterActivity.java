@@ -89,7 +89,15 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
         presenter.setName(registerNameEdt.getText().toString());
         presenter.setPassword(registerPasswordEdt.getText().toString());
         presenter.setPasswordConfirm(registerPasswordConfirmEdt.getText().toString());
-        presenter.setBirthDay(registerYearEdt.getText().toString(), registerMonthEdt.getText().toString(), registerDayEdt.getText().toString());
+        String month = registerMonthEdt.getText().toString();
+        String day = registerDayEdt.getText().toString();
+        if (month.length() == 1) {
+            month = "0"+month;
+        }
+        if (day.length() == 1) {
+            day = "0"+day;
+        }
+        presenter.setBirthDay(registerYearEdt.getText().toString(), month, day);
         presenter.setAddress(registerPostcodeEdt.getText().toString() + " " + registerAddressEdt.getText().toString());
         presenter.signUp();
     }

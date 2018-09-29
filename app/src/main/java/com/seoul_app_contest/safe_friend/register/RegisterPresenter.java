@@ -97,7 +97,9 @@ public class RegisterPresenter implements RegisterContract.Presenter {
 
         if (!model.checkNotNull()) {
             view.showToast("모두 입력해주세요.");
-        } else if (!model.checkPasswordConfirm()) {
+        } else if(!model.checkPasswordLength()){
+            view.showToast("비밀번호는 6자리 이상이어야합니다.");
+        }else if (!model.checkPasswordConfirm()) {
             view.showToast("2차 비밀번호가 같지않습니다.");
         } else if (!model.checkAgree()) {
             view.showToast("이용약관 동의를 모두 해주세요.");
@@ -115,16 +117,16 @@ public class RegisterPresenter implements RegisterContract.Presenter {
                         }
 
                         @Override
-                        public void onFail() {
-                            view.showToast("회원가입에 실패하였습니다...");
+                        public void onFail(String e) {
+                            view.showToast("회원가입에 실패하였습니다..." + e);
                         }
                     });
 
                 }
 
                 @Override
-                public void onFail() {
-                    view.showToast("회원가입에 실패하였습니다...");
+                public void onFail(String e) {
+                    view.showToast("회원가입에 실패하였습니다..!." + e);
                 }
             });
         }

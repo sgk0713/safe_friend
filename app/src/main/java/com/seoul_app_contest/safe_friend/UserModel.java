@@ -173,7 +173,8 @@ public class UserModel {
     }
 
     public boolean checkBirthDay() {
-        return Pattern.matches(" /^(19|20)\\d{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[0-1])", birthDay);
+//        return Pattern.matches(" /^(19|20)\\d{2}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[0-1])", birthDay);
+        return Pattern.matches("^[1-2]{1}[0-9]{3}[0-1]{1}[0-9]{1}[0-3]{1}[0-9]{1}$", birthDay);
     }
 
     public void setPassword(String password) {
@@ -190,6 +191,10 @@ public class UserModel {
 
     public boolean checkAgree() {
         return checkUseAgree && checkPrivacyAgree;
+    }
+
+    public boolean checkPasswordLength() {
+        return password.length() >= 6;
     }
 
     public boolean checkPasswordConfirm() {
@@ -301,7 +306,7 @@ public class UserModel {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                signUpCallbackListener.onFail();
+                signUpCallbackListener.onFail(e.toString());
             }
         });
     }
@@ -313,7 +318,7 @@ public class UserModel {
     public interface SignUpCallbackListener {
         void onSuccess();
 
-        void onFail();
+        void onFail(String e);
     }
 
     public void sendAuthNum(String phoneNum, final SendAuthNumCallbackListener sendAuthNumCallbackListener) {
@@ -357,7 +362,7 @@ public class UserModel {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                addFirestoreCallbackListener.onFail();
+                addFirestoreCallbackListener.onFail(e.toString());
             }
         });
     }
@@ -365,7 +370,7 @@ public class UserModel {
     public interface AddFirestoreCallbackListener {
         void onSuccess();
 
-        void onFail();
+        void onFail(String e);
     }
 
     public String getEmail() {
