@@ -47,6 +47,7 @@
                 android:fontFamily="@font/nanumsquare_r"
                 android:text="선택한 출발지"/>
             <TextView
+                android:id="@+id/activity_confirmmap_station_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="24sp"
@@ -54,6 +55,7 @@
                 android:textColor="@color/mainColor"/>
         </LinearLayout>
         <Button
+            android:id="@+id/activity_confirmmap_confirm_btn"
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_alignParentRight="true"

@@ -26,7 +26,10 @@
         </activity>
 
         <activity android:name=".SearchPlaceActivity">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
 
         <activity android:name=".Splash.SplashActivity">
@@ -79,10 +82,7 @@
         </activity>
 
         <activity android:name=".confirmmap.ConfirmMapActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
+
         </activity>
 
         <activity android:name=".CancelServiceActivity">

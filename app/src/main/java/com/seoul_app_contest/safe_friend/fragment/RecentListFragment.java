@@ -18,6 +18,7 @@ import com.seoul_app_contest.safe_friend.R;
 import com.seoul_app_contest.safe_friend.SearchPlaceActivity;
 import com.seoul_app_contest.safe_friend.SetTimeActivity;
 import com.seoul_app_contest.safe_friend.adapter.StationRecyclerViewAdapter;
+import com.seoul_app_contest.safe_friend.confirmmap.ConfirmMapActivity;
 import com.seoul_app_contest.safe_friend.dto.StationDto;
 
 import java.util.ArrayList;
@@ -75,7 +76,7 @@ public class RecentListFragment extends Fragment {
                 }
                 resetArray();
                 stationRecyclerViewAdapter.notifyDataSetChanged();
-                Intent intent = new Intent(activity, SetTimeActivity.class);
+                Intent intent = new Intent(activity, ConfirmMapActivity.class);
                 intent.putExtra("stop_nm", resultArray.get(position).stop_nm);
                 intent.putExtra("stop_no", resultArray.get(position).stop_no);
                 intent.putExtra("xcode", resultArray.get(position).xcode);
