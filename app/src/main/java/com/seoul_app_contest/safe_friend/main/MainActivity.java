@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -86,12 +87,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         navigationView.getHeaderView(0).findViewById(R.id.nav_profile_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                startActivity(intent);
 
                 if (drawerLayout.isDrawerOpen(Gravity.END)) {
                     drawerLayout.closeDrawer(Gravity.END);
                 }
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+                startActivity(intent);
+
 
             }
         });
@@ -145,6 +147,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public void showExplanationDialog() {
         final SpannableStringBuilder sp = new SpannableStringBuilder("안심귀가서비스란,");
         sp.setSpan(new ForegroundColorSpan(getColor(R.color.mainColor)), 0, 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sp.setSpan(new RelativeSizeSpan((float) 1.2), 0,7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
 
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_explanation, null, false);

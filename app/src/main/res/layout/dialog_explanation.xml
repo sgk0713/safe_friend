@@ -32,6 +32,9 @@
         android:textStyle="bold"/>
 
     <TextView
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
