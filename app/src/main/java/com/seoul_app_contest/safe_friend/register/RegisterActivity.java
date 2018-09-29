@@ -23,7 +23,7 @@ import com.seoul_app_contest.safe_friend.postcode.PostcodeActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
+//
 public class RegisterActivity extends AppCompatActivity implements RegisterContract.View {
 
     PostDto postDto;
