@@ -1,6 +1,7 @@
 package com.seoul_app_contest.safe_friend;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -13,7 +14,9 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
@@ -101,6 +104,38 @@ public class UserModel {
     }
     public String getCurrentUserEmail(){
         return firebaseAuth.getCurrentUser().getEmail();
+    }
+    public void getCurrentUserData(String coll, final GetCurrentUserCallbackListener getCurrentUserCallbackListener){
+        firestore = FirebaseFirestore.getInstance().collection(coll);
+        firestore.document(firebaseAuth.getCurrentUser().getUid()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                UserDto userDto = documentSnapshot.toObject(UserDto.class);
+                getCurrentUserCallbackListener.getName(userDto.getName());
+                getCurrentUserCallbackListener.getGender(userDto.getGender());
+                getCurrentUserCallbackListener.getAddress(userDto.getAddress());
+                getCurrentUserCallbackListener.getBirthDay(userDto.getBirthDay());
+                getCurrentUserCallbackListener.getPhoneNum(userDto.getPhoneNum());
+                getCurrentUserCallbackListener.getUseNum(userDto.getUseNum());
+                getCurrentUserCallbackListener.getLikeNum(userDto.getLikeNum());
+                getCurrentUserCallbackListener.getKindNum(userDto.getKindNum());
+                getCurrentUserCallbackListener.getBestNum(userDto.getBestNum());
+                getCurrentUserCallbackListener.getDto(userDto);
+            }
+        });
+    }
+
+    public interface GetCurrentUserCallbackListener{
+        void getName(String name);
+        void getGender(String gender);
+        void getBirthDay(String birthday);
+        void getAddress(String address);
+        void getPhoneNum(String phoneNum);
+        void getUseNum(int useNum);
+        void getLikeNum(int likeNum);
+        void getKindNum(int kindNum);
+        void getBestNum(int BsetNum);
+        void getDto(UserDto userDto);
     }
 
     public boolean existCurrentUser() {
@@ -313,9 +348,8 @@ public class UserModel {
     }
 
     public void addFirestore(final AddFirestoreCallbackListener addFirestoreCallbackListener) {
-        String uid = firestore.getId();
-        this.uid = uid;
-        firestore.document(uid).set(new UserDto(0, uid, email, name, birthDay, gender, address, phoneNum, 0)).addOnCompleteListener(new OnCompleteListener<Void>() {
+        this.uid = firebaseAuth.getCurrentUser().getUid();
+        firestore.document(uid).set(new UserDto(uid, email, name, birthDay, gender, address, phoneNum, 0)).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 addFirestoreCallbackListener.onSuccess();
@@ -416,5 +450,10 @@ public class UserModel {
 
     public void setCountryCode(String countryCode) {
         this.countryCode = countryCode;
+    }
+
+    public void withdrawalFirestore(){
+        firestore.document(firebaseAuth.getCurrentUser().getUid()).delete();
+        firebaseAuth.getCurrentUser().delete();
     }
 }

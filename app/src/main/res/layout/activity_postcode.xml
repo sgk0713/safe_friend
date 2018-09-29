@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".postcode.PostcodeActivity">
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,31 +20,79 @@
             android:layout_height="wrap_content"
             android:background="@color/mainColor"
             android:theme="@style/AppTheme"
-            app:elevation="0dp"/>
+            app:elevation="0dp">
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/postcode_prev_ib"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:background="@drawable/ic_keyboard_arrow_left_black_24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:text="우편 번호 찾기"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:id="@+id/postcode_address_edt"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:background="@color/subColor"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="32dp">
 
-            <Button
-                android:id="@+id/postcode_search_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/postcode_address_edt"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:hint="예) 한양대학로55"/>
+
+                <ImageButton
+                    android:id="@+id/postcode_search_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_search_black_24dp"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/lineColor"/>
+
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:background="@color/lineColor"/>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/postcode_rv"
@@ -52,25 +101,32 @@
             android:layout_weight="1"/>
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="64dp"
             android:gravity="center"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:orientation="vertical">
+
             <TextView
-                android:text="TIP"
+                android:textColor="@color/mainColor"
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="TIP"/>
+
             <TextView
+                android:layout_marginStart="64dp"
+                android:layout_marginEnd="64dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="도로명이나 지역명을 이용해서 검색해 보세요. 건물번호, 번지를 함께 입력하시면 더욱 정확한 결과가 검색됩니다."
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:text="도로명이나 지역명을 이용해서 검색해 보세요. 건물번호, 번지를 함께 입력하시면 더욱 정확한 결과가 검색됩니다."/>
+
             <TextView
-                android:layout_marginTop="16dp"
-                android:text="예) 서울특별시 중구 세종대로 110"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="예) 서울특별시 중구 세종대로 110"/>
         </LinearLayout>
 
     </LinearLayout>

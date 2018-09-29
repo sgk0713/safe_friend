@@ -26,29 +26,30 @@
                 android:layout_height="wrap_content">
 
                 <ImageButton
-                    android:background="@drawable/ic_keyboard_arrow_left_black_24dp"
+                    android:id="@+id/profile_prev_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/buttonHeight"
+                    android:background="@drawable/ic_keyboard_arrow_left_black_24dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
-                    android:text="내 정보"
-                    android:textColor="@color/my_profile_main_title"
-                    android:fontFamily="@font/nanumsquareb"
-                    android:textStyle="bold"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/nanumsquareb"
+                    android:text="내 정보"
+                    android:textColor="@color/my_profile_main_title"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
 
                 <View
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
                     android:layout_width="0dp"
                     android:layout_height="1dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
                     android:background="@color/lineColor"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -79,13 +80,13 @@
                 android:src="@drawable/ic_chevron_right_black_24dp"/>
 
             <TextView
-                android:fontFamily="@font/nanumsquareeb"
-                android:textStyle="bold"
                 android:id="@+id/profile_name_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="박범민"/>
+                android:fontFamily="@font/nanumsquareeb"
+                android:text="박범민"
+                android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/profile_email_tv"
@@ -111,10 +112,11 @@
             app:layout_constraintTop_toBottomOf="@id/profile_view">
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/profile_modify_btn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:layout_gravity="end"
-                android:background="@drawable/ic_chevron_right_black_24dp"/>
+                android:background="@drawable/ic_setting"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -123,11 +125,11 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:theme="@style/RegisterTextTheme"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="성별"/>
+                    android:text="성별"
+                    android:theme="@style/RegisterTextTheme"/>
 
                 <TextView
                     android:id="@+id/profile_gender_tv"
@@ -144,11 +146,11 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:theme="@style/RegisterTextTheme"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="생년월일"/>
+                    android:text="생년월일"
+                    android:theme="@style/RegisterTextTheme"/>
 
                 <TextView
                     android:id="@+id/profile_birthday_tv"
@@ -165,11 +167,12 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:theme="@style/RegisterTextTheme"
+                    android:id="@+id/profile_address_tv_"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="주소"/>
+                    android:text="주소"
+                    android:theme="@style/RegisterTextTheme"/>
 
                 <TextView
                     android:id="@+id/profile_address_tv"
@@ -186,11 +189,11 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:theme="@style/RegisterTextTheme"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="번호"/>
+                    android:text="번호"
+                    android:theme="@style/RegisterTextTheme"/>
 
                 <TextView
                     android:id="@+id/profile_phone_num_tv"
@@ -213,14 +216,37 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:theme="@style/RegisterTextTheme"
+                    android:id="@+id/profile_use_num_tv_"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="이용횟수"/>
+                    android:text="이용횟수"
+                    android:theme="@style/RegisterTextTheme"/>
 
                 <TextView
                     android:id="@+id/profile_use_num_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="3"/>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/profile_sticker_ll"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="받은 스티커"
+                    android:theme="@style/RegisterTextTheme"/>
+
+                <TextView
+                    android:id="@+id/profile_sticker_num_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"

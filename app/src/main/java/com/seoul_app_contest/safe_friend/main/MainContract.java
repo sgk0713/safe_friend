@@ -5,9 +5,12 @@ public interface MainContract {
         void redirectCall();
         void redirectSearchPlaceActivity();
         void showExplanationDialog();
+        void setNavName(String name);
+        void setNavEmail(String email);
     }
     interface Presenter {
         void showExplanationDialog();
+        void setUserData();
         void signOut();
     }
 }

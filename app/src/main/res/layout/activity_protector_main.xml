@@ -7,13 +7,13 @@
     android:id="@+id/protector_main_drawer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/main_background"
     android:layoutDirection="rtl"
     tools:context=".protector_main.ProtectorMainActivity">
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layoutDirection="ltr">
+        android:layout_height="match_parent">
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
@@ -26,14 +26,36 @@
                 android:id="@+id/protector_main_tb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
+                android:background="@drawable/map_topbar_rounded"
                 android:theme="@style/AppTheme"
-                app:elevation="0dp"
-                app:titleTextColor="@color/white">
-                <TextView
-                    android:text="123"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                app:elevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_marginEnd="16dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="세이프랜드 안심귀가 신청대기"/>
+
+                    <View
+                        android:layout_marginEnd="8dp"
+                        android:layout_width="2dp"
+                        android:layout_height="16dp"
+                        android:background="@color/lineColor"/>
+
+                    <!--<ImageButton-->
+                        <!--android:layout_width="30dp"-->
+                        <!--android:layout_height="30dp"-->
+                        <!--android:layout_marginEnd="16dp"-->
+                        <!--android:background="@drawable/ic_map_menu_button"/>-->
+                </LinearLayout>
+
             </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.AppBarLayout>
@@ -42,6 +64,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="16dp"
+            android:layoutDirection="ltr"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <LinearLayout
@@ -106,7 +129,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layoutDirection="ltr"
-        app:headerLayout="@layout/nav_header"
-        app:menu="@menu/nav_menu"/>
+        app:headerLayout="@layout/nav_header"/>
 
 </android.support.v4.widget.DrawerLayout>
