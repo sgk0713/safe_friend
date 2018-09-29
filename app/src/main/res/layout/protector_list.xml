@@ -57,7 +57,7 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:src="@drawable/ic_accept"
+                    android:src="@drawable/ic_accept_guard"
                     android:layout_width="30dp"
                     android:layout_height="30dp"/>
 

@@ -1,4 +1,4 @@
-package com.seoul_app_contest.safe_friend.Helper;
+package com.seoul_app_contest.safe_friend.helper;
 
 import android.content.Context;
 import android.database.Cursor;

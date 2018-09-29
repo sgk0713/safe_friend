@@ -39,7 +39,7 @@
         android:textSize="36sp"
         android:text="수락 확인"
         android:textColor="#FFFFFF"
-        android:drawableRight="@drawable/ic_map_cancel_button"
+        android:drawableRight="@drawable/ic_accept"
         android:drawablePadding="5dip"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

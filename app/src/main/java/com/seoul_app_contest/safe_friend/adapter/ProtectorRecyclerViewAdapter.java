@@ -40,7 +40,7 @@ public class ProtectorRecyclerViewAdapter extends RecyclerView.Adapter<Protector
 
     @Override
     public void onBindViewHolder(@NonNull ProtectorRecyclerViewHolder protectorRecyclerViewHolder, int i) {
-        protectorRecyclerViewHolder.timeTv.setText(arrayList.get(i).getTime());
+        protectorRecyclerViewHolder.timeTv.setText(arrayList.get(i).getMeetingTime());
         protectorRecyclerViewHolder.locationTv.setText(arrayList.get(i).getLocation());
     }
 

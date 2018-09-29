@@ -66,7 +66,7 @@ public class StationRecyclerViewAdapter extends RecyclerView.Adapter<StationRecy
                 }
             });
         }else {
-            holder.icon.setImageResource(R.drawable.ic_location);
+            holder.icon.setImageResource(R.drawable.ic_location_un);
             holder.stationName.setText(arrayList.get(i).stop_nm);
             holder.stationId.setText(arrayList.get(i).stop_no);
 

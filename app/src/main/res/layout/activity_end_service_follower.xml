@@ -61,7 +61,7 @@
                 android:layout_weight="1"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
-                android:src="@drawable/ic_finish" />
+                android:src="@drawable/ic_finish_smile" />
         </LinearLayout>
     </LinearLayout>
 

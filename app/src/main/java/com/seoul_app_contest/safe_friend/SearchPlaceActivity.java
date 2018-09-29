@@ -3,17 +3,12 @@ package com.seoul_app_contest.safe_friend;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.seoul_app_contest.safe_friend.Helper.DBHelperLastItem;
-import com.seoul_app_contest.safe_friend.Helper.DatabaseHelper;
-import com.seoul_app_contest.safe_friend.adapter.StationRecyclerViewAdapter;
 import com.seoul_app_contest.safe_friend.dto.StationDto;
 import com.seoul_app_contest.safe_friend.fragment.RecentListFragment;
 import com.seoul_app_contest.safe_friend.fragment.SearchStationFragment;
@@ -91,7 +86,7 @@ public class SearchPlaceActivity extends AppCompatActivity implements Serializab
     void switchFragmentTo(Fragment frag){
         if(frag == searchStationFragment && !isSearching){//역검색화면으로 전환
             isSearching = true;
-            searchImageView.setImageResource(R.drawable.ic_location);
+            searchImageView.setImageResource(R.drawable.ic_location_un);
             searchImageView.setFocusableInTouchMode(false);
             searchEditText.setHint(R.string.station_example);
             searchEditText.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);

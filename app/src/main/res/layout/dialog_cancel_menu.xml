@@ -73,13 +73,13 @@
             android:spinnerMode="dropdown"
             android:overlapAnchor="false"/>
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:layout_marginRight="8dp"
-                android:src="@drawable/ic_map_cancel_button"/>
+                android:src="@drawable/ic_dropdown"/>
         </RelativeLayout>
 
         <RelativeLayout
