@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-
 import com.seoul_app_contest.safe_friend.R;
+
 
 public class CancelDialog extends Dialog {
     Context mContext;

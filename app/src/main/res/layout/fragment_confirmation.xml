@@ -24,7 +24,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/nanumsquareb"
+        android:fontFamily="@font/nanumsquare_b"
         android:textSize="20sp"
         android:text="안심귀가서비스"
         app:layout_constraintBottom_toTopOf="@id/confirmTitleGuideline"
@@ -35,7 +35,7 @@
         android:id="@+id/confirmTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/nanumsquareeb"
+        android:fontFamily="@font/nanumsquare_eb"
         android:textSize="36sp"
         android:text="수락 확인"
         android:textColor="#FFFFFF"
@@ -76,7 +76,7 @@
                 android:id="@+id/qweqwe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumsquareb"
+                android:fontFamily="@font/nanumsquare_b"
                 android:layout_centerHorizontal="true"
                 android:text="데리러 오실 지킴이님"/>
             <LinearLayout
@@ -88,14 +88,14 @@
                     android:id="@+id/followerAName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumsquareeb"
+                    android:fontFamily="@font/nanumsquare_eb"
                     android:layout_marginHorizontal="10dp"
                     android:text="김한솔"/>
                 <TextView
                     android:id="@+id/followerBName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumsquareeb"
+                    android:fontFamily="@font/nanumsquare_eb"
                     android:layout_marginHorizontal="10dp"
                     android:text="정희연"/>
             </LinearLayout>
@@ -107,7 +107,7 @@
         android:layout_width="@dimen/buttonWidth"
         android:layout_height="@dimen/buttonHeight"
         android:text="지킴이 위치확인"
-        android:background="@drawable/waiting_cancel_button"
+        android:background="@drawable/button_rounded"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/confirmButtonGuideline" />

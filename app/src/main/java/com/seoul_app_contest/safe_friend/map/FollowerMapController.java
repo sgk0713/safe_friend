@@ -36,6 +36,7 @@ class FollowerMapController extends MapController {
                 }
             }
         };
+        ((Activity)context).findViewById(R.id.mapBottombar).setVisibility(View.GONE);
     }
 
     @Override
@@ -107,13 +108,13 @@ class FollowerMapController extends MapController {
     @Override
     void needToActivate() {
         //지키미는 멀면 취소(종료) 버튼을 활성화 할 수 없음.
-        double a =mClientLocation.distanceTo(mFollowerLocation);
-        Log.d("needToActivate@@",""+a);
-        if(mClientLocation.distanceTo(mFollowerLocation) <= 100) {
-            ((Activity)mContext).findViewById(R.id.mapCancelButton).setVisibility(View.VISIBLE);
-        }
-        else {
-            ((Activity)mContext).findViewById(R.id.mapCancelButton).setVisibility(View.GONE);
+        if(distanceChecker && mClientLocation.getLatitude() != 0.0) {
+            if (mClientLocation.distanceTo(mFollowerLocation) <= 100) {
+                ((Activity) mContext).findViewById(R.id.mapCancelButton).setVisibility(View.VISIBLE);
+                distanceChecker = false;
+            } else {
+                ((Activity) mContext).findViewById(R.id.mapCancelButton).setVisibility(View.GONE);
+            }
         }
     }
 

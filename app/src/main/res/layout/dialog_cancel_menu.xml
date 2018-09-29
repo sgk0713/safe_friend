@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:text="안심귀가 서비스 취소하기"
             android:textSize="20dp"
-            android:fontFamily="@font/nanumsquareeb"
+            android:fontFamily="@font/nanumsquare_eb"
             android:layout_centerInParent="true"/>
 
         <View
@@ -51,14 +51,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="8dp"
                 android:background="#39373b"
-                android:fontFamily="@font/nanumsquareeb"
+                android:fontFamily="@font/nanumsquare_eb"
                 android:text=" "
                 android:textSize="12dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumsquareb"
+                android:fontFamily="@font/nanumsquare_b"
                 android:text="취소 사유를 선택해주세요." />
         </LinearLayout>
         <RelativeLayout
@@ -93,7 +93,7 @@
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_centerInParent="true"
                 android:background="@drawable/dialog_cancel_button"
-                android:fontFamily="@font/nanumsquareb"
+                android:fontFamily="@font/nanumsquare_b"
                 android:text="제출하기" />
         </RelativeLayout>
     </LinearLayout>

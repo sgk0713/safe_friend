@@ -4,7 +4,6 @@ import android.content.Context;
 import android.location.Location;
 import android.view.View;
 
-
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
@@ -17,9 +16,11 @@ abstract class MapController {
     protected View.OnClickListener mOnClickListener = null;
     protected MarkerOptions markerOptions = null;
     protected Context mContext;
+    protected boolean distanceChecker = true;
 
     MapController(Context context){
         mContext = context;
+        mClientLocation.setLatitude(0.0);
         markerOptions = new MarkerOptions();
         markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker_on_map_40));
         markerOptions.draggable(true);

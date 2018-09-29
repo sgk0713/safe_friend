@@ -11,5 +11,5 @@
         android:singleLine="true"
         android:ellipsize="marquee"
         android:layout_marginStart="8dp"
-         android:fontFamily="@font/nanumsquareb" />
+         android:fontFamily="@font/nanumsquare_b" />
 </FrameLayout>

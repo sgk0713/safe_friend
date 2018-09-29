@@ -15,7 +15,6 @@ import android.os.Looper;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +22,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -132,14 +132,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         Log.d("onCreate", "@@@@@@@@@@@@@");
 
-        setContentView(R.layout.activity_main);
-        TYPE = getIntent().getStringExtra("TYPE");
+        setContentView(R.layout.activity_map);
+        //TYPE = getIntent().getStringExtra("TYPE");
         TextView tobBarTextView = findViewById(R.id.topBarTextView);
         tobBarTextView.setText((TYPE == "user" ? "지킴이":USERNAME)+"님의 현재 위치입니다.");
 
         //상단 Layout을  두 번 눌렀을 때 지도가 클릭되는 것을 방지하기 위한 리스너
-        ConstraintLayout app_layer = findViewById (R.id.topBarLayout);
-        app_layer.setOnClickListener(new View.OnClickListener() {
+        findViewById (R.id.topBarLayout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        //상단 Layout을  두 번 눌렀을 때 지도가 클릭되는 것을 방지하기 위한 리스너
+        findViewById (R.id.mapBottombar).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -156,17 +163,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
             }
         });
+
         mMapController = getController(TYPE);
 
         //거리에 따라 버튼을 보여주기 위함.
         ImageButton cancelButton = findViewById(R.id.mapCancelButton);
         cancelButton.setOnClickListener(mMapController.mOnClickListener);
-        cancelButton.setVisibility(View.GONE);
+        //cancelButton.setVisibility(View.GONE);
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         getLocationPermission();
-
-        mDatabaseReference.child(FID).addChildEventListener(mChildEventListener);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -184,10 +190,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     private void drawMarker(MapModel mMapModel) {
-        if (mMarker != null) mMarker.remove();
-        mMarker = mGoogleMap.addMarker(mMapController.createMaker(mMapModel));
+        if (mMarker != null) mMarker.setPosition(new LatLng(mMapModel.getmLat(), mMapModel.getmLng()));
+        else {
+            mMarker = mGoogleMap.addMarker(mMapController.createMaker(mMapModel));
+        }
         mMapController.setOpponentLocation(mMapModel);
-        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mMapModel.getmLat(), mMapModel.getmLng()), 17));
+        if(!mMoveMapByUser)
+            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mMapModel.getmLat(), mMapModel.getmLng()), 17));
     }
 
     @SuppressWarnings("MissingPermission")
@@ -195,6 +204,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onResume() {
         super.onResume();
         Log.d("onResume", "@@@@@@@@@@@@@");
+        mDatabaseReference.child(FID).addChildEventListener(mChildEventListener);
         getCurrentLocation();
     }
 
@@ -208,6 +218,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     mFusedLocationClient = null;
                 }
             });
+            mDatabaseReference.child(FID).removeEventListener(mChildEventListener);
         }
     }
 
@@ -226,15 +237,19 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     if (reason == GoogleMap.OnCameraMoveStartedListener.REASON_GESTURE || reason == GoogleMap.OnCameraMoveStartedListener
                             .REASON_API_ANIMATION) {
                         if(!mMoveMapByUser) {
-                            mDatabaseReference.child(FID).removeEventListener(mChildEventListener);
                             mMoveMapByUser = true;
                         }
                     }
                 }
             });
-
-            mGoogleMap.setInfoWindowAdapter(mMapController.getInfoWindowAdapter(this));
-            mGoogleMap.setOnInfoWindowClickListener(mMapController.getOnInfoWindowClickListener());
+            mGoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                @Override
+                public boolean onMarkerClick(Marker marker) {
+                    return true;
+                }
+            });
+            //mGoogleMap.setInfoWindowAdapter(mMapController.getInfoWindowAdapter(this));
+            //mGoogleMap.setOnInfoWindowClickListener(mMapController.getOnInfoWindowClickListener());
         }
 
     }

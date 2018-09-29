@@ -37,7 +37,7 @@
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="12dp"
-            android:fontFamily="@font/nanumsquareb"
+            android:fontFamily="@font/nanumsquare_b"
             android:text="사당역 9번 출구"/>
         <ImageView
             android:layout_width="wrap_content"
@@ -70,14 +70,14 @@
             android:layout_height="wrap_content"
             android:background="#FFC042"
             android:textSize="16dp"
-            android:fontFamily="@font/nanumsquareeb"
+            android:fontFamily="@font/nanumsquare_eb"
             android:text=" "/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/bottomBarTextBar"
             android:text="다른 출발지 선택하기"
-            android:fontFamily="@font/nanumsquareeb"/>
+            android:fontFamily="@font/nanumsquare_eb"/>
 
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"

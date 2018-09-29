@@ -31,6 +31,20 @@ class UserMapController extends MapController {
                 }
             }
         };
+
+        ((Activity)context).findViewById(R.id.mapBottomBarInfo_A_CallButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("onClickA", "@@@@@@");
+            }
+        });
+
+        ((Activity)context).findViewById(R.id.mapBottomBarInfo_B_CallButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("onClickB", "@@@@@@");
+            }
+        });
     }
 
     @Override
@@ -100,11 +114,15 @@ class UserMapController extends MapController {
     @Override
     void needToActivate() {
         //유저는 가까우면 취소 버튼을 활성화 할 수 없음.
-        if(mClientLocation.distanceTo(mFollowerLocation) <= 100) {
-            ((Activity)mContext).findViewById(R.id.mapCancelButton).setVisibility(View.GONE);
-        }
-        else {
-            ((Activity)mContext).findViewById(R.id.mapCancelButton).setVisibility(View.VISIBLE);
+        if(distanceChecker && mClientLocation.getLatitude() != 0.0) {
+            Log.d("needToActivate1","@@@@@"+mClientLocation.getLatitude());
+            if (mClientLocation.distanceTo(mFollowerLocation) <= 100) {
+                Log.d("needToActivate2","@@@@@"+mClientLocation.distanceTo(mFollowerLocation));
+                ((Activity) mContext).findViewById(R.id.mapCancelButton).setVisibility(View.GONE);
+                distanceChecker = false;
+            } else {
+                ((Activity) mContext).findViewById(R.id.mapCancelButton).setVisibility(View.VISIBLE);
+            }
         }
     }
 

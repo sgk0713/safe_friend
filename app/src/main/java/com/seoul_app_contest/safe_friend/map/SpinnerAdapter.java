@@ -2,6 +2,7 @@ package com.seoul_app_contest.safe_friend.map;
 
 import android.content.Context;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,7 +56,6 @@ public class SpinnerAdapter extends BaseAdapter {
 
         //데이터세팅
         ((TextView) convertView.findViewById(R.id.spinnerDropdownTextView)).setText(data[position]);
-
         return convertView;
     }
 

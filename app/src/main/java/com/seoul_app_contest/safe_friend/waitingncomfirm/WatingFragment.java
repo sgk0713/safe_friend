@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-
 import com.seoul_app_contest.safe_friend.R;
 
 public class WatingFragment extends Fragment {

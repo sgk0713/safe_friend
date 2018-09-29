@@ -12,9 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-
 import com.seoul_app_contest.safe_friend.R;
 import com.seoul_app_contest.safe_friend.map.MapsActivity;
+
 
 public class ComfirmationFragmet extends Fragment {
 

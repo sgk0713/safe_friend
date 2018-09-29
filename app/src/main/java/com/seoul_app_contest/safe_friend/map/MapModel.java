@@ -1,5 +1,4 @@
 package com.seoul_app_contest.safe_friend.map;
-
 public class MapModel{
     private double mLat;
     private double mLng;
