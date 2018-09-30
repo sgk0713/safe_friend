@@ -5,12 +5,13 @@
     android:layout_height="match_parent"
     android:background="@color/main_background"
     android:gravity="center"
-    android:orientation="vertical"
-    android:padding="64dp">
+    android:paddingTop="64dp"
+    android:paddingBottom="64dp"
+    android:orientation="vertical">
 
     <View
         android:layout_width="32dp"
-        android:layout_height="6dp"
+        android:layout_height="3dp"
         android:background="@color/mainColor"/>
 
     <TextView
@@ -23,21 +24,21 @@
         android:textSize="25sp"/>
 
     <TextView
-        android:fontFamily="@font/nanumsquare_eb"
+        android:fontFamily="@font/nanumsquare_r"
         android:id="@+id/dialog_explanation_service_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="안심귀가 서비스란,"
         android:textColor="@color/black"
-        android:textSize="25sp"
-        android:textStyle="bold"/>
+        android:textSize="25sp"/>
 
     <TextView
         android:fontFamily="@font/nanumsquare_l"
-        android:paddingStart="32dp"
-        android:paddingEnd="32dp"
+        android:paddingStart="64dp"
+        android:paddingEnd="64dp"
         android:gravity="center"
+        android:lineSpacingExtra="2.5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"

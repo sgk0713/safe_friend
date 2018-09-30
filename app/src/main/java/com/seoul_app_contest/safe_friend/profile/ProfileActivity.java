@@ -112,7 +112,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
                 .setPermissionListener(permissionListener)
                 .setRationaleMessage("접근 권한이 필요해요")
                 .setDeniedMessage("왜 거부하셨어요...\n하지만 [설정] > [권한] 에서 권한을 허용할 수 있어요.")
-                .setPermissions(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
+                .setPermissions(Manifest.permission.READ_EXTERNAL_STORAGE)
                 .check();
 
 

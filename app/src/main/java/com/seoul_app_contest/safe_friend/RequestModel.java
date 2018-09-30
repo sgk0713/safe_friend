@@ -9,6 +9,7 @@ public class RequestModel {
     String meetingTime;
     String location;
     String uid;
+    String pUid;
     boolean isWaiting;
 
     public RequestModel() {
@@ -25,6 +26,11 @@ public class RequestModel {
         this.street = street;
         this.uid = uid;
         this.isWaiting = true;
+        pUid = "";
+    }
+
+    public String getpUid() {
+        return pUid;
     }
 
     public String getStreet() {

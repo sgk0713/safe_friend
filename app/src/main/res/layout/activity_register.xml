@@ -5,11 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_background"
-    android:gravity="center"
+    android:gravity="center_horizontal|center_vertical"
     android:orientation="vertical">
 
     <ImageView
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:src="@drawable/ic_register_logo"
         android:id="@+id/register_logo_tv"
         android:layout_width="50dp"
@@ -164,7 +165,6 @@
                     <RadioButton
                         android:id="@+id/register_man_rb"
                         android:layout_width="wrap_content"
-
                         android:layout_height="@dimen/registerButtonHeight"
                         android:text="남자"
                         android:textColor="@color/text_for_signup"
@@ -492,6 +492,7 @@
 
 
     <Button
+        android:layout_marginTop="32dp"
         android:id="@+id/register_confirm_btn"
         android:layout_width="@dimen/buttonWidth"
         android:layout_height="@dimen/buttonHeight"
@@ -499,6 +500,7 @@
         android:background="@drawable/button_background"
         android:enabled="false"
         android:text="가입하기"
+        android:fontFamily="@font/nanumsquare_b"
         android:textColor="@color/white"/>
 
 </LinearLayout>
