@@ -107,7 +107,7 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="center"
-                app:srcCompat="@android:drawable/ic_menu_search" />
+                app:srcCompat="@drawable/ic_search" />
 
             <EditText
                 android:id="@+id/activity_search_place_search_edt"

@@ -135,7 +135,6 @@ public class UserModel {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 pid = task.getResult().getDocuments().get(0).getId();
-
             }
         });
     }

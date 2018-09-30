@@ -54,7 +54,7 @@
     <dimen name="process_width">160dp</dimen>
     <dimen name="process_height">20dp</dimen>
     <dimen name="process_circle">16dp</dimen>
-    <dimen name="title_margin_top">115dp</dimen>
+    <dimen name="title_margin_top">112dp</dimen>
     <dimen name="button_margin_bottom">92dp</dimen>
     <style name="spinnerDropDownItemStyle" parent="android:TextAppearance.Widget.TextView.SpinnerItem"/>
     <style name="spinnerItemStyle" parent="android:Widget.TextView.SpinnerItem"/>
