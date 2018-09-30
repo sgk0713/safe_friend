@@ -73,11 +73,26 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <ImageView
-                android:id="@+id/profile_iv"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/ic_chevron_right_black_24dp"/>
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/profile_set_cl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/profile_iv"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/ic_profile"/>
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_profile_add"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+
+            </android.support.constraint.ConstraintLayout>
+
 
             <TextView
                 android:id="@+id/profile_name_tv"
@@ -128,6 +143,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/nanumsquare_b"
                     android:text="성별"
                     android:theme="@style/RegisterTextTheme"/>
 
@@ -136,6 +152,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:fontFamily="@font/nanumsquare_l"
                     android:text="남"/>
             </LinearLayout>
 
@@ -149,6 +166,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/nanumsquare_b"
                     android:text="생년월일"
                     android:theme="@style/RegisterTextTheme"/>
 
@@ -157,6 +175,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:fontFamily="@font/nanumsquare_l"
                     android:text="1994.08.31"/>
             </LinearLayout>
 
@@ -164,6 +183,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <TextView
@@ -171,36 +191,125 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/nanumsquare_b"
                     android:text="주소"
                     android:theme="@style/RegisterTextTheme"/>
 
-                <TextView
-                    android:id="@+id/profile_address_tv"
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="경기도 안산시 상록구 사동"/>
+                    android:layout_weight="2">
+
+                    <EditText
+                        android:id="@+id/profile_address_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:enabled="false"
+                        android:fontFamily="@font/nanumsquare_l"
+                        android:text="경기도 안산시 상록구 사동"/>
+
+                    <Button
+                        android:id="@+id/profile_address_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/buttonHeight"
+                        android:background="@drawable/button_background"
+                        android:text="우편번호검색"
+                        android:visibility="gone"/>
+                </LinearLayout>
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/nanumsquare_b"
                     android:text="번호"
                     android:theme="@style/RegisterTextTheme"/>
 
-                <TextView
-                    android:id="@+id/profile_phone_num_tv"
+                <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:text="010-2434-7280"/>
+                    android:layout_weight="2">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/profile_phone_num_tv"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:enabled="false"
+                            android:fontFamily="@font/nanumsquare_l"
+                            android:text="010-2434-7280"/>
+
+                        <Button
+                            android:id="@+id/profile_phone_num_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/buttonHeight"
+                            android:background="@drawable/button_background"
+                            android:text="인증번호 발송"
+                            android:visibility="visible"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/profile_auth_num_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="visible">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2">
+
+                    <EditText
+                        android:id="@+id/profile_auth_num_edt"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/nanumsquare_l"/>
+
+                    <Button
+                        android:id="@+id/profile_auth_num_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/buttonHeight"
+                        android:background="@drawable/button_background"
+                        android:text="확인"/>
+                </LinearLayout>
+
             </LinearLayout>
 
             <View
@@ -220,6 +329,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/nanumsquare_b"
                     android:text="이용횟수"
                     android:theme="@style/RegisterTextTheme"/>
 
@@ -228,20 +338,23 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:fontFamily="@font/nanumsquare_l"
                     android:text="3"/>
             </LinearLayout>
+
             <LinearLayout
                 android:id="@+id/profile_sticker_ll"
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/nanumsquare_b"
                     android:text="받은 스티커"
                     android:theme="@style/RegisterTextTheme"/>
 
@@ -250,6 +363,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:fontFamily="@font/nanumsquare_l"
                     android:text="3"/>
             </LinearLayout>
 
@@ -260,6 +374,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
+            android:fontFamily="@font/nanumgothic_r"
             android:text="회원탈퇴"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -69,7 +69,7 @@ public class PostcodeActivity extends AppCompatActivity implements PostcodeRecyc
     @Override
     public void returnData(PostDto postDto) {
         Log.d("BEOM123", "click : " + postDto.getZipNo());
-        Intent intent = new Intent(PostcodeActivity.this, RegisterActivity.class);
+        Intent intent = new Intent();
         intent.putExtra("post", postDto);
         setResult(RESULT_OK, intent);
         finish();

@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.seoul_app_contest.safe_friend.find.FindActivity;
 import com.seoul_app_contest.safe_friend.main.MainActivity;
 import com.seoul_app_contest.safe_friend.R;
 import com.seoul_app_contest.safe_friend.register.RegisterActivity;
@@ -30,6 +31,10 @@ public class LoginActivity extends AppCompatActivity implements com.seoul_app_co
 
     @OnClick({R.id.login_user_btn, R.id.login_protector_btn})void loginModeBtn(View view){
         presenter.changeLoginMode(view.getId());
+    }
+
+    @OnClick(R.id.login_find_btn)void findBtn(){
+        redirectFindActivity();
     }
 
     @Override
@@ -111,5 +116,11 @@ public class LoginActivity extends AppCompatActivity implements com.seoul_app_co
     public void selectProtectorLogin() {
         protectorBtn.setBackground(getDrawable(R.drawable.selected_login_button));
         userBtn.setBackground(getDrawable(R.drawable.default_login_button));
+    }
+
+    @Override
+    public void redirectFindActivity() {
+        Intent intent = new Intent(this, FindActivity.class);
+        startActivity(intent);
     }
 }

@@ -47,6 +47,11 @@ public class MainPresenter implements MainContract.Presenter {
             }
 
             @Override
+            public void getProfile(String profile) {
+view.setNavProfile(profile);
+            }
+
+            @Override
             public void getUseNum(int name) {
 
             }

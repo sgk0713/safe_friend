@@ -14,6 +14,7 @@
         android:background="@color/mainColor"/>
 
     <TextView
+        android:fontFamily="@font/nanumsquare_r"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -22,6 +23,7 @@
         android:textSize="25sp"/>
 
     <TextView
+        android:fontFamily="@font/nanumsquare_eb"
         android:id="@+id/dialog_explanation_service_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,6 +34,10 @@
         android:textStyle="bold"/>
 
     <TextView
+        android:fontFamily="@font/nanumsquare_l"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -39,7 +45,7 @@
 
     <Button
         android:id="@+id/dialog_explanation_confirm_btn"
-        android:layout_width="130dp"
+        android:layout_width="@dimen/buttonWidth"
         android:layout_height="@dimen/buttonHeight"
         android:layout_marginTop="32dp"
         android:background="@drawable/button_background"

@@ -91,6 +91,10 @@
 
         </activity>
 
+        <activity android:name=".find.FindActivity">
+
+        </activity>
+
     </application>
 
 </manifest>

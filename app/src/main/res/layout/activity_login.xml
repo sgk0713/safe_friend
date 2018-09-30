@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="32dp"
     android:background="@color/main_background"
+    android:padding="32dp"
     tools:context=".login.LoginActivity">
 
     <TextView
@@ -27,9 +27,9 @@
         android:layout_marginEnd="8dp"
         android:background="@drawable/selected_login_button"
         android:drawableStart="@drawable/ic_chevron_right_black_24dp"
-        android:elevation="10dp"
         android:gravity="start|center_vertical"
         android:paddingStart="16dp"
+        android:stateListAnimator="@null"
         android:text="사용자"
         android:textColor="@color/black"
         android:textStyle="bold"
@@ -43,9 +43,9 @@
         android:layout_height="wrap_content"
         android:background="@drawable/default_login_button"
         android:drawableStart="@drawable/ic_chevron_right_black_24dp"
-        android:elevation="10dp"
         android:gravity="start|center_vertical"
         android:paddingStart="16dp"
+        android:stateListAnimator="@null"
         android:text="지킴이"
         android:textColor="@color/black"
         android:textStyle="bold"
@@ -91,7 +91,7 @@
 
     <Button
         android:id="@+id/login_register_btn"
-
+        android:fontFamily="@font/nanumgothic_r"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
@@ -102,6 +102,7 @@
         app:layout_constraintStart_toEndOf="@id/login_find_btn"/>
 
     <Button
+        android:fontFamily="@font/nanumgothic_r"
         android:id="@+id/login_find_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -114,9 +115,10 @@
 
     <Button
         android:id="@+id/login_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/buttonWidth"
         android:layout_height="@dimen/buttonHeight"
         android:background="@drawable/button_background"
+        android:stateListAnimator="@null"
         android:textColor="@color/white"
         android:theme="@style/LoginBtn"
         app:layout_constraintBottom_toTopOf="@id/login_register_btn"

@@ -11,8 +11,10 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
@@ -24,6 +26,8 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.seoul_app_contest.safe_friend.R;
 import com.seoul_app_contest.safe_friend.RequestModel;
 import com.seoul_app_contest.safe_friend.UserModel;
@@ -55,6 +59,7 @@ public class ProtectorMainActivity extends AppCompatActivity implements Navigati
     private ArrayList<RequestModel> arrayList = new ArrayList<>();
     TextView navNameTv;
     TextView navEmailTv;
+    ImageView navProfileIv;
     private ProtectorMainContract.Presenter presenter;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -96,6 +101,7 @@ public class ProtectorMainActivity extends AppCompatActivity implements Navigati
         protectorRv.setLayoutManager(new LinearLayoutManager(this));
         protectorRv.setAdapter(adapter);
 
+        setProtectorNum(String.valueOf(adapter.getItemCount()));
         //요청이 올때 관할구역이면 생성한다
         db.collection("WAITING_LIST").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -117,6 +123,7 @@ public class ProtectorMainActivity extends AppCompatActivity implements Navigati
         });
 
         setSupportActionBar(toolbar);
+        navProfileIv = navigationView.getHeaderView(0).findViewById(R.id.nav_profile_iv);
         navNameTv = navigationView.getHeaderView(0).findViewById(R.id.nav_name_tv);
         navEmailTv = navigationView.getHeaderView(0).findViewById(R.id.nav_email_tv);
         presenter.setUserData();
@@ -134,6 +141,9 @@ public class ProtectorMainActivity extends AppCompatActivity implements Navigati
             @Override
             public void onClick(View view) {
                 redirectProfileActivity();
+                if (drawerLayout.isDrawerOpen(Gravity.START)) {
+                    drawerLayout.closeDrawer(Gravity.START);
+                }
             }
         });
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar,
@@ -168,5 +178,20 @@ public class ProtectorMainActivity extends AppCompatActivity implements Navigati
     public void redirectProfileActivity() {
         Intent intent = new Intent(ProtectorMainActivity.this, ProfileActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void setProtectorLocation(String location) {
+        protectorLocationTv.setText(location);
+    }
+
+    @Override
+    public void setProtectorNum(String num) {
+        protectorNumTv.setText(num+"건");
+    }
+
+    @Override
+    public void setNavProfile(String url) {
+        Glide.with(this).load(url).apply(new RequestOptions().circleCrop()).into(navProfileIv);
     }
 }

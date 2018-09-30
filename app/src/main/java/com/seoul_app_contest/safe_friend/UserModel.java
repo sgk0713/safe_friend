@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
@@ -20,6 +21,9 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.seoul_app_contest.safe_friend.register.RegisterActivity;
 import com.seoul_app_contest.safe_friend.dto.UserDto;
 
@@ -56,6 +60,7 @@ public class UserModel {
     private CollectionReference firestore;
     private CollectionReference firestore_;
     private FirebaseRemoteConfig firebaseRemoteConfig;
+    private StorageReference firestorage;
 
     public UserModel() {
         firebaseAuth = FirebaseAuth.getInstance();
@@ -107,15 +112,16 @@ public class UserModel {
     }
     public void getCurrentUserData(String coll, final GetCurrentUserCallbackListener getCurrentUserCallbackListener){
         firestore = FirebaseFirestore.getInstance().collection(coll);
-        firestore.document(firebaseAuth.getCurrentUser().getUid()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+        firestore.document(firebaseAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                UserDto userDto = documentSnapshot.toObject(UserDto.class);
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                UserDto userDto = task.getResult().toObject(UserDto.class);
                 getCurrentUserCallbackListener.getName(userDto.getName());
                 getCurrentUserCallbackListener.getGender(userDto.getGender());
                 getCurrentUserCallbackListener.getAddress(userDto.getAddress());
                 getCurrentUserCallbackListener.getBirthDay(userDto.getBirthDay());
                 getCurrentUserCallbackListener.getPhoneNum(userDto.getPhoneNum());
+                getCurrentUserCallbackListener.getProfile(userDto.getProfile());
                 getCurrentUserCallbackListener.getUseNum(userDto.getUseNum());
                 getCurrentUserCallbackListener.getLikeNum(userDto.getLikeNum());
                 getCurrentUserCallbackListener.getKindNum(userDto.getKindNum());
@@ -131,6 +137,7 @@ public class UserModel {
         void getBirthDay(String birthday);
         void getAddress(String address);
         void getPhoneNum(String phoneNum);
+        void getProfile(String profile);
         void getUseNum(int useNum);
         void getLikeNum(int likeNum);
         void getKindNum(int kindNum);
@@ -289,6 +296,24 @@ public class UserModel {
         void exist();
 
         void notExist();
+    }public void isUser(String email, final IsUserCallbackListener isUserCallbackListener){
+        firestore = FirebaseFirestore.getInstance().collection("USERS");
+        firestore.whereEqualTo("email", email).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.getResult().isEmpty()){
+                    isUserCallbackListener.notExist();
+                }else {
+                    isUserCallbackListener.exist();
+                }
+            }
+        });
+    }
+
+    public interface IsUserCallbackListener{
+        void exist();
+
+        void notExist();
     }
 
     public interface SignInCallbackListener {
@@ -338,7 +363,7 @@ public class UserModel {
             }
         };
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                countryCode + phoneNum.substring(1),
+                "+82" + phoneNum.substring(1),
                 60,
                 TimeUnit.SECONDS,
                 new RegisterActivity(),
@@ -458,7 +483,77 @@ public class UserModel {
     }
 
     public void withdrawalFirestore(){
-        firestore.document(firebaseAuth.getCurrentUser().getUid()).delete();
-        firebaseAuth.getCurrentUser().delete();
+        String uid = firebaseAuth.getCurrentUser().getUid();
+        firestore.document(uid).delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                firebaseAuth.getCurrentUser().delete();
+                signOut();
+            }
+        });
+    }
+
+    public void updateUserData(String address, String phoneNum) {
+        firestore.document(firebaseAuth.getCurrentUser().getUid()).update("address", address);
+        firestore.document(firebaseAuth.getCurrentUser().getUid()).update("phoneNum", phoneNum);
+    }
+
+
+    public void findUserEmail(String name, String phoneNum, final FindUserEmailCallbackListener findUserEmailCallbackListener) {
+        firestore.whereEqualTo("name", name).whereEqualTo("phoneNum", phoneNum).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.getResult().isEmpty()) {
+                    findUserEmailCallbackListener.onFail();
+                }else {
+
+                    findUserEmailCallbackListener.onSuccess(task.getResult().getDocuments().get(0).getString("email"));
+                }
+            }
+        });
+    }
+
+    public interface FindUserEmailCallbackListener{
+        void onSuccess(String email);
+        void onFail();
+    }
+
+    public void setUserProfile(byte[] bytes, final SetUserProfileCallbackListener setUserProfileCallbackListener){
+        firestorage = FirebaseStorage.getInstance().getReference().child("profile/"+firebaseAuth.getCurrentUser().getUid());
+        firestorage.putBytes(bytes).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(final UploadTask.TaskSnapshot taskSnapshot) {
+                firestore.document(firebaseAuth.getCurrentUser().getUid()).update("profile", taskSnapshot.getDownloadUrl().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        setUserProfileCallbackListener.onSuccess(taskSnapshot.getDownloadUrl().toString());
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                setUserProfileCallbackListener.onFail();
+            }
+        });
+    }
+
+    public interface SetUserProfileCallbackListener{
+        void onSuccess(String url);
+        void onFail();
+    }
+
+
+    public void sendPasswordResetEmail(String email, final SendPasswordResetEmailCallbackListener sendPasswordResetEmailCallbackListener){
+        firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                sendPasswordResetEmailCallbackListener.onSuccess();
+            }
+        });
+    }
+
+    public interface SendPasswordResetEmailCallbackListener{
+        void onSuccess();
     }
 }

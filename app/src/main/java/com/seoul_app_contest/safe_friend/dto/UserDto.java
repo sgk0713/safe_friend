@@ -8,6 +8,7 @@ public class UserDto {
     String gender;
     String address;
     String phoneNum;
+    String profile;
     int state;
     int useNum;
     int likeNum;
@@ -27,6 +28,11 @@ public class UserDto {
         this.phoneNum = phoneNum;
         this.state = state;
         this.useNum = 0;
+        this.profile = "";
+    }
+
+    public String getProfile() {
+        return profile;
     }
 
     public int getUseNum() {
