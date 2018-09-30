@@ -215,10 +215,13 @@
                         android:textSize="14sp"/>
 
                     <Button
+                        android:layout_height="@dimen/registerButtonHeight"
+                        android:background="@drawable/button_background"
+                        android:fontFamily="@font/nanumgothic_b"
+                        android:textSize="11sp"
+                        android:textColor="@color/white"
                         android:id="@+id/profile_address_btn"
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/buttonHeight"
-                        android:background="@drawable/button_background"
                         android:text="우편번호검색"
                         android:visibility="gone"/>
                 </LinearLayout>
@@ -298,10 +301,13 @@
                             android:textSize="14sp"/>
 
                         <Button
+                            android:layout_height="@dimen/registerButtonHeight"
+                            android:background="@drawable/button_background"
+                            android:fontFamily="@font/nanumgothic_b"
+                            android:textSize="11sp"
+                            android:textColor="@color/white"
                             android:id="@+id/profile_phone_num_btn"
                             android:layout_width="wrap_content"
-                            android:layout_height="@dimen/buttonHeight"
-                            android:background="@drawable/button_background"
                             android:text="인증번호 발송"
                             android:visibility="gone"/>
                     </LinearLayout>
@@ -341,10 +347,13 @@
                         android:textSize="14sp"/>
 
                     <Button
+                        android:layout_height="@dimen/registerButtonHeight"
+                        android:background="@drawable/button_background"
+                        android:fontFamily="@font/nanumgothic_b"
+                        android:textSize="11sp"
+                        android:textColor="@color/white"
                         android:id="@+id/profile_auth_num_btn"
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/buttonHeight"
-                        android:background="@drawable/button_background"
                         android:text="확인"/>
                 </LinearLayout>
 
