@@ -116,7 +116,7 @@ public class WatingActivity extends AppCompatActivity {
                                         Log.d(TAG, "파이어스토어 wating_list 삭제 실패");
                                     }
                                 });
-                        getSupportFragmentManager().beginTransaction().add(R.id.mainFragmet, mConfirmationFragment).commit();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.mainFragmet, mConfirmationFragment).commitAllowingStateLoss();
                     }
 
                 } else {
