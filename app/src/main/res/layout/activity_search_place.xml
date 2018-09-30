@@ -35,9 +35,9 @@
                     android:layout_height="@dimen/process_height"
                     android:text="@string/step_one"
                     android:textSize="12sp"
-                    android:textStyle="bold"
                     android:gravity="center"
                     android:textColor="@color/text_for_process"
+                    android:fontFamily="@font/nanumsquare_eb"
                     android:layout_gravity="center"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
@@ -54,6 +54,7 @@
                     android:text="@string/two"
                     android:textSize="12sp"
                     android:textColor="@color/mainColor"
+                    android:fontFamily="@font/nanumsquare_eb"
                     android:gravity="center"
                     android:layout_gravity="center"
                     android:background="@drawable/process_circle_background"/>
@@ -69,6 +70,7 @@
                     android:text="@string/three"
                     android:textSize="12sp"
                     android:textColor="@color/mainColor"
+                    android:fontFamily="@font/nanumsquare_eb"
                     android:gravity="center"
                     android:layout_gravity="center"
                     android:background="@drawable/process_circle_background"/>
@@ -116,6 +118,7 @@
                 android:hint="@string/recent_list"
                 android:gravity="center"
                 android:textSize="16sp"
+                android:fontFamily="@font/nanumsquare_r"
                 android:textColor="@color/my_profile_main_title"
                 android:background="@null"/>
         </LinearLayout>
