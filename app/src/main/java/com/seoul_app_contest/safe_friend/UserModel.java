@@ -48,6 +48,8 @@ public class UserModel {
     String authNum;
     String location;
     String pid;
+    String partnerPid;
+
     int state;
     String countryCode;
     boolean checkUseAgree = false;
@@ -115,6 +117,16 @@ public class UserModel {
     }
     public String getCurrentUserEmail(){
         return firebaseAuth.getCurrentUser().getEmail();
+    }
+
+    public void getPartnerPid(String coll){
+        firestore = FirebaseFirestore.getInstance().collection(coll);
+        firestore.document(firebaseAuth.getCurrentUser().getUid()).collection("PARTNER").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                partnerPid = task.getResult().getDocuments().get(0).getId();
+            }
+        });
     }
 
     public void getPid(String coll){
