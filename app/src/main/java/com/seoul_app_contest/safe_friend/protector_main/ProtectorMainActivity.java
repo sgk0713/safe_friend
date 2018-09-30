@@ -2,6 +2,7 @@ package com.seoul_app_contest.safe_friend.protector_main;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +18,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.seoul_app_contest.safe_friend.R;
@@ -51,7 +61,13 @@ public class ProtectorMainActivity extends AppCompatActivity implements Navigati
     TextView navEmailTv;
     ImageView navProfileIv;
     private ProtectorMainContract.Presenter presenter;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseAuth auth = FirebaseAuth.getInstance();
 
+    private String uid;
+    private String chargeStreet;//지킴이 할당구역
+    String TAG = "WATING_DEBUG";
+    ProtectorRecyclerViewAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,14 +78,49 @@ public class ProtectorMainActivity extends AppCompatActivity implements Navigati
     private void init() {
         presenter = new ProtectorMainPresenter(this);
         ButterKnife.bind(this);
-        arrayList.add(new RequestModel("11:30", "gggg", "dd"));
-        arrayList.add(new RequestModel("11:30", "gggg", "dd"));
-        arrayList.add(new RequestModel("11:30", "gggg", "dd"));
-        ProtectorRecyclerViewAdapter adapter = new ProtectorRecyclerViewAdapter(this, arrayList);
+//        arrayList.add(new RequestModel("11:30", "gggg", "dd"));
+//        arrayList.add(new RequestModel("11:30", "gggg", "dd"));
+//        arrayList.add(new RequestModel("11:30", "gggg", "dd"));
+
+        uid = auth.getCurrentUser().getUid();
+        Log.d(TAG, "uid:" + uid);
+        db.collection("PROTECTORS").document(uid).get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    chargeStreet = task.getResult().getString("address");
+                    Log.d(TAG, "chargeStreet:" + chargeStreet);
+                } else {
+                    Log.w(TAG, "Error getting documents.", task.getException());
+                }
+            }
+        });
+
+        adapter = new ProtectorRecyclerViewAdapter(this, arrayList);
         protectorRv.setLayoutManager(new LinearLayoutManager(this));
         protectorRv.setAdapter(adapter);
 
         setProtectorNum(String.valueOf(adapter.getItemCount()));
+        //요청이 올때 관할구역이면 생성한다
+        db.collection("WAITING_LIST").addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                arrayList.clear();
+                if (queryDocumentSnapshots != null && !queryDocumentSnapshots.isEmpty()) {
+                    for(DocumentSnapshot snapshot:queryDocumentSnapshots.getDocuments()) {
+                        String tmp = snapshot.getString("street");
+                        Log.d(TAG, "tmp:"+tmp);
+                        if(tmp != null && tmp.equals(chargeStreet)) {
+                            arrayList.add(snapshot.toObject(RequestModel.class));
+                        }
+                    }
+                    adapter.notifyDataSetChanged();
+                } else {
+                    Log.d(TAG, "Current data: null");
+                }
+            }
+        });
 
         setSupportActionBar(toolbar);
         navProfileIv = navigationView.getHeaderView(0).findViewById(R.id.nav_profile_iv);

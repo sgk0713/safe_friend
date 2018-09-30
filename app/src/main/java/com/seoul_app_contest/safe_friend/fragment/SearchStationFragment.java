@@ -40,12 +40,15 @@ public class SearchStationFragment extends Fragment{
     public void onAttach(Context context) {
         super.onAttach(context);
         activity = (SearchPlaceActivity) getActivity();
+        Log.d("WAITING_DEBUG", "onatach90");
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
+        recyclerView.setAdapter(busStationRecyclerViewAdapter);
         activity = null;
+        Log.d("WAITING_DEBUG", "ondetach90");
     }
 
     StationRecyclerViewAdapter busStationRecyclerViewAdapter, subwayStationRecyclerViewAdapter, currentAdapter;
@@ -159,6 +162,7 @@ public class SearchStationFragment extends Fragment{
                 intent.putExtra("stop_no", resultArray.get(position).stop_no);
                 intent.putExtra("xcode", resultArray.get(position).xcode);
                 intent.putExtra("ycode", resultArray.get(position).ycode);
+                intent.putExtra("line", resultArray.get(position).line);
                 Log.d("station_name", resultArray.get(position).stop_nm);
                 startActivity(intent);
             }
@@ -175,6 +179,7 @@ public class SearchStationFragment extends Fragment{
                 intent.putExtra("stop_no", resultArray.get(position).stop_no);
                 intent.putExtra("xcode", resultArray.get(position).xcode);
                 intent.putExtra("ycode", resultArray.get(position).ycode);
+                intent.putExtra("line", resultArray.get(position).line);
                 Log.d("station_name", resultArray.get(position).stop_nm);
                 startActivity(intent);
             }

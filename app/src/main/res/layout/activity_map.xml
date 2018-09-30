@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -21,6 +22,7 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/topBarLayout"
+        android:clickable="true"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@drawable/map_topbar_rounded"
@@ -55,6 +57,8 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.90" />
 
+
+
         <ImageView
             android:id="@+id/topBarMarkerImage"
             android:layout_width="0dp"
@@ -78,27 +82,7 @@
             app:layout_constraintBottom_toTopOf="@id/bottomGuideline"
             app:layout_constraintLeft_toRightOf="@id/topBarMarkerImage" />
 
-        <ImageButton
-            android:id="@+id/mapMenuButton"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@drawable/ic_map_menu_button"
-            app:layout_constraintBottom_toTopOf="@id/bottomGuideline"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintRight_toLeftOf="@id/menuImageGuideline"
-            app:layout_constraintTop_toBottomOf="@id/topGuideline" />
-
     </android.support.constraint.ConstraintLayout>
-
-    <ImageButton
-        android:id="@+id/mapRefreshButton"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_margin="20dp"
-        android:background="@drawable/map_refresh_button"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topBarLayout"/>
 
     <ImageButton
         android:id="@+id/mapCancelButton"
@@ -115,10 +99,44 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.76" />
+        app:layout_constraintGuide_percent="0.8" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintBottom_toTopOf="@id/mainMapBottomBarGuideline">
+
+        <Button
+            android:id="@+id/mapRefreadButtonUser"
+            android:layout_width="60dp"
+            android:layout_height="32dp"
+            android:background="@drawable/button_rounded_left"
+            android:text="내 위치"
+            android:layout_toLeftOf="@id/buttonBar"
+            android:fontFamily="@font/nanumsquare_b" />
+        <View
+            android:id="@+id/buttonBar"
+            android:layout_width="1dp"
+            android:layout_height="32dp"
+            android:background="@android:color/black"
+            android:layout_toLeftOf="@id/mapRefreadButtonFollower"></View>
+        <Button
+            android:id="@+id/mapRefreadButtonFollower"
+            android:layout_width="60dp"
+            android:layout_height="32dp"
+
+            android:background="@drawable/button_rounded_right"
+            android:text="지킴이"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/nanumsquare_b" />
+    </RelativeLayout>
+
 
     <RelativeLayout
         android:id="@+id/mapBottombar"
+        android:clickable="true"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@drawable/stepmap_bottombar"
@@ -198,6 +216,7 @@
                 android:layout_marginVertical="8dp" />
 
             <LinearLayout
+                android:id="@+id/mapBottomBarInfo_B"
                 android:paddingHorizontal="4dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

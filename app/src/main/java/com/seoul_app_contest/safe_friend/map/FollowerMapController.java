@@ -4,10 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
+import android.support.constraint.ConstraintLayout;
+import android.support.constraint.Guideline;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewManager;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -21,6 +24,7 @@ class FollowerMapController extends MapController {
 
     FollowerMapController(Context context) {
         super(context);
+
         mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -31,12 +35,17 @@ class FollowerMapController extends MapController {
                              ((Activity)mContext).finish();
                     }
                     break;
-                    case R.id.mapMenuButton:
-                        break;
                 }
             }
         };
-        ((Activity)context).findViewById(R.id.mapBottombar).setVisibility(View.GONE);
+        ((Button)mActivity.findViewById(R.id.mapRefreadButtonFollower)).setText("사용자");
+        ((TextView)mActivity.findViewById(R.id.mapInfoBottomTextView)).setText("사용자 상세정보");
+        mActivity.findViewById(R.id.mapBottomBarInfo_B).setVisibility(View.GONE);
+        Guideline guideLine = mActivity.findViewById(R.id.mainMapBottomBarGuideline);
+        ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) guideLine.getLayoutParams();
+        params.guidePercent = 0.85f; // 45% // range: 0 <-> 1
+        guideLine.setLayoutParams(params);
+
     }
 
     @Override
@@ -100,9 +109,19 @@ class FollowerMapController extends MapController {
     }
 
     @Override
+    Location getLocation() {
+        return mFollowerLocation;
+    }
+
+    @Override
     void setOpponentLocation(MapModel mapModel) {
         mClientLocation.setLatitude(mapModel.getmLat());
         mClientLocation.setLongitude(mapModel.getmLng());
+    }
+
+    @Override
+    Location getOpponentLocation() {
+        return mClientLocation;
     }
 
     @Override

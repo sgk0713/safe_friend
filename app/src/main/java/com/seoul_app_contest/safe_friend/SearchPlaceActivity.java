@@ -1,5 +1,6 @@
 package com.seoul_app_contest.safe_friend;
 
+import android.app.Activity;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,9 +19,8 @@ import java.util.ArrayList;
 
 
 public class SearchPlaceActivity extends AppCompatActivity implements Serializable{
-    private final String SERVICE_KEY = "716271596273676b39356d6e6c7851";
     private final String TAG = "DEBUGGING_TEST";
-
+    public static Activity _SearchPlaceActivity;
     RecentListFragment recentListFragment;
     SearchStationFragment searchStationFragment;
 
@@ -37,6 +37,7 @@ public class SearchPlaceActivity extends AppCompatActivity implements Serializab
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_place);
+        _SearchPlaceActivity = SearchPlaceActivity.this;
 
         isSearching = false;
 
@@ -86,7 +87,7 @@ public class SearchPlaceActivity extends AppCompatActivity implements Serializab
     void switchFragmentTo(Fragment frag){
         if(frag == searchStationFragment && !isSearching){//역검색화면으로 전환
             isSearching = true;
-            searchImageView.setImageResource(R.drawable.ic_location_un);
+            searchImageView.setImageResource(R.drawable.ic_pin_point);
             searchImageView.setFocusableInTouchMode(false);
             searchEditText.setHint(R.string.station_example);
             searchEditText.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
@@ -94,7 +95,7 @@ public class SearchPlaceActivity extends AppCompatActivity implements Serializab
             getSupportFragmentManager().beginTransaction().replace(R.id.activity_search_place_fl, frag).commit();
         }else if(frag == recentListFragment && isSearching) {//최근 검색목록으로 전환
             isSearching = false;
-            searchImageView.setImageResource(android.R.drawable.ic_menu_search);
+            searchImageView.setImageResource(R.drawable.ic_search);
             InputMethodManager imm = (InputMethodManager) getSystemService(SearchPlaceActivity.this.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(searchEditText.getWindowToken(), 0);
             searchEditText.setFocusableInTouchMode(false);

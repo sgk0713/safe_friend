@@ -20,6 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -58,12 +59,12 @@ import java.util.TimerTask;
  **/
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    private String TYPE = "follower";
     private final String USERNAME = "사용자";
     private final String UID = "qwertyui123456789";
     private final String FID = "qwertyui987654321";
 
     private boolean mMoveMapByUser = false;
+    private boolean mMoveMapByFollower = false;
 
     private static FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
     private static DatabaseReference mDatabaseReference = mFirebaseDatabase.getReference();
@@ -114,11 +115,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         @Override
         public void onLocationResult(LocationResult locationResult) {
             super.onLocationResult(locationResult);
-            Log.d("mLocationCallback", "@@@@@@@@@@@@@");
 
             Location mCurrentLocation = locationResult.getLastLocation();
             mMapController.setLocation(mCurrentLocation);
             mMapController.needToActivate();
+
+            if(mMoveMapByUser)
+                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mMapController.getLocation().getLatitude(),mMapController.getLocation().getLongitude()), 17));
             mDatabaseReference.child(UID + "/Location").setValue(new MapModel(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()));
         }
     };
@@ -133,34 +136,27 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         Log.d("onCreate", "@@@@@@@@@@@@@");
 
         setContentView(R.layout.activity_map);
-        //TYPE = getIntent().getStringExtra("TYPE");
+        //final String TYPE = getIntent().getStringExtra("TYPE");
+        //테스트코드
+        final String TYPE = "user";
         TextView tobBarTextView = findViewById(R.id.topBarTextView);
         tobBarTextView.setText((TYPE == "user" ? "지킴이":USERNAME)+"님의 현재 위치입니다.");
 
-        //상단 Layout을  두 번 눌렀을 때 지도가 클릭되는 것을 방지하기 위한 리스너
-        findViewById (R.id.topBarLayout).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        //상단 Layout을  두 번 눌렀을 때 지도가 클릭되는 것을 방지하기 위한 리스너
-        findViewById (R.id.mapBottombar).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        findViewById(R.id.mapRefreshButton).setOnClickListener(new View.OnClickListener() {
+        ((Button)findViewById(R.id.mapRefreadButtonUser)).setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(mMoveMapByUser) {
-                    mDatabaseReference.child(FID).addChildEventListener(mChildEventListener);
-                    mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mMarker.getPosition(), 17));
+                    mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mMapController.getLocation().getLatitude(),mMapController.getLocation().getLongitude()), 17));
+                    mMoveMapByUser = true;
+                    mMoveMapByFollower = false;
+            }
+        });
+
+        ((Button)findViewById(R.id.mapRefreadButtonFollower)).setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                    mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mMapController.getOpponentLocation().getLatitude(),mMapController.getOpponentLocation().getLongitude()), 17));
                     mMoveMapByUser = false;
-                }
+                    mMoveMapByFollower = true;
             }
         });
 
@@ -185,18 +181,19 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         };
 
-        Timer timer = new Timer();
+        timer= new Timer();
         timer.schedule(tt, 0, 3000);
     }
-
+    Timer timer;
     private void drawMarker(MapModel mMapModel) {
         if (mMarker != null) mMarker.setPosition(new LatLng(mMapModel.getmLat(), mMapModel.getmLng()));
         else {
             mMarker = mGoogleMap.addMarker(mMapController.createMaker(mMapModel));
         }
         mMapController.setOpponentLocation(mMapModel);
-        if(!mMoveMapByUser)
-            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mMapModel.getmLat(), mMapModel.getmLng()), 17));
+
+        if(mMoveMapByFollower)
+            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mMapController.getOpponentLocation().getLatitude(),mMapController.getOpponentLocation().getLongitude()), 17));
     }
 
     @SuppressWarnings("MissingPermission")
@@ -211,6 +208,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.d("onDestroy", "@@@@@@@@@@@@@");
         if (mFusedLocationClient != null) {
             mFusedLocationClient.removeLocationUpdates(mLocationCallback).addOnCompleteListener(this, new OnCompleteListener<Void>() {
                 @Override
@@ -218,14 +216,16 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     mFusedLocationClient = null;
                 }
             });
+            timer.cancel();
             mDatabaseReference.child(FID).removeEventListener(mChildEventListener);
+
+
         }
     }
 
     @SuppressWarnings("MissingPermission")
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        Log.d("onMapReady", "@@@@@@@@@@@@@");
         mGoogleMap = googleMap;
         if (mLocationPermssionGranted) {
             mGoogleMap.setMyLocationEnabled(true);
@@ -236,9 +236,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 public void onCameraMoveStarted(int reason) {
                     if (reason == GoogleMap.OnCameraMoveStartedListener.REASON_GESTURE || reason == GoogleMap.OnCameraMoveStartedListener
                             .REASON_API_ANIMATION) {
-                        if(!mMoveMapByUser) {
-                            mMoveMapByUser = true;
-                        }
+                            mMoveMapByUser = false;
+                            mMoveMapByFollower = false;
+
                     }
                 }
             });
@@ -309,8 +309,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         builder.create();
     }
 
-    double ln = 127.0886328;
-    double la = 37.5624628;
+    double ln = 127.00792;
+    double la = 37.491898;
 
     private void testFollower() {
         MapModel mMapModel = new MapModel(la, ln);
