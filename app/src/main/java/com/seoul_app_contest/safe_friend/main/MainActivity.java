@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void redirectCall() {
-        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:01024347280"));
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:120"));
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions

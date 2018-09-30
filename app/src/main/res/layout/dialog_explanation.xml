@@ -6,8 +6,8 @@
     android:background="@color/main_background"
     android:gravity="center"
     android:orientation="vertical"
-    android:paddingBottom="64dp"
-    android:paddingTop="64dp">
+    android:paddingBottom="55dp"
+    android:paddingTop="55dp">
 
     <View
         android:layout_width="32dp"

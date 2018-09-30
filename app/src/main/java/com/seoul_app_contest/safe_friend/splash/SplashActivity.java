@@ -72,8 +72,9 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
     }
 
     @Override
-    public void redirectMapsActivity() {
+    public void redirectMapsActivity(String type) {
         Intent intent = new Intent(this, MapsActivity.class);
+        intent.putExtra("TYPE", type);
         startActivity(intent);
         finish();
     }
