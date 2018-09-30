@@ -16,19 +16,12 @@
             android:id="@+id/dialogTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/text_for_process"
             android:text="안심귀가 서비스 취소하기"
             android:textSize="20dp"
             android:fontFamily="@font/nanumsquare_eb"
             android:layout_centerInParent="true"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_below="@id/dialogTitle"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="8dp"
-            android:layout_marginHorizontal="48dp"
-            android:background="#000000"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -46,14 +39,12 @@
             android:layout_marginBottom="8dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <View
+                android:layout_width="3dp"
+                android:layout_height="match_parent"
                 android:layout_marginRight="8dp"
-                android:background="#39373b"
-                android:fontFamily="@font/nanumsquare_eb"
-                android:text=" "
-                android:textSize="12dp" />
+                android:background="@color/mainColor" />
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -93,6 +84,7 @@
                 android:layout_height="@dimen/buttonHeight"
                 android:layout_centerInParent="true"
                 android:background="@drawable/dialog_cancel_button"
+                android:textColor="@color/text_in_button"
                 android:fontFamily="@font/nanumsquare_b"
                 android:text="제출하기" />
         </RelativeLayout>

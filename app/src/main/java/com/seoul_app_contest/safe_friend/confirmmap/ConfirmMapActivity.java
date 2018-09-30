@@ -48,7 +48,6 @@ public class ConfirmMapActivity extends AppCompatActivity implements OnMapReadyC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
         Log.d("onCreate", "@@@@@@@@@@@@@");
 
         setContentView(R.layout.activity_confirmmap);
@@ -58,10 +57,11 @@ public class ConfirmMapActivity extends AppCompatActivity implements OnMapReadyC
         mapFragment.getMapAsync(this);
 
         getIntentData();
-        findViewById(R.id.confirmMapSearch).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.confirmMapSearchButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 markerOptionList.clear();
+                findViewById(R.id.confirmMapSearchButton).setVisibility(View.GONE);
                 ConfirmMarkerOption curruentMarker = new ConfirmMarkerOption(currentMarker.getPosition(),currentMarker.getTitle(),currentMarker.getSnippet(), line,true);
                 markerOptionList.add(curruentMarker);
                 mGoogleMap.clear();
@@ -178,7 +178,12 @@ public class ConfirmMapActivity extends AppCompatActivity implements OnMapReadyC
 
         //mGoogleMap.setMaxZoomPreference(17);
         mGoogleMap.setMinZoomPreference(17);
-
+        mGoogleMap.setOnCameraMoveListener(new GoogleMap.OnCameraMoveListener() {
+            @Override
+            public void onCameraMove() {
+                findViewById(R.id.confirmMapSearchButton).setVisibility(View.VISIBLE);
+            }
+        });
         mGoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
