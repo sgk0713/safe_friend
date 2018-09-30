@@ -1,5 +1,6 @@
 package com.seoul_app_contest.safe_friend;
 
+import android.support.annotation.LongDef;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -131,11 +132,16 @@ public class UserModel {
 
     public void getPid(String coll, final GetPidCallbackListener getPidCallbackListener ){
         firestore = FirebaseFirestore.getInstance().collection(coll);
+        Log.d("BEOM", firebaseAuth.getCurrentUser().getUid());
+        Log.d("BEOM", coll);
         firestore.document(firebaseAuth.getCurrentUser().getUid()).collection("WITH").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                getPidCallbackListener.onSuccess(task.getResult().getDocuments().get(0).getId());
-//                pid = task.getResult().getDocuments().get(0).getId();
+                if (task.getResult().isEmpty()){
+
+                }else{
+                    getPidCallbackListener.onSuccess(task.getResult().getDocuments().get(0).getId());
+                }
             }
         });
     }

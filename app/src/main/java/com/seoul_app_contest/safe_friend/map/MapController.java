@@ -61,8 +61,8 @@ abstract class MapController {
     abstract Location getOpponentLocation();
     abstract void needToActivate();
 
-    public void changeViewInfo(int id,String userName,String location,String phone){
-        ((TextView)mActivity.findViewById(id)).setText(userName);
+    public void changeViewInfo(String userName,String location,String phone){
+        ((TextView)mActivity.findViewById(R.id.mapBottomBarInfo_A_Name)).setText(userName);
         ((TextView)mActivity.findViewById(R.id.mapBottomBarInfo_A_Role)).setText(phone);
         ((TextView)mActivity.findViewById(R.id.mapBottomBarInfo_A_Phone)).setText(location);
     }
