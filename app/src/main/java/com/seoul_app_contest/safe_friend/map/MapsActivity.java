@@ -148,7 +148,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         final String TYPE = getIntent().getStringExtra("TYPE");
         mUserModel = new UserModel();
         if(TYPE.equals("user")) {
-            mUserModel.getCurrentUserData("USERS", new UserModel.GetCurrentUserCallbackListener() {
+            mUserModel.getCurrentUserData("PROTECTORS", new UserModel.GetCurrentUserCallbackListener() {
                 @Override
                 public void getName(String name) {
                     USERNAME = name;
@@ -210,7 +210,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
             });
         }else{
-            mUserModel.getCurrentUserData("PROTECTORS", new UserModel.GetCurrentUserCallbackListener() {
+            mUserModel.getCurrentUserData("USERS", new UserModel.GetCurrentUserCallbackListener() {
                 @Override
                 public void getName(String name) {
                     USERNAME = name;
