@@ -60,6 +60,7 @@ public class WatingActivity extends AppCompatActivity {
         uid = auth.getCurrentUser().getUid();
 
 
+        //요청하면 waiting_list와 log_waiting_list에 추가
         db.collection("WAITING_LIST")
                 .document(uid)
                 .set(requestModel = new RequestModel(time, stop_nm, street, uid))
@@ -67,23 +68,6 @@ public class WatingActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "파이어스토어 wating_list 추가 성공");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d(TAG, "파이어스토어 wating_list 추가 실패");
-                    }
-                });
-
-        db.collection("WAITING_LIST").document(uid).addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
-                Boolean temp=true;
-                if (documentSnapshot != null && documentSnapshot.exists()) {
-                    temp = documentSnapshot.getBoolean("isWaiting");
-                    Log.d(TAG, "Current data: " + temp);
-                    if(!temp){
                         db.collection("LOG_WAITING_LIST")
                                 .document(requestModel.getRequestTime())
                                 .set(requestModel)
@@ -99,6 +83,24 @@ public class WatingActivity extends AppCompatActivity {
                                         Log.d(TAG, "파이어스토어 LOG_WAITING_LIST 추가 실패");
                                     }
                                 });
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG, "파이어스토어 wating_list 추가 실패");
+                    }
+                });
+
+        //자기자신의 요청이 수락됐는지 확인하고, 수락됐으면 삭제
+        db.collection("WAITING_LIST").document(uid).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                Boolean temp=true;
+                if (documentSnapshot != null && documentSnapshot.exists()) {
+                    temp = documentSnapshot.getBoolean("isWaiting");
+                    Log.d(TAG, "Current data: " + temp);
+                    if(!temp){
                         db.collection("WAITING_LIST")
                                 .document(uid)
                                 .delete()

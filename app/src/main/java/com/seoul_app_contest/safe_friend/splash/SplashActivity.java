@@ -25,12 +25,10 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
         setContentView(R.layout.activity_splash);
         SplashContract.Presenter presenter = new SplashPresenter(this);
         presenter.checkRemote();
-        TextView textView = findViewById(R.id.splash_tv);
         final SpannableStringBuilder sp = new SpannableStringBuilder("세이프랜드");
         sp.setSpan(new ForegroundColorSpan(getColor(R.color.title_green)), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         sp.setSpan(new ForegroundColorSpan(getColor(R.color.title_blue)), 1, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         sp.setSpan(new ForegroundColorSpan(getColor(R.color.mainColor)), 2, 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        textView.append(sp);
 
 //        presenter.checkAutoLogin();
     }
