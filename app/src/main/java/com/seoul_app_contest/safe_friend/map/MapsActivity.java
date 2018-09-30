@@ -67,7 +67,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private String USERNAME,PHONENO,LOCATION;
     private String TYPE;
-    private final String FID = "qwertyui987654321";
     private UserDto mUserDto = null;
     private UserModel mUserModel = null;
     private boolean mMoveMapByUser = false;
@@ -133,8 +132,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     };
 
-    private String uid = null;
-
     @SuppressWarnings("MissingPermission")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -144,6 +141,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         setContentView(R.layout.activity_map);
         mUserModel = new UserModel();
+
         mUserModel.isUser(mUserModel.getCurrentUserEmail(), new UserModel.IsUserCallbackListener() {
             @Override
             public void exist() {
@@ -169,6 +167,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
 
         );
+        mUserModel.getPid(mUserModel.getCurrentUserEmail());
         mUserModel.getCurrentUserData(mUserModel.getCurrentUserEmail(), new UserModel.GetCurrentUserCallbackListener() {
             @Override
             public void getName(String name) {
@@ -217,6 +216,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             @Override
             public void getBestNum(int BsetNum) {
+
+            }
+
+            @Override
+            public void getLocation(String location) {
 
             }
 
@@ -281,7 +285,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onResume() {
         super.onResume();
         Log.d("onResume", "@@@@@@@@@@@@@");
-        mDatabaseReference.child(FID).addChildEventListener(mChildEventListener);
+        mDatabaseReference.child(mUserModel.getPid()).addChildEventListener(mChildEventListener);
         getCurrentLocation();
     }
 
@@ -297,7 +301,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
             });
 
-            mDatabaseReference.child(FID).removeEventListener(mChildEventListener);
+            mDatabaseReference.child(mUserModel.getPid()).removeEventListener(mChildEventListener);
 
 
         }

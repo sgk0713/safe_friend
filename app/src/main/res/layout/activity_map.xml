@@ -36,6 +36,7 @@
             android:background="@drawable/ic_map_marker" />
 
         <TextView
+            android:theme="@style/toolbarText"
             android:id="@+id/topBarTextView"
             android:layout_marginEnd="16dp"
             android:layout_width="wrap_content"
@@ -50,7 +51,8 @@
         android:id="@+id/mapCancelButton"
         android:layout_width="32dp"
         android:layout_height="32dp"
-        android:layout_margin="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="16dp"
         android:background="@drawable/map_cancel_button"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -168,9 +170,9 @@
 
                 <ImageButton
                     android:id="@+id/mapBottomBarInfo_A_CallButton"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:layout_weight="1"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+
                     android:background="@drawable/map_call_button"/>
             </LinearLayout>
 
@@ -220,9 +222,8 @@
 
                 <ImageButton
                     android:id="@+id/mapBottomBarInfo_B_CallButton"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:layout_weight="1"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:background="@drawable/map_call_button"/>
             </LinearLayout>
         </LinearLayout>

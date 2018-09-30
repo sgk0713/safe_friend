@@ -2,17 +2,15 @@ package com.seoul_app_contest.safe_friend.confirmmap;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -23,7 +21,6 @@ import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.seoul_app_contest.safe_friend.R;
 import com.seoul_app_contest.safe_friend.SetTimeActivity;
 import com.seoul_app_contest.safe_friend.adapter.DataAdapter;
@@ -53,6 +50,7 @@ public class ConfirmMapActivity extends AppCompatActivity implements OnMapReadyC
         Log.d("onCreate", "@@@@@@@@@@@@@");
 
         setContentView(R.layout.activity_confirmmap);
+
 //        findViewById(R.id.map_activity_layout).setOnTouchListener(new View.OnTouchListener() {
 //            @Override
 //            public boolean onTouch(View v, MotionEvent event) {
@@ -69,6 +67,7 @@ public class ConfirmMapActivity extends AppCompatActivity implements OnMapReadyC
         mapFragment.getMapAsync(this);
 
         getIntentData();
+
         findViewById(R.id.confirmMapSearchButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -258,7 +257,5 @@ public class ConfirmMapActivity extends AppCompatActivity implements OnMapReadyC
         }
         return result;
     }//getAddress() end
-
-
 
 }

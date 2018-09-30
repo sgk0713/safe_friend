@@ -47,6 +47,7 @@ public class UserModel {
     String phoneNum;
     String authNum;
     String location;
+    String pid;
     int state;
     String countryCode;
     boolean checkUseAgree = false;
@@ -65,7 +66,6 @@ public class UserModel {
 
     public UserModel() {
         firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.getCurrentUser().getUid();
         firestore = FirebaseFirestore.getInstance().collection("USERS");
         firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
     }
@@ -116,6 +116,17 @@ public class UserModel {
     public String getCurrentUserEmail(){
         return firebaseAuth.getCurrentUser().getEmail();
     }
+
+    public void getPid(String coll){
+        firestore = FirebaseFirestore.getInstance().collection(coll);
+        firestore.document(firebaseAuth.getCurrentUser().getUid()).collection("WITH").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                pid = task.getResult().getDocuments().get(0).getId();
+
+            }
+        });
+    }
     public void getCurrentUserData(String coll, final GetCurrentUserCallbackListener getCurrentUserCallbackListener){
         firestore = FirebaseFirestore.getInstance().collection(coll);
         firestore.document(firebaseAuth.getCurrentUser().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -151,6 +162,10 @@ public class UserModel {
         void getBestNum(int BsetNum);
         void getLocation(String location);
         void getDto(UserDto userDto);
+    }
+
+    public String getPid() {
+        return pid;
     }
 
     public boolean existCurrentUser() {

@@ -85,7 +85,8 @@
             android:textColor="@color/white"
             android:text="확인"
             android:fontFamily="@font/nanumsquare_b"
-            android:background="@drawable/dialog_cancel_button"/>
+            android:background="@drawable/dialog_cancel_button"
+            style="?android:attr/borderlessButtonStyle"/>
     </RelativeLayout>
 
 
