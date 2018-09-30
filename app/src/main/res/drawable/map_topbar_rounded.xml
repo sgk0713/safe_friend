@@ -11,10 +11,9 @@
 
                 <shape>
                     <gradient
-                        android:startColr="@android:color/transparent"
-                        android:encColer="#ffe6e6e6"
+                        android:startColor="@android:color/transparent"
+                        android:endColor="#ffe6e6e6"
                         android:angle="270">
-
                     </gradient>
                     <corners android:bottomLeftRadius="20dip"
                         android:bottomRightRadius="20dip"/>
@@ -27,8 +26,8 @@
             <item android:bottom="3dp">
                 <shape>
                     <gradient
-                        android:startColr="@android:color/transparent"
-                        android:encColer="#ffe6e6e6"
+                        android:startColor="@android:color/transparent"
+                        android:endColor="#ffe6e6e6"
                         android:angle="270">
 
                     </gradient>
