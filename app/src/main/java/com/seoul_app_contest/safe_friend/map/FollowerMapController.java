@@ -31,6 +31,7 @@ class FollowerMapController extends MapController {
                 switch (view.getId()) {
                     case R.id.mapCancelButton: {
                             Intent intent = new Intent(mContext,EndServiceActivity.class);
+                            intent.putExtra("TYPE","follower");
                             mContext.startActivity(intent);
                              ((Activity)mContext).finish();
                     }
