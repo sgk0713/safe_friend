@@ -38,8 +38,10 @@ class FollowerMapController extends MapController {
                 }
             }
         };
+
         ((Button)mActivity.findViewById(R.id.mapRefreadButtonFollower)).setText("사용자");
         ((TextView)mActivity.findViewById(R.id.mapInfoBottomTextView)).setText("사용자 상세정보");
+        mActivity.findViewById(R.id.bottomBarBar).setVisibility(View.GONE);
         mActivity.findViewById(R.id.mapBottomBarInfo_B).setVisibility(View.GONE);
         Guideline guideLine = mActivity.findViewById(R.id.mainMapBottomBarGuideline);
         ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) guideLine.getLayoutParams();

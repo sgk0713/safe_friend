@@ -10,7 +10,11 @@
             <item android:top="3dp">
 
                 <shape>
-                    <solid android:color="#66000000" />
+                    <gradient
+                        android:startColor="@android:color/transparent"
+                        android:endColor="#ffe6e6e6"
+                        android:angle="270">
+                    </gradient>
                     <corners android:bottomLeftRadius="20dip"
                         android:bottomRightRadius="20dip"/>
                 </shape>
@@ -21,7 +25,13 @@
 
             <item android:bottom="3dp">
                 <shape>
-                    <solid android:color="#FFFFFF" />
+                    <gradient
+                        android:startColor="@android:color/transparent"
+                        android:endColor="#ffe6e6e6"
+                        android:angle="270">
+
+                    </gradient>
+
                     <corners android:bottomLeftRadius="20dip"
                         android:bottomRightRadius="20dip"/>
                 </shape>

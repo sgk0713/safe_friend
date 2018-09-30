@@ -78,8 +78,7 @@
         android:background="@drawable/stepmap_bottombar"
         android:paddingHorizontal="16dp"
         android:paddingTop="16dp"
-        app:behavior_peekHeight="72dp"
-        app:behavior_hideable="false"
+
         app:layout_behavior="@string/bottom_sheet_behavior">
 
         <View
@@ -119,7 +118,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="4dp"
                     android:fontFamily="@font/nanumsquare_b"
+                    android:textColor="@color/text_for_signup"
+                    android:textSize="10sp"
                     android:layout_marginTop="4dp"
                     android:text="친절해요"/>
             </LinearLayout>
@@ -139,8 +141,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumsquare_b"
+                    android:textColor="@color/text_for_signup"
+                    android:textSize="10dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginLeft="8dp"
+                    android:layout_marginHorizontal="4dp"
                     android:text="좋아요"/>
             </LinearLayout>
 
@@ -158,7 +163,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanumsquare_b"
+                    android:textSize="10sp"
+                    android:textColor="@color/text_for_signup"
                     android:layout_marginTop="4dp"
+                    android:layout_marginHorizontal="4dp"
                     android:text="최고에요"/>
             </LinearLayout>
 

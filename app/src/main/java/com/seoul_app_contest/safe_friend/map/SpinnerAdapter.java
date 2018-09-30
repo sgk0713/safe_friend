@@ -27,7 +27,6 @@ public class SpinnerAdapter extends BaseAdapter {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-
     @Override
     public int getCount() {
         if (data != null) return data.length;
