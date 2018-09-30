@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void showExplanationDialog() {
-        final SpannableStringBuilder sp = new SpannableStringBuilder("안심귀가서비스란,");
+        final SpannableStringBuilder sp = new SpannableStringBuilder("안심귀가서비스");
         sp.setSpan(new ForegroundColorSpan(getColor(R.color.mainColor)), 0, 7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         sp.setSpan(new RelativeSizeSpan((float) 1.2), 0,7, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
