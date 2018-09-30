@@ -41,7 +41,10 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+import static com.seoul_app_contest.safe_friend.splash.SplashPresenter.model;
+
 public class ProtectorMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ProtectorMainContract.View {
+
     @BindView(R.id.protector_location_tv)
     TextView protectorLocationTv;
     @BindView(R.id.protector_num_tv)
@@ -83,24 +86,18 @@ public class ProtectorMainActivity extends AppCompatActivity implements Navigati
 //        arrayList.add(new RequestModel("11:30", "gggg", "dd"));
 //        arrayList.add(new RequestModel("11:30", "gggg", "dd"));
 
-        uid = auth.getCurrentUser().getUid();
-        Log.d(TAG, "uid:" + uid);
-        db.collection("PROTECTORS").document(uid).get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            chargeStreet = task.getResult().getString("address");
-                            Log.d(TAG, "chargeStreet:" + chargeStreet);
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
-                        }
-                    }
-                });
+        uid = model.getUID();
+        Log.d("Wating_DEBUG", "uid==="+uid);
 
-        adapter = new ProtectorRecyclerViewAdapter(this, arrayList);
-        protectorRv.setLayoutManager(new LinearLayoutManager(this));
-        protectorRv.setAdapter(adapter);
+        db.collection("PROTECTORS").document(uid).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
+                chargeStreet = documentSnapshot.getString("address");
+                Log.d("Wating_DEBUG", "chargeStreet"+chargeStreet);
+            }
+        });
+
+        Log.d(TAG, "uid:" + uid + " chargeStreet" + chargeStreet);
 
         //요청이 올때 관할구역이면 생성한다
         db.collection("WAITING_LIST").addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -110,19 +107,24 @@ public class ProtectorMainActivity extends AppCompatActivity implements Navigati
                 if (queryDocumentSnapshots != null && !queryDocumentSnapshots.isEmpty()) {
                     for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
                         String tmp = snapshot.getString("street");
-                        Log.d(TAG, "tmp:" + tmp);
+                        Log.d(TAG, "tmp:" + tmp + " chargeStreet:" + chargeStreet);
                         if (tmp != null && tmp.equals(chargeStreet)) {
                             arrayList.add(snapshot.toObject(RequestModel.class));
+                            Log.d(TAG, "INarraylist size:" + arrayList.size());
                         }
+                        Log.d(TAG, "arraylist size:" + arrayList.size());
                     }
                     adapter.notifyDataSetChanged();
                     setProtectorNum(String.valueOf(adapter.getItemCount()));
-
                 } else {
                     Log.d(TAG, "Current data: null");
                 }
             }
         });
+        adapter = new ProtectorRecyclerViewAdapter(this, arrayList);
+        protectorRv.setLayoutManager(new LinearLayoutManager(this));
+        protectorRv.setAdapter(adapter);
+
 
         setSupportActionBar(toolbar);
         navProfileIv = navigationView.getHeaderView(0).findViewById(R.id.nav_profile_iv);

@@ -65,7 +65,6 @@ public class UserModel {
 
     public UserModel() {
         firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.getCurrentUser().getUid();
         firestore = FirebaseFirestore.getInstance().collection("USERS");
         firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
     }
