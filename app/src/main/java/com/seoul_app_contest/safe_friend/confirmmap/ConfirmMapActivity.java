@@ -7,6 +7,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -52,15 +53,16 @@ public class ConfirmMapActivity extends AppCompatActivity implements OnMapReadyC
         Log.d("onCreate", "@@@@@@@@@@@@@");
 
         setContentView(R.layout.activity_confirmmap);
-        findViewById(R.id.map_activity_layout).setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                ((Button)findViewById(R.id.confirmMapSearchButton)).setVisibility(View.VISIBLE);
-                return false;
-            }
-        });
+//        findViewById(R.id.map_activity_layout).setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                Log.d("22@","@@");
+//                ((Button)findViewById(R.id.confirmMapSearchButton)).setVisibility(View.VISIBLE);
+//                return false;
+//            }
+//        });
 
-        ((Button)findViewById(R.id.confirmMapSearchButton)).setVisibility(View.GONE);
+        //((Button)findViewById(R.id.confirmMapSearchButton)).setVisibility(View.GONE);
 
         markerOptionList = new ArrayList<ConfirmMarkerOption>();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.confirmMap);

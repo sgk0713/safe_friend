@@ -7,27 +7,15 @@
     android:layout_height="match_parent"
     android:background="#FFC042">
 
-    <android.support.constraint.Guideline
-        android:id="@+id/confirmTitleGuideline"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.25" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/confirmButtonGuideline"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.75" />
-
     <TextView
+        android:id="@+id/title_confirm"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/nanumsquare_b"
         android:textSize="20sp"
         android:text="안심귀가서비스"
-        app:layout_constraintBottom_toTopOf="@id/confirmTitleGuideline"
+        android:layout_marginTop="@dimen/title_margin_top"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -38,7 +26,7 @@
         android:weightSum="2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/confirmTitleGuideline">
+        app:layout_constraintTop_toBottomOf="@id/title_confirm">
 
         <TextView
             android:layout_width="wrap_content"
@@ -61,6 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -126,6 +115,7 @@
         android:background="@drawable/button_rounded"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/confirmButtonGuideline" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/button_margin_bottom" />
 
 </android.support.constraint.ConstraintLayout>

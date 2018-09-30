@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/text_for_process"
             android:text="안심귀가 서비스 취소하기"
-            android:textSize="20dp"
+            android:textSize="17dp"
             android:fontFamily="@font/nanumsquare_eb"
             android:layout_centerInParent="true"/>
 

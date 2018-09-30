@@ -59,14 +59,10 @@ abstract class MapController {
     abstract Location getOpponentLocation();
     abstract void needToActivate();
 
-    public void changeViewInfo(){
-        ((TextView)mActivity.findViewById(R.id.mapBottomBarInfo_A_Name)).setText("관리자A/사용자");
-        ((TextView)mActivity.findViewById(R.id.mapBottomBarInfo_A_Role)).setText("관리자A/사용자 지역");
-        ((TextView)mActivity.findViewById(R.id.mapBottomBarInfo_A_Phone)).setText("관리자A/사용자 핸드폰 번호");
-
-        ((TextView)mActivity.findViewById(R.id.mapBottomBarInfo_A_Name)).setText("관리자B");
-        ((TextView)mActivity.findViewById(R.id.mapBottomBarInfo_A_Role)).setText("관리자B");
-        ((TextView)mActivity.findViewById(R.id.mapBottomBarInfo_A_Phone)).setText("관리자B");
+    public void changeViewInfo(int id,String userName,String location,String phone){
+        ((TextView)mActivity.findViewById(id)).setText(userName);
+        ((TextView)mActivity.findViewById(R.id.mapBottomBarInfo_A_Role)).setText(phone);
+        ((TextView)mActivity.findViewById(R.id.mapBottomBarInfo_A_Phone)).setText(location);
     }
 //
 //    //거리 계산을 위함.

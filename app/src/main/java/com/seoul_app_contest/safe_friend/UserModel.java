@@ -65,8 +65,13 @@ public class UserModel {
 
     public UserModel() {
         firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth.getCurrentUser().getUid();
         firestore = FirebaseFirestore.getInstance().collection("USERS");
         firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+    }
+
+    public String getUID(){
+        return firebaseAuth.getCurrentUser().getUid();
     }
 
     public void initRemote(final RemoteCallbackListener remoteCallbackListener) {
