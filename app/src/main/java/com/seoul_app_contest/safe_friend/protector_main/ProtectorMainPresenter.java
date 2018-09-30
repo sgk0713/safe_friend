@@ -42,6 +42,11 @@ public class ProtectorMainPresenter implements ProtectorMainContract.Presenter {
             }
 
             @Override
+            public void getProfile(String profile) {
+
+            }
+
+            @Override
             public void getUseNum(int useNum) {
 
             }

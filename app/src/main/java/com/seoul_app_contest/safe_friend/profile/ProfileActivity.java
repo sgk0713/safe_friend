@@ -1,7 +1,14 @@
 package com.seoul_app_contest.safe_friend.profile;
 
+import android.Manifest;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,19 +16,28 @@ import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.gun0912.tedpermission.PermissionListener;
+import com.gun0912.tedpermission.TedPermission;
 import com.seoul_app_contest.safe_friend.R;
 import com.seoul_app_contest.safe_friend.dto.PostDto;
 import com.seoul_app_contest.safe_friend.login.LoginActivity;
 import com.seoul_app_contest.safe_friend.postcode.PostcodeActivity;
+
+import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,9 +46,12 @@ import butterknife.OnClick;
 public class ProfileActivity extends AppCompatActivity implements ProfileContract.View {
 
     private ProfileContract.Presenter presenter;
+    private byte[] imgData;
+
 
     @BindView(R.id.profile_tb)
     Toolbar toolbar;
+    @BindView(R.id.profile_iv)ImageView profileIv;
     @BindView(R.id.profile_name_tv)
     TextView nameTv;
     @BindView(R.id.profile_email_tv)
@@ -55,6 +74,8 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     TextView stickerNumTv;
     @BindView(R.id.profile_sticker_ll)
     LinearLayout profileStickerLl;
+    @BindView(R.id.profile_set_cl)
+    ConstraintLayout profileSetCl;
 
     @BindView(R.id.profile_withdrawal_btn)
     Button withdrawalBtn;
@@ -68,6 +89,33 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
 
     @BindView(R.id.profile_auth_num_edt)
     EditText authNumEdt;
+
+    @OnClick(R.id.profile_set_cl)
+    void setProfile() {
+        PermissionListener permissionListener = new PermissionListener() {
+            @Override
+            public void onPermissionGranted() {
+
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                intent.setType("image/*");
+                startActivityForResult(intent, 1000);
+            }
+
+            @Override
+            public void onPermissionDenied(ArrayList<String> deniedPermissions) {
+
+            }
+        };
+        TedPermission.with(this)
+                .setPermissionListener(permissionListener)
+                .setRationaleMessage("접근 권한이 필요해요")
+                .setDeniedMessage("왜 거부하셨어요...\n하지만 [설정] > [권한] 에서 권한을 허용할 수 있어요.")
+                .setPermissions(Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE)
+                .check();
+
+
+    }
 
     @OnClick(R.id.profile_prev_btn)
     void prev() {
@@ -98,7 +146,9 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
 
     }
 
-    @BindView(R.id.profile_modify_btn)Button modifyBtn;
+    @BindView(R.id.profile_modify_btn)
+    Button modifyBtn;
+
     @OnClick(R.id.profile_modify_btn)
     void modifyBtn() {
         if (isModfiyMode) {
@@ -126,6 +176,12 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
         ButterKnife.bind(this);
         presenter.setUserData();
         setSupportActionBar(toolbar);
+
+    }
+
+    @Override
+    public void setProfile(String url) {
+        Glide.with(this).load(url).apply(new RequestOptions().circleCrop()).into(profileIv);
     }
 
     @Override
@@ -171,9 +227,9 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     @Override
     public void setStickerNum(String stickerNum) {
         final SpannableStringBuilder sp = new SpannableStringBuilder(stickerNum);
-        sp.setSpan(new ForegroundColorSpan(getColor(R.color.mainColor)), stickerNum.indexOf("좋"),stickerNum.indexOf("좋")+3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        sp.setSpan(new ForegroundColorSpan(getColor(R.color.mainColor)), stickerNum.indexOf("친"), stickerNum.indexOf("친")+4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        sp.setSpan(new ForegroundColorSpan(getColor(R.color.mainColor)), stickerNum.indexOf("최"), stickerNum.indexOf("최")+5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sp.setSpan(new ForegroundColorSpan(getColor(R.color.mainColor)), stickerNum.indexOf("좋"), stickerNum.indexOf("좋") + 3, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sp.setSpan(new ForegroundColorSpan(getColor(R.color.mainColor)), stickerNum.indexOf("친"), stickerNum.indexOf("친") + 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        sp.setSpan(new ForegroundColorSpan(getColor(R.color.mainColor)), stickerNum.indexOf("최"), stickerNum.indexOf("최") + 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         stickerNumTv.setText(sp);
     }
 
@@ -261,11 +317,33 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
         finish();
     }
 
+    public void sendPicture(Uri imgUri) {
+        String imagePath = getRealPathFromURI(imgUri);
+        Bitmap bitmap = BitmapFactory.decodeFile(imagePath);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] data = baos.toByteArray();
+        imgData = data;
+        presenter.setProfile(data);
+    }
+
+    private String getRealPathFromURI(Uri imgUri) {
+        int column_index = 0;
+        String[] proj = {MediaStore.Images.Media.DATA};
+        Cursor cursor = getContentResolver().query(imgUri, proj, null, null, null);
+        if (cursor.moveToFirst()) {
+            column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        }
+        return cursor.getString(column_index);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (resultCode == RESULT_OK) {
             if (requestCode == 102) {
                 presenter.setModifyAddress((PostDto) data.getParcelableExtra("post"));
+            } else if (requestCode == 1000) {
+                sendPicture(data.getData());
             }
         }
     }

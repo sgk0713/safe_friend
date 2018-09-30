@@ -44,7 +44,7 @@
                         android:text="세이프랜드 안심귀가 신청대기"/>
 
                     <View
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginEnd="16dp"
                         android:layout_width="2dp"
                         android:layout_height="16dp"
                         android:background="@color/lineColor"/>
@@ -68,6 +68,7 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <LinearLayout
+                android:gravity="center_vertical"
                 android:id="@+id/liner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -77,8 +78,10 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_list_guard"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"/>
 
                 <TextView
                     android:id="@+id/protector_location_tv"

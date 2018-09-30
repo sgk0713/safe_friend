@@ -7,6 +7,7 @@ public interface MainContract {
         void showExplanationDialog();
         void setNavName(String name);
         void setNavEmail(String email);
+        void setNavProfile(String url);
     }
     interface Presenter {
         void showExplanationDialog();

@@ -15,6 +15,7 @@ public interface LoginContract {
         void selectUserLogin();
 
         void selectProtectorLogin();
+        void redirectFindActivity();
     }
 
     interface Presenter {

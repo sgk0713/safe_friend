@@ -22,8 +22,11 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
 import com.seoul_app_contest.safe_friend.login.LoginActivity;
@@ -50,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     private TextView navNameTv;
     private TextView navEmailTv;
-
+    ImageView navProfileIv;
     @OnClick(R.id.main_call_btn)
     void callBtn() {
         redirectCall();
@@ -72,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         setSupportActionBar(toolbar);
 
         navigationView.setNavigationItemSelectedListener(this);
+         navProfileIv = navigationView.getHeaderView(0).findViewById(R.id.nav_profile_iv);
         navNameTv = navigationView.getHeaderView(0).findViewById(R.id.nav_name_tv);
         navEmailTv = navigationView.getHeaderView(0).findViewById(R.id.nav_email_tv);
         presenter.setUserData();
@@ -88,8 +92,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             @Override
             public void onClick(View view) {
 
-                if (drawerLayout.isDrawerOpen(Gravity.END)) {
-                    drawerLayout.closeDrawer(Gravity.END);
+                if (drawerLayout.isDrawerOpen(Gravity.START)) {
+                    drawerLayout.closeDrawer(Gravity.START);
                 }
                 Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
                 startActivity(intent);
@@ -173,6 +177,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void setNavEmail(String email) {
         navEmailTv.setText(email);
+    }
+
+    @Override
+    public void setNavProfile(String url) {
+        Glide.with(navigationView).load(url).apply(new RequestOptions().circleCrop()).into(navProfileIv);
     }
 
     @Override

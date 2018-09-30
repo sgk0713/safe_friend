@@ -6,6 +6,8 @@ public interface ProtectorMainContract {
         void setNavEmail(String email);
         void redirectLoginActivity();
         void redirectProfileActivity();
+        void setProtectorLocation(String location);
+        void setProtectorNum(String num);
     }
     interface Presenter {
         void setUserData();

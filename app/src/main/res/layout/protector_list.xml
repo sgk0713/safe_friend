@@ -8,10 +8,10 @@
     android:padding="16dp">
 
     <android.support.design.card.MaterialCardView
-        app:cardElevation="8dp"
+        android:elevation="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,15 +35,26 @@
                     android:textSize="32sp"
                     android:textStyle="bold"/>
 
-
-                <TextView
-                    android:id="@+id/protector_list_location_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <LinearLayout
                     android:layout_marginTop="16dp"
-                    android:drawableStart="@drawable/ic_chevron_right_black_24dp"
-                    android:text="south korea"
-                    android:textSize="16sp"/>
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_marginEnd="8dp"
+                        android:src="@drawable/ic_pin_white"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+
+                    <TextView
+                        android:id="@+id/protector_list_location_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="south korea"
+                        android:textSize="16sp"/>
+                </LinearLayout>
 
             </LinearLayout>
 

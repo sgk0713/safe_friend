@@ -65,6 +65,7 @@ public class ProtectorMainActivity extends AppCompatActivity implements Navigati
         protectorRv.setLayoutManager(new LinearLayoutManager(this));
         protectorRv.setAdapter(adapter);
 
+        setProtectorNum(String.valueOf(adapter.getItemCount()));
 
         setSupportActionBar(toolbar);
         navNameTv = navigationView.getHeaderView(0).findViewById(R.id.nav_name_tv);
@@ -84,8 +85,8 @@ public class ProtectorMainActivity extends AppCompatActivity implements Navigati
             @Override
             public void onClick(View view) {
                 redirectProfileActivity();
-                if (drawerLayout.isDrawerOpen(Gravity.END)) {
-                    drawerLayout.closeDrawer(Gravity.END);
+                if (drawerLayout.isDrawerOpen(Gravity.START)) {
+                    drawerLayout.closeDrawer(Gravity.START);
                 }
             }
         });
@@ -121,5 +122,15 @@ public class ProtectorMainActivity extends AppCompatActivity implements Navigati
     public void redirectProfileActivity() {
         Intent intent = new Intent(ProtectorMainActivity.this, ProfileActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void setProtectorLocation(String location) {
+        protectorLocationTv.setText(location);
+    }
+
+    @Override
+    public void setProtectorNum(String num) {
+        protectorNumTv.setText(num+"건");
     }
 }

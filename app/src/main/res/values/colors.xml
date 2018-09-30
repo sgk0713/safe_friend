@@ -20,7 +20,7 @@
 
     <!--세이프렌드 타이틀-->
     <color name="title_green">#3c9148</color><!--60,145,72-->
-    <color name="title_blue">#ffe9c4</color><!--0,138,207-->
+    <color name="title_blue">#008acf</color><!--0,138,207-->
 
     <!--회원가입-->
     <color name="text_for_item_title">#6d6e71</color><!--109, 110, 113-->

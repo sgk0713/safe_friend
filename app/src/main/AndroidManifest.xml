@@ -4,6 +4,9 @@
 
     <uses-permission android:name="android.permission.CALL_PHONE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <!-- Google Maps Permission -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
@@ -16,82 +19,60 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyAryKd7PHVafnq0YmeZmAQP188gU7fb5jQ"/>
 
         <activity android:name=".main.MainActivity">
-
         </activity>
-
         <activity android:name=".SearchPlaceActivity">
-
         </activity>
-
         <activity android:name=".splash.SplashActivity">
+
             <!-- android:theme="@style/SplashTheme"> -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
         <activity
             android:name=".register.RegisterActivity"
             android:excludeFromRecents="true"
             android:taskAffinity="">
-
         </activity>
-
-        <activity android:name=".SetTimeActivity"
-            android:launchMode="singleInstance"
+        <activity
+            android:name=".SetTimeActivity"
             android:excludeFromRecents="true"
-            android:taskAffinity="">
-
-        </activity>
-
-        <activity android:name=".LastConfirmActivity"
             android:launchMode="singleInstance"
-            android:excludeFromRecents="true"
             android:taskAffinity="">
         </activity>
-
+        <activity
+            android:name=".LastConfirmActivity"
+            android:excludeFromRecents="true"
+            android:launchMode="singleInstance"
+            android:taskAffinity="">
+        </activity>
         <activity android:name=".waitingncomfirm.WatingActivity">
-
         </activity>
-
         <activity android:name=".EndServiceActivity">
-
         </activity>
-
         <activity android:name=".map.MapsActivity">
-
         </activity>
-
         <activity android:name=".login.LoginActivity">
-
         </activity>
-
         <activity android:name=".profile.ProfileActivity">
-
         </activity>
-
         <activity android:name=".postcode.PostcodeActivity">
-
         </activity>
         <activity android:name=".protector_main.ProtectorMainActivity">
-
         </activity>
-
         <activity android:name=".confirmmap.ConfirmMapActivity">
-
         </activity>
-
         <activity android:name=".CancelServiceActivity">
-
         </activity>
-
+        <activity android:name=".find.FindActivity">
+        </activity>
     </application>
 
 </manifest>

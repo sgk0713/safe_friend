@@ -4,6 +4,7 @@ import com.seoul_app_contest.safe_friend.dto.PostDto;
 
 public interface ProfileContract {
     interface View {
+        void setProfile(String url);
         void setName(String name);
         void setEmail(String email);
         void setGender(String gender);
@@ -36,5 +37,7 @@ public interface ProfileContract {
         void setModifyAddress(PostDto postDto);
         void setModifyAddress(String modifyAddress);
         void setModifyPhoneNum(String phoneNum);
+
+        void setProfile(byte[] bytes);
     }
 }

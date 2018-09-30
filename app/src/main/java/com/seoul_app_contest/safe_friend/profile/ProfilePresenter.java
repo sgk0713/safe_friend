@@ -58,6 +58,11 @@ public class ProfilePresenter implements ProfileContract.Presenter {
                     }
 
                     @Override
+                    public void getProfile(String profile) {
+
+                    }
+
+                    @Override
                     public void getUseNum(int useNum) {
                         view.setUseNum(String.valueOf(useNum));
                     }
@@ -110,6 +115,11 @@ public class ProfilePresenter implements ProfileContract.Presenter {
                     @Override
                     public void getPhoneNum(String name) {
                         view.setPhoneNum(name);
+                    }
+
+                    @Override
+                    public void getProfile(String profile) {
+                        view.setProfile(profile);
                     }
 
                     @Override
@@ -209,5 +219,20 @@ public class ProfilePresenter implements ProfileContract.Presenter {
     @Override
     public void setModifyPhoneNum(String phoneNum) {
         model.setPhoneNum(phoneNum);
+    }
+
+    @Override
+    public void setProfile(byte[] bytes) {
+        model.setUserProfile(bytes, new UserModel.SetUserProfileCallbackListener() {
+            @Override
+            public void onSuccess(String url) {
+                view.setProfile(url);
+            }
+
+            @Override
+            public void onFail() {
+
+            }
+        });
     }
 }
