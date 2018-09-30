@@ -9,7 +9,7 @@
         <shape>
             <solid android:color="@color/main_background" />
             <stroke
-                android:width="0.3dp"
+                android:width="1dp"
                 android:color="@color/lineColor" />
         </shape>
     </item>

@@ -18,8 +18,7 @@ import com.seoul_app_contest.safe_friend.map.MapsActivity;
 
 
 public class ConfirmationFragment extends Fragment {
-    private UserModel mUserModel = null;
-    private View mView = null;
+
     public ConfirmationFragment(){}
 
     @Nullable
@@ -28,50 +27,16 @@ public class ConfirmationFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_confirmation,container,false);
         setImageView((ImageView) view.findViewById(R.id.followerAProfile));
         setImageView((ImageView) view.findViewById(R.id.followerBProfile));
-        mView = view;
-        mUserModel = new UserModel();
-        mUserModel.getPid(mUserModel.getCurrentUserEmail());
+
+
 
         view.findViewById(R.id.confirmButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mUserModel.isUser(mUserModel.getCurrentUserEmail(), new UserModel.IsUserCallbackListener() {
-                    @Override
-                    public void exist() {
-                        Intent intent = new Intent(mView.getContext(), MapsActivity.class);
-                        intent.putExtra("TYPE", "user" );
-                        intent.putExtra("PID",mUserModel.getPid());
-                        intent.putExtra("UID",mUserModel.getUID());
-                        startActivity(intent);
-                        ((Activity) mView.getContext()).finish();
-                    }
-
-                    @Override
-                    public void notExist() {
-
-                    }
-                });
-
-                mUserModel.isProtector(mUserModel.getCurrentUserEmail(), new UserModel.IsProtectorCallbackListener() {
-                            @Override
-                            public void exist() {
-                                Intent intent = new Intent(mView.getContext(), MapsActivity.class);
-                                intent.putExtra("TYPE", "follower" );
-                                intent.putExtra("PID",mUserModel.getPid());
-                                intent.putExtra("UID",mUserModel.getUID());
-                                startActivity(intent);
-                                ((Activity) mView.getContext()).finish();
-                            }
-
-                            @Override
-                            public void notExist() {
-
-                            }
-                        }
-
-                );
-
-
+                Intent intent = new Intent(view.getContext(), MapsActivity.class);
+                intent.putExtra("TYPE", "user" );
+                startActivity(intent);
+                ((Activity) view.getContext()).finish();
             }
         });
         return view;
