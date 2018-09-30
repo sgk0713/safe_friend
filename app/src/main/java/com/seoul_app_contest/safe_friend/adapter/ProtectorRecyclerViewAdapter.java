@@ -70,7 +70,6 @@ public class ProtectorRecyclerViewAdapter extends RecyclerView.Adapter<Protector
                 Log.d("BEOM123", "click.");
                 Log.d("BEOM123", "arrayList.get(i).getMeetingTime() : " + arrayList.get(i).getMeetingTime());
                 FirebaseFirestore.getInstance().collection("USERS").document(arrayList.get(i).getUid()).collection("WITH").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(new UserDto());
-
                 FirebaseFirestore.getInstance().collection("WAITING_LIST").document(arrayList.get(i).getUid()).update("pUid", FirebaseAuth.getInstance().getCurrentUser().getUid());
                 FirebaseFirestore.getInstance().collection("WAITING_LIST").document(arrayList.get(i).getUid()).update("isWaiting", false);
 
