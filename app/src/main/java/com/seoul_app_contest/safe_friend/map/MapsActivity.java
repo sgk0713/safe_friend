@@ -177,7 +177,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        if(TYPE.equals("users")){
+        if(TYPE.equals("user")){
         mUserModel.getPid(mUserModel.getCurrentUserEmail(), new UserModel.GetPidCallbackListener() {
             @Override
             public void onSuccess(String pid) {
@@ -191,6 +191,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
         }else{
+            PID = getIntent().getStringExtra("UID");
         }
 
     }
