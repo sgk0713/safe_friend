@@ -8,17 +8,13 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <TextView
+    <ImageView
+        android:layout_marginTop="32dp"
+        android:src="@drawable/ic_register_logo"
         android:id="@+id/register_logo_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="50sp"/>
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
 
-    <View
-        android:layout_width="32dp"
-        android:layout_height="4dp"
-        android:layout_margin="8dp"
-        android:background="@color/mainColor"/>
 
     <android.support.design.card.MaterialCardView
         android:layout_width="match_parent"

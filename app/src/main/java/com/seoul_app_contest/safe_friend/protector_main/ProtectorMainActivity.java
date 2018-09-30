@@ -68,6 +68,7 @@ public class ProtectorMainActivity extends AppCompatActivity implements Navigati
     private String chargeStreet;//지킴이 할당구역
     String TAG = "WATING_DEBUG";
     ProtectorRecyclerViewAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,36 +87,37 @@ public class ProtectorMainActivity extends AppCompatActivity implements Navigati
         Log.d(TAG, "uid:" + uid);
         db.collection("PROTECTORS").document(uid).get()
                 .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    chargeStreet = task.getResult().getString("address");
-                    Log.d(TAG, "chargeStreet:" + chargeStreet);
-                } else {
-                    Log.w(TAG, "Error getting documents.", task.getException());
-                }
-            }
-        });
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            chargeStreet = task.getResult().getString("address");
+                            Log.d(TAG, "chargeStreet:" + chargeStreet);
+                        } else {
+                            Log.w(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
 
         adapter = new ProtectorRecyclerViewAdapter(this, arrayList);
         protectorRv.setLayoutManager(new LinearLayoutManager(this));
         protectorRv.setAdapter(adapter);
 
-        setProtectorNum(String.valueOf(adapter.getItemCount()));
         //요청이 올때 관할구역이면 생성한다
         db.collection("WAITING_LIST").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                 arrayList.clear();
                 if (queryDocumentSnapshots != null && !queryDocumentSnapshots.isEmpty()) {
-                    for(DocumentSnapshot snapshot:queryDocumentSnapshots.getDocuments()) {
+                    for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
                         String tmp = snapshot.getString("street");
-                        Log.d(TAG, "tmp:"+tmp);
-                        if(tmp != null && tmp.equals(chargeStreet)) {
+                        Log.d(TAG, "tmp:" + tmp);
+                        if (tmp != null && tmp.equals(chargeStreet)) {
                             arrayList.add(snapshot.toObject(RequestModel.class));
                         }
                     }
                     adapter.notifyDataSetChanged();
+                    setProtectorNum(String.valueOf(adapter.getItemCount()));
+
                 } else {
                     Log.d(TAG, "Current data: null");
                 }
@@ -182,12 +184,12 @@ public class ProtectorMainActivity extends AppCompatActivity implements Navigati
 
     @Override
     public void setProtectorLocation(String location) {
-        protectorLocationTv.setText(location);
+        protectorLocationTv.setText(location + " ");
     }
 
     @Override
     public void setProtectorNum(String num) {
-        protectorNumTv.setText(num+"건");
+        protectorNumTv.setText(" " + num + "건");
     }
 
     @Override

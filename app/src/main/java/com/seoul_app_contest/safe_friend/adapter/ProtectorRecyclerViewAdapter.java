@@ -3,7 +3,9 @@ package com.seoul_app_contest.safe_friend.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -12,6 +14,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.seoul_app_contest.safe_friend.R;
 import com.seoul_app_contest.safe_friend.RequestModel;
 
@@ -39,9 +43,31 @@ public class ProtectorRecyclerViewAdapter extends RecyclerView.Adapter<Protector
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProtectorRecyclerViewHolder protectorRecyclerViewHolder, int i) {
+    public void onBindViewHolder(@NonNull ProtectorRecyclerViewHolder protectorRecyclerViewHolder, final int i) {
         protectorRecyclerViewHolder.timeTv.setText(arrayList.get(i).getMeetingTime());
         protectorRecyclerViewHolder.locationTv.setText(arrayList.get(i).getLocation());
+//        protectorRecyclerViewHolder.confirmLl.setClickable(true);
+//        protectorRecyclerViewHolder.confirmLl.setFocusableInTouchMode(true);
+//        protectorRecyclerViewHolder.confirmLl.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View view, MotionEvent motionEvent) {
+//                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+//                    Log.d("BEOM123", "click.");
+//                    Log.d("BEOM123", "arrayList.get(i).getMeetingTime() : " + arrayList.get(i).getMeetingTime());
+//                    FirebaseFirestore.getInstance().collection("WAITING_LIST").document(arrayList.get(i).getMeetingTime()).update("isWaiting", false);
+//                    return true;
+//                }
+//                return false;
+//            }
+//        });
+        protectorRecyclerViewHolder.confirmLl_.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("BEOM123", "click.");
+                Log.d("BEOM123", "arrayList.get(i).getMeetingTime() : " + arrayList.get(i).getMeetingTime());
+                FirebaseFirestore.getInstance().collection("WAITING_LIST").document(arrayList.get(i).getUid()).update("isWaiting", false);
+            }
+        });
     }
 
     @Override
@@ -54,9 +80,11 @@ public class ProtectorRecyclerViewAdapter extends RecyclerView.Adapter<Protector
         @BindView(R.id.protector_list_location_tv)TextView locationTv;
 //        @BindView(R.id.protector_list_confirm_btn)Button confirmBtn;
         @BindView(R.id.protector_list_confirm_ll)LinearLayout confirmLl;
+        LinearLayout confirmLl_;
 
         public ProtectorRecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
+            confirmLl_ = itemView.findViewById(R.id.protector_list_confirm_ll);
             ButterKnife.bind(this, itemView);
         }
     }

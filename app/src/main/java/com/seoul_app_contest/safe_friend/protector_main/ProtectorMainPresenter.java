@@ -67,6 +67,11 @@ view.setNavProfile(profile);
             }
 
             @Override
+            public void getLocation(String location) {
+                view.setProtectorLocation(location);
+            }
+
+            @Override
             public void getDto(UserDto userDto) {
 
             }
