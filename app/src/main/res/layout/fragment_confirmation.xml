@@ -31,19 +31,31 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/confirmTextView"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/nanumsquare_eb"
-        android:textSize="36sp"
-        android:text="수락 확인"
-        android:textColor="#FFFFFF"
-        android:drawableRight="@drawable/ic_accept"
-        android:drawablePadding="5dip"
+        android:orientation="horizontal"
+        android:weightSum="2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/confirmTitleGuideline" />
+        app:layout_constraintTop_toBottomOf="@id/confirmTitleGuideline">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/nanumsquare_eb"
+            android:text="수락확인"
+            android:textColor="#FFFFFF"
+            android:textSize="36sp" />
+
+        <ImageView
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/ic_accept" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -53,6 +65,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,6 +81,7 @@
                 android:layout_height="100dp"
                 android:src="@drawable/ic_map_cancel_button"/>
         </LinearLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -84,6 +98,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/qweqwe">
+
                 <TextView
                     android:id="@+id/followerAName"
                     android:layout_width="wrap_content"
@@ -91,6 +106,7 @@
                     android:fontFamily="@font/nanumsquare_eb"
                     android:layout_marginHorizontal="10dp"
                     android:text="김한솔"/>
+
                 <TextView
                     android:id="@+id/followerBName"
                     android:layout_width="wrap_content"

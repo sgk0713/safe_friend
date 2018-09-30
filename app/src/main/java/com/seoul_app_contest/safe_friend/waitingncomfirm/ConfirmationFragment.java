@@ -26,11 +26,12 @@ public class ConfirmationFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_confirmation,container,false);
         setImageView((ImageView) view.findViewById(R.id.followerAProfile));
         setImageView((ImageView) view.findViewById(R.id.followerBProfile));
+
         view.findViewById(R.id.confirmButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), MapsActivity.class);
-                intent.putExtra("TYPE", "follower");
+                intent.putExtra("TYPE", "user" );
                 startActivity(intent);
                 ((Activity) view.getContext()).finish();
 

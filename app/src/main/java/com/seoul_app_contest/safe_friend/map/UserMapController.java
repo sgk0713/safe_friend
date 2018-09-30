@@ -22,12 +22,10 @@ class UserMapController extends MapController {
             public void onClick(View view) {
                 switch (view.getId()) {
                     case R.id.mapCancelButton: {
-                        final CancelDialog addCateDialog = new CancelDialog(mContext);
+                        CancelDialog addCateDialog = new CancelDialog(mContext);
                         addCateDialog.show();
                     }
                     break;
-                    case R.id.mapMenuButton:
-                        break;
                 }
             }
         };
@@ -106,9 +104,19 @@ class UserMapController extends MapController {
     }
 
     @Override
+    Location getLocation() {
+        return mClientLocation;
+    }
+
+    @Override
     void setOpponentLocation(MapModel mapModel) {
         mFollowerLocation.setLatitude(mapModel.getmLat());
         mFollowerLocation.setLongitude(mapModel.getmLng());
+    }
+
+    @Override
+    Location getOpponentLocation() {
+        return mFollowerLocation;
     }
 
     @Override

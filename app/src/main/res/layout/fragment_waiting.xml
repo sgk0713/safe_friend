@@ -41,16 +41,50 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/watingTitleGuideline" />
 
-    <ImageView
-        android:id="@+id/watingGIFImageView"
-        android:layout_width="100dp"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:src="@drawable/ic_wating_animation_loading"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:id="@+id/firstLoading"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:stateListAnimator="@anim/loading_first"
+            android:layout_marginLeft="100dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_loading_item_1"/>
+        <ImageView
+            android:id="@+id/secondLoading"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:stateListAnimator="@anim/loading_second"
+            android:layout_marginLeft="12dp"
+            android:layout_toEndOf="@id/firstLoading"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_loading_item_2"/>
+        <ImageView
+            android:id="@+id/thridLoading"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:stateListAnimator="@anim/loading_third"
+            android:layout_marginLeft="12dp"
+            android:layout_toEndOf="@id/secondLoading"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_loading_item_3"/>
+        <ImageView
+            android:id="@+id/lastLoading"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:stateListAnimator="@anim/loading_last"
+            android:layout_marginLeft="12dp"
+            android:layout_toEndOf="@id/thridLoading"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_loading_item_4"/>
+    </RelativeLayout>
+
 
     <Button
         android:id="@+id/watingButton"

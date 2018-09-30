@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -41,7 +42,8 @@ public class ConfirmMapActivity extends AppCompatActivity implements OnMapReadyC
 
     Button confirmBtn;
     TextView stationTv;
-    List<ConfirmMarkerOption> markerList = null;
+    List<ConfirmMarkerOption> markerOptionList = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,13 +53,33 @@ public class ConfirmMapActivity extends AppCompatActivity implements OnMapReadyC
 
         setContentView(R.layout.activity_confirmmap);
 
-        markerList = new ArrayList<ConfirmMarkerOption>();
-
+        markerOptionList = new ArrayList<ConfirmMarkerOption>();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.confirmMap);
         mapFragment.getMapAsync(this);
 
         getIntentData();
+        //getIntentData();
+        findViewById(R.id.confirmMapSearch).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ConfirmMarkerOption curruentMarker = new ConfirmMarkerOption(currentMarker.getPosition(),currentMarker.getTitle(),currentMarker.getSnippet(), line,true);
+                markerOptionList.add(curruentMarker);
+                mGoogleMap.clear();
+                getMarkers("businfo",mGoogleMap.getCameraPosition().target);
+                getMarkers("subwayinfo",mGoogleMap.getCameraPosition().target);
 
+                for(ConfirmMarkerOption item :markerOptionList) {
+                    Marker temp = mGoogleMap.addMarker(item.getMarkerOptions());
+                    temp.setTag(item.isMainMarker());
+
+                    if(item.isMainMarker())
+                        currentMarker = temp;
+                }
+
+                markerOptionList.clear();
+
+            }
+        });
         confirmBtn = findViewById(R.id.activity_confirmmap_confirm_btn);
         stationTv = findViewById(R.id.activity_confirmmap_station_tv);
 
@@ -95,7 +117,7 @@ public class ConfirmMapActivity extends AppCompatActivity implements OnMapReadyC
         });
 
         ConfirmMarkerOption curruentMarker = new ConfirmMarkerOption(currentPostion,stop_nm,stop_no, line,true);
-        markerList.add(curruentMarker);
+        markerOptionList.add(curruentMarker);
 
         getMarkers("businfo");
         getMarkers("subwayinfo");
@@ -109,24 +131,25 @@ public class ConfirmMapActivity extends AppCompatActivity implements OnMapReadyC
 
         String sql = "SELECT * FROM "
                 +tableName+" where ( xcode >="
-                +(currentPostion.latitude-range)+" and xcode <="
-                +(currentPostion.latitude+range)+" ) and ( ycode >="
-                +(currentPostion.longitude-range)+" and ycode <="
-                +(currentPostion.longitude+range)+" )";
+                +(latLng.latitude-range)+" and xcode <="
+                +(latLng.latitude+range)+" ) and ( ycode >="
+                +(latLng.longitude-range)+" and ycode <="
+                +(latLng.longitude+range)+" )";
 
         Cursor cursor = mDbHelper.getDataWithQuery(sql);//테이블은 businfo와 subwayinfo  두가지가 있음
         mDbHelper.close();
+
         for (int i = 0; i < cursor.getCount(); i++) {
             ConfirmMarkerOption temp;
-            LatLng latLng = new LatLng(cursor.getFloat(3),cursor.getFloat(4));
+            LatLng sublatLng = new LatLng(cursor.getFloat(3),cursor.getFloat(4));
 
             if(cursor.getColumnCount() == 5)
-                temp= new ConfirmMarkerOption(latLng,cursor.getString(2),cursor.getString(1),null,false);
+                temp= new ConfirmMarkerOption(sublatLng,cursor.getString(2),cursor.getString(1),null,false);
             else
-                temp= new ConfirmMarkerOption(latLng,cursor.getString(2),cursor.getString(1),cursor.getString(5),false);
+                temp= new ConfirmMarkerOption(sublatLng,cursor.getString(2),cursor.getString(1),cursor.getString(5),false);
 
             if(!stop_nm.equals(cursor.getString(2)) && !stop_no.equals(cursor.getString(1)))
-                markerList.add(temp);
+                markerOptionList.add(temp);
 
             cursor.moveToNext();
         }
@@ -138,13 +161,16 @@ public class ConfirmMapActivity extends AppCompatActivity implements OnMapReadyC
         Log.d("onMapReady", "@@@@@@@@@@@@@");
         mGoogleMap = googleMap;
 
-        for(ConfirmMarkerOption item :markerList) {
+        for(ConfirmMarkerOption item :markerOptionList) {
             Marker temp = mGoogleMap.addMarker(item.getMarkerOptions());
             temp.setTag(item.isMainMarker());
 
-            if(item.isMainMarker())
+            if(item.isMainMarker()) {
                 currentMarker = temp;
+            }
         }
+
+        markerOptionList.clear();
 
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(currentPostion));
         mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(17));
@@ -162,6 +188,8 @@ public class ConfirmMapActivity extends AppCompatActivity implements OnMapReadyC
                     currentMarker = marker;
                     stationTv.setText(currentMarker.getTitle());
                     currentPostion = currentMarker.getPosition();
+                    stop_nm = currentMarker.getTitle();
+                    stop_no = currentMarker.getSnippet();
                     isInfoWindowShown = true;
 
                     return false;
@@ -216,4 +244,5 @@ public class ConfirmMapActivity extends AppCompatActivity implements OnMapReadyC
         }
         return result;
     }//getAddress() end
+
 }

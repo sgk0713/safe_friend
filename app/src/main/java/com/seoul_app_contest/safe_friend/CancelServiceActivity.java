@@ -1,10 +1,12 @@
 package com.seoul_app_contest.safe_friend;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
+
+import com.seoul_app_contest.safe_friend.main.MainActivity;
 
 public class CancelServiceActivity extends AppCompatActivity {
     @Override
@@ -14,7 +16,8 @@ public class CancelServiceActivity extends AppCompatActivity {
         findViewById(R.id.cancelServiceButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("asd","asd");
+                Intent intent = new Intent(view.getContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
     }
