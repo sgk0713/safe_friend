@@ -30,6 +30,7 @@
                     app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
+                    android:theme="@style/toolbarText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="아이디 / 비밀번호 찾기"
@@ -45,7 +46,7 @@
             android:background="@color/subColor"
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="?attr/actionBarSize">
             <Button
                 android:id="@+id/find_email_btn"
                 android:textColor="@color/mainColor"
@@ -56,7 +57,7 @@
                 android:layout_height="wrap_content"/>
             <View
                 android:background="@color/mainColor"
-                android:layout_width="2dp"
+                android:layout_width="3dp"
                 android:layout_height="16dp"/>
             <Button
                 android:id="@+id/find_password_btn"

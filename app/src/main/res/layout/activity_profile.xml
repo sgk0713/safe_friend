@@ -34,12 +34,10 @@
                     app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
+                    android:theme="@style/toolbarText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumsquare_b"
                     android:text="내 정보"
-                    android:textColor="@color/my_profile_main_title"
-                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +45,7 @@
 
                 <View
                     android:layout_width="0dp"
-                    android:layout_height="1dp"
+                    android:layout_height="0.5dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginStart="16dp"
                     android:background="@color/lineColor"
