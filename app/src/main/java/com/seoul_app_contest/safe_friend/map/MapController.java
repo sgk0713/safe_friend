@@ -34,7 +34,9 @@ abstract class MapController {
         markerOptions = new MarkerOptions();
         markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker_on_map_40));
         markerOptions.draggable(true);
+
         int imageViewHeight = mActivity.findViewById(R.id.mapBottomBarInfo_B).getHeight();
+
         ((ImageButton)mActivity.findViewById(R.id.mapBottomBarInfo_B_CallButton)).setMaxHeight(imageViewHeight);
         ((ImageButton)mActivity.findViewById(R.id.mapBottomBarInfo_B_CallButton)).setMaxWidth(imageViewHeight);
         ((ImageButton)mActivity.findViewById(R.id.mapBottomBarInfo_A_CallButton)).setMaxHeight(imageViewHeight);

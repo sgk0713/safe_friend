@@ -69,55 +69,21 @@ public class ProtectorRecyclerViewAdapter extends RecyclerView.Adapter<Protector
         protectorRecyclerViewHolder.confirmLl_.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mUserModel = new UserModel();
+                Log.d("BEOM123", "click.");
+                Log.d("BEOM123", "arrayList.get(i).getMeetingTime() : " + arrayList.get(i).getMeetingTime());
+                FirebaseFirestore.getInstance().collection("USERS").document(arrayList.get(i).getUid()).collection("WITH").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(new UserDto());
 
-                mUserModel.isUser(mUserModel.getCurrentUserEmail(), new UserModel.IsUserCallbackListener() {
-                    @Override
-                    public void exist() {
-                        Log.d("BEOM123", "click.");
-                        Log.d("BEOM123", "arrayList.get(i).getMeetingTime() : " + arrayList.get(i).getMeetingTime());
-                        FirebaseFirestore.getInstance().collection("USERS").document(arrayList.get(i).getUid()).collection("WITH").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(new UserDto());
+                FirebaseFirestore.getInstance().collection("WAITING_LIST").document(arrayList.get(i).getUid()).update("pUid", FirebaseAuth.getInstance().getCurrentUser().getUid());
+                FirebaseFirestore.getInstance().collection("WAITING_LIST").document(arrayList.get(i).getUid()).update("isWaiting", false);
 
-                        FirebaseFirestore.getInstance().collection("WAITING_LIST").document(arrayList.get(i).getUid()).update("pUid", FirebaseAuth.getInstance().getCurrentUser().getUid());
-                        FirebaseFirestore.getInstance().collection("WAITING_LIST").document(arrayList.get(i).getUid()).update("isWaiting", false);
+                Intent intent = new Intent(context, MapsActivity.class);
+                intent.putExtra("TYPE", "follower");
 
-                        Intent intent = new Intent(context, MapsActivity.class);
-                        intent.putExtra("TYPE", "user" );
-                        intent.putExtra("PID",mUserModel.getPid());
-                        intent.putExtra("UID",mUserModel.getUID());
-                        context.startActivity(intent);
-                    }
+                intent.putExtra("PID",mUserModel.getPid());
+                intent.putExtra("UID",mUserModel.getUID());
 
-                    @Override
-                    public void notExist() {
+                context.startActivity(intent);
 
-                    }
-                });
-
-                mUserModel.isProtector(mUserModel.getCurrentUserEmail(), new UserModel.IsProtectorCallbackListener() {
-                            @Override
-                            public void exist() {
-                                Log.d("BEOM123", "click.");
-                                Log.d("BEOM123", "arrayList.get(i).getMeetingTime() : " + arrayList.get(i).getMeetingTime());
-                                FirebaseFirestore.getInstance().collection("USERS").document(arrayList.get(i).getUid()).collection("WITH").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(new UserDto());
-
-                                FirebaseFirestore.getInstance().collection("WAITING_LIST").document(arrayList.get(i).getUid()).update("pUid", FirebaseAuth.getInstance().getCurrentUser().getUid());
-                                FirebaseFirestore.getInstance().collection("WAITING_LIST").document(arrayList.get(i).getUid()).update("isWaiting", false);
-
-                                Intent intent = new Intent(context, MapsActivity.class);
-                                intent.putExtra("TYPE", "follower" );
-                                intent.putExtra("PID",mUserModel.getPid());
-                                intent.putExtra("UID",mUserModel.getUID());
-                                context.startActivity(intent);
-                            }
-
-                            @Override
-                            public void notExist() {
-
-                            }
-                        }
-
-                );
 
             }
         });

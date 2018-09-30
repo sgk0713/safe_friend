@@ -129,14 +129,21 @@ public class UserModel {
         });
     }
 
-    public void getPid(String coll){
+    public void getPid(String coll, final GetPidCallbackListener getPidCallbackListener ){
         firestore = FirebaseFirestore.getInstance().collection(coll);
         firestore.document(firebaseAuth.getCurrentUser().getUid()).collection("WITH").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                pid = task.getResult().getDocuments().get(0).getId();
+                getPidCallbackListener.onSuccess(task.getResult().getDocuments().get(0).getId());
+//                pid = task.getResult().getDocuments().get(0).getId();
             }
         });
+    }
+
+    public interface GetPidCallbackListener {
+        void onSuccess(String pid);
+
+        void onFail();
     }
     public void getCurrentUserData(String coll, final GetCurrentUserCallbackListener getCurrentUserCallbackListener){
         firestore = FirebaseFirestore.getInstance().collection(coll);
