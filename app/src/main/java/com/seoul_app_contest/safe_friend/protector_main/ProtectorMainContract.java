@@ -8,6 +8,8 @@ public interface ProtectorMainContract {
         void redirectProfileActivity();
         void setProtectorLocation(String location);
         void setProtectorNum(String num);
+        void setNavProfile(String url);
+
     }
     interface Presenter {
         void setUserData();

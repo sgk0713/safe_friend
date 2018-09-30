@@ -4,50 +4,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="32dp">
 
     <EditText
         android:id="@+id/find_email_name_edt"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:hint="이름"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal">
 
         <EditText
             android:id="@+id/find_email_phone_num_edt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:hint="휴대전화번호입력( - 제외 )"/>
 
         <Button
             android:id="@+id/find_email_phone_num_btn"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/buttonHeight"/>
+            android:layout_height="@dimen/buttonHeight"
+            android:background="@drawable/button_background"
+            android:text="인증번호전송"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal">
 
         <EditText
             android:id="@+id/find_email_auth_num_edt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:hint="인증번호입력"/>
 
         <Button
             android:id="@+id/find_email_auth_num_btn"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/buttonHeight"/>
+            android:layout_height="@dimen/buttonHeight"
+            android:background="@drawable/button_background"
+            android:text="확인"
+            android:textColor="@color/white"/>
     </LinearLayout>
 
     <Button
+        android:layout_marginTop="128dp"
         android:id="@+id/find_email_confirm_btn"
         android:layout_width="@dimen/buttonWidth"
-        android:layout_height="@dimen/buttonHeight"/>
+        android:layout_height="@dimen/buttonHeight"
+        android:background="@drawable/button_background"
+        android:text="아이디 찾기"
+        android:textColor="@color/white"/>
 
 </LinearLayout>

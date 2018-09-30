@@ -237,35 +237,41 @@
                     android:theme="@style/RegisterTextTheme"/>
 
                 <LinearLayout
+                    android:orientation="vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2">
 
-                    <Spinner
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
-                        android:id="@+id/profile_country_code_sp"
+                        <EditText
+                            android:id="@+id/profile_phone_num_tv"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:enabled="false"
+                            android:fontFamily="@font/nanumsquare_l"
+                            android:text="010-2434-7280"/>
+
+                        <Button
+                            android:id="@+id/profile_phone_num_btn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/buttonHeight"
+                            android:background="@drawable/button_background"
+                            android:text="인증번호 발송"
+                            android:visibility="visible"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:entries="@array/country_code"
-                        android:fontFamily="@font/nanumsquare_l"/>
+                        android:layout_height="wrap_content">
 
-                    <EditText
-                        android:id="@+id/profile_phone_num_tv"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@android:color/transparent"
-                        android:enabled="false"
-                        android:fontFamily="@font/nanumsquare_l"
-                        android:text="010-2434-7280"/>
+                    </LinearLayout>
 
-                    <Button
-                        android:id="@+id/profile_phone_num_btn"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/buttonHeight"
-                        android:background="@drawable/button_background"
-                        android:text="전송"
-                        android:visibility="visible"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -277,15 +283,12 @@
                 android:layout_marginTop="16dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:visibility="gone">
-
+                android:visibility="visible">
                 <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:fontFamily="@font/nanumsquare_b"
-                    android:text="인증번호"
-                    android:theme="@style/RegisterTextTheme"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
 
                 <LinearLayout
                     android:layout_width="0dp"

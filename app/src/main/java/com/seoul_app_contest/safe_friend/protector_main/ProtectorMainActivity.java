@@ -12,9 +12,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.seoul_app_contest.safe_friend.R;
 import com.seoul_app_contest.safe_friend.RequestModel;
 import com.seoul_app_contest.safe_friend.UserModel;
@@ -46,6 +49,7 @@ public class ProtectorMainActivity extends AppCompatActivity implements Navigati
     private ArrayList<RequestModel> arrayList = new ArrayList<>();
     TextView navNameTv;
     TextView navEmailTv;
+    ImageView navProfileIv;
     private ProtectorMainContract.Presenter presenter;
 
     @Override
@@ -68,6 +72,7 @@ public class ProtectorMainActivity extends AppCompatActivity implements Navigati
         setProtectorNum(String.valueOf(adapter.getItemCount()));
 
         setSupportActionBar(toolbar);
+        navProfileIv = navigationView.getHeaderView(0).findViewById(R.id.nav_profile_iv);
         navNameTv = navigationView.getHeaderView(0).findViewById(R.id.nav_name_tv);
         navEmailTv = navigationView.getHeaderView(0).findViewById(R.id.nav_email_tv);
         presenter.setUserData();
@@ -132,5 +137,10 @@ public class ProtectorMainActivity extends AppCompatActivity implements Navigati
     @Override
     public void setProtectorNum(String num) {
         protectorNumTv.setText(num+"건");
+    }
+
+    @Override
+    public void setNavProfile(String url) {
+        Glide.with(this).load(url).apply(new RequestOptions().circleCrop()).into(navProfileIv);
     }
 }

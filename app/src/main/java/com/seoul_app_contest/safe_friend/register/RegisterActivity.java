@@ -55,10 +55,6 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
     @BindView(R.id.register_address_edt)
     EditText registerAddressEdt;
 
-
-    @BindView(R.id.register_country_code_sp)
-    Spinner registerCountryCodeSp;
-
     @OnClick(R.id.register_postcode_btn)
     void postcodeBtn() {
         redirectPostcodeActivity();
@@ -129,17 +125,17 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
         sp.setSpan(new ForegroundColorSpan(getColor(R.color.title_blue)), 1, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         sp.setSpan(new ForegroundColorSpan(getColor(R.color.mainColor)), 2, 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         logoTv.append(sp);
-        registerCountryCodeSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                presenter.setCountryCode(adapterView.getItemAtPosition(i).toString().substring(0, 3));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
+//        registerCountryCodeSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+//                presenter.setCountryCode(adapterView.getItemAtPosition(i).toString().substring(0, 3));
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> adapterView) {
+//
+//            }
+//        });
     }
 
     @Override

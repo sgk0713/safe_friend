@@ -363,7 +363,7 @@ public class UserModel {
             }
         };
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-                countryCode + phoneNum.substring(1),
+                "+82" + phoneNum.substring(1),
                 60,
                 TimeUnit.SECONDS,
                 new RegisterActivity(),
@@ -541,5 +541,19 @@ public class UserModel {
     public interface SetUserProfileCallbackListener{
         void onSuccess(String url);
         void onFail();
+    }
+
+
+    public void sendPasswordResetEmail(String email, final SendPasswordResetEmailCallbackListener sendPasswordResetEmailCallbackListener){
+        firebaseAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                sendPasswordResetEmailCallbackListener.onSuccess();
+            }
+        });
+    }
+
+    public interface SendPasswordResetEmailCallbackListener{
+        void onSuccess();
     }
 }
