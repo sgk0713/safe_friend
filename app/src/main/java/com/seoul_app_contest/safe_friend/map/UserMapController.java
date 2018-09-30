@@ -21,8 +21,9 @@ import com.seoul_app_contest.safe_friend.R;
 
 class UserMapController extends MapController {
 
-    UserMapController(Context context) {
-        super(context);
+    UserMapController(Context context, String UID, final String PID) {
+        super(context,UID,PID);
+
         mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {

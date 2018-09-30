@@ -97,6 +97,7 @@ public class ProtectorMainActivity extends AppCompatActivity implements Navigati
             }
         });
 
+
         Log.d(TAG, "uid:" + uid + " chargeStreet" + chargeStreet);
 
         //요청이 올때 관할구역이면 생성한다

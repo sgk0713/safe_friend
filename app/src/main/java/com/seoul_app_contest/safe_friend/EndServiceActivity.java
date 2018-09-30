@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.seoul_app_contest.safe_friend.main.MainActivity;
+import com.seoul_app_contest.safe_friend.protector_main.ProtectorMainActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -42,10 +43,17 @@ public class EndServiceActivity extends AppCompatActivity {
         mTimerTask = new TimerTask() {
             @Override
             public void run() {
-                Intent intent = new Intent(mActivity, MainActivity.class);
-                startActivity(intent);
-                finish();
-                this.cancel();
+                if(TYPE.equals("user")) {
+                    Intent intent = new Intent(EndServiceActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                    this.cancel();
+                }else{
+                    Intent intent = new Intent(EndServiceActivity.this, ProtectorMainActivity.class);
+                    startActivity(intent);
+                    finish();
+                    this.cancel();
+                }
             }
         };
         mTimer = new Timer();
@@ -116,6 +124,7 @@ public class EndServiceActivity extends AppCompatActivity {
         }else {//지킴이가 종료시켰을때(정상종료)
             setContentView(R.layout.activity_end_service_follower);
             mTimer.schedule(mTimerTask,2000);
+
             db.collection("USERS").document(UID).collection("WITH").document().delete().addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {

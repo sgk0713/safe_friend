@@ -49,6 +49,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -71,7 +72,7 @@ import java.util.TimerTask;
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private String USERNAME, PHONENO, LOCATION;
-    private String UID, PID;
+    String UID, PID;
     private UserModel mUserModel = null;
     private boolean mMoveMapByUser = false;
     private boolean mMoveMapByFollower = false;
@@ -139,15 +140,34 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @SuppressWarnings("MissingPermission")
     @Override
+
+
+
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Log.d("onCreate", "@@@@@@@@@@@@@");
 
         setContentView(R.layout.activity_map);
-        final String TYPE = getIntent().getStringExtra("TYPE");
+        //테스트코드
         mUserModel = new UserModel();
+        UID = mUserModel.getUID();
+        final String TYPE = getIntent().getStringExtra("TYPE");
+        mMapController = getController(TYPE);
+        mUserModel = new UserModel();
+
         if(TYPE.equals("user")) {
+//            db.collection("PROTECTORS").document(PID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//                @Override
+//                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                    UserDto userDto = task.getResult().toObject(UserDto.class);
+//
+//                }
+//            });
+            mMapController.changeViewInfo("김김김","관악구 지킴이","010-0000-0000");
+
+        }else{
             mUserModel.getCurrentUserData("USERS", new UserModel.GetCurrentUserCallbackListener() {
                 @Override
                 public void getName(String name) {
@@ -209,74 +229,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
                 }
             });
-        }else{
-            mUserModel.getCurrentUserData("PROTECTORS", new UserModel.GetCurrentUserCallbackListener() {
-                @Override
-                public void getName(String name) {
-                    USERNAME = name;
-                }
-
-                @Override
-                public void getGender(String gender) {
-
-                }
-
-                @Override
-                public void getBirthDay(String birthday) {
-
-                }
-
-                @Override
-                public void getAddress(String address) {
-
-                }
-
-                @Override
-                public void getPhoneNum(String phoneNum) {
-                    PHONENO = phoneNum;
-                }
-
-                @Override
-                public void getProfile(String profile) {
-
-                }
-
-                @Override
-                public void getUseNum(int useNum) {
-
-                }
-
-                @Override
-                public void getLikeNum(int likeNum) {
-
-                }
-
-                @Override
-                public void getKindNum(int kindNum) {
-
-                }
-
-                @Override
-                public void getBestNum(int BsetNum) {
-
-                }
-
-                @Override
-                public void getLocation(String location) {
-                    LOCATION = location;
-                }
-
-                @Override
-                public void getDto(UserDto userDto) {
-
-                }
-            });
         }
 
 
-        //테스트코드
-        final UserModel mUserModel = new UserModel();
-        UID = mUserModel.getUID();
+
+        Log.d("MapAc",UID);
         tobBarTextView = findViewById(R.id.topBarTextView);
         tobBarTextView.setText((TYPE == "user" ? "지킴이" : "사용자") + "님의 현재 위치입니다.");
 
@@ -300,7 +257,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
         });
 
-        mMapController = getController(TYPE);
+
         mMapController.changeViewInfo(USERNAME, LOCATION, PHONENO);
 
         //거리에 따라 버튼을 보여주기 위함.
@@ -339,7 +296,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         db.collection("USERS").document(UID).update("state", 0);
                         startActivity(intent);
                     }
-
                 }
             });
         }
@@ -381,8 +337,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     mFusedLocationClient = null;
                 }
             });
-
-            mDatabaseReference.child(PID).removeEventListener(mChildEventListener);
+            //mDatabaseReference.child(PID).removeEventListener(mChildEventListener);
 
 
         }
@@ -476,10 +431,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private MapController getController(String type) {
         if (type.equals("follower")) {
-            return new FollowerMapController(this);
+            Log.d("MapAc2",UID);
+            return new FollowerMapController(this,UID,PID);
         } else {
-
-            return new UserMapController(this);
+            return new UserMapController(this,UID,PID);
         }
     }
 

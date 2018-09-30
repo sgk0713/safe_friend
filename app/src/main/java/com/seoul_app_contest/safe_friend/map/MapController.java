@@ -25,11 +25,15 @@ abstract class MapController {
     protected Context mContext;
     protected boolean distanceChecker = true;
     protected Activity mActivity = null;
+    protected String UID = null;
+    protected String PID = null;
 
-    MapController(Context context){
+    MapController(Context context,String UID, String PID){
 
         mContext = context;
         mActivity = (Activity)mContext;
+        this.UID = UID;
+        this.PID = PID;
         mClientLocation.setLatitude(0.0);
         markerOptions = new MarkerOptions();
         markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker_on_map_40));

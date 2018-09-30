@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.Guideline;
 import android.util.Log;
@@ -17,21 +18,36 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.seoul_app_contest.safe_friend.EndServiceActivity;
 import com.seoul_app_contest.safe_friend.R;
 
 class FollowerMapController extends MapController {
+    String UID;
 
-    FollowerMapController(Context context) {
-        super(context);
-
+    FollowerMapController(Context context, final String UID, final String PID) {
+        super(context,UID,PID);
+        this.UID = UID;
+        Log.d("OnClickListener",""+UID);
+        Log.d("OnClickListenerP",""+PID);
         mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 switch (view.getId()) {
                     case R.id.mapCancelButton: {
                             Intent intent = new Intent(mContext,EndServiceActivity.class);
-                            intent.putExtra("TYPE","follower");
+                        FirebaseFirestore.getInstance().collection("PROTECTORS").document(UID).update("state", 0);
+                        FirebaseFirestore.getInstance().collection("USERS").document(PID).collection("WITH").document().delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Log.d("Wating_DEBUG", "WITH 삭제완료");
+                            }
+                        });
+                        intent.putExtra("TYPE","follower");
+                        Log.d("OnClickListener",""+UID);
+                        intent.putExtra("UID",UID);
                             mContext.startActivity(intent);
                              ((Activity)mContext).finish();
                     }
