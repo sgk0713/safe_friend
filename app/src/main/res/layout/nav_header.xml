@@ -57,12 +57,12 @@
 
     <ImageView
         android:id="@+id/nav_profile_iv"
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="0dp"
         android:src="@drawable/ic_profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="32dp"
         app:layout_constraintBottom_toBottomOf="@id/nav_email_tv"
-        app:layout_constraintEnd_toTopOf="nav_menu"
-        app:layout_constraintStart_toEndOf="@id/nav_email_tv"
         app:layout_constraintTop_toTopOf="@id/nav_name_tv"/>
 
     <View
