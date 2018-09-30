@@ -58,7 +58,6 @@ public class ConfirmMapActivity extends AppCompatActivity implements OnMapReadyC
         mapFragment.getMapAsync(this);
 
         getIntentData();
-        //getIntentData();
         findViewById(R.id.confirmMapSearch).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,7 +88,7 @@ public class ConfirmMapActivity extends AppCompatActivity implements OnMapReadyC
             @Override
             public void onClick(View v) {
                 if((street=getStreetAddress(currentPostion.latitude, currentPostion.longitude)) == null){
-                    for(ConfirmMarkerOption option:markerList) {
+                    for(ConfirmMarkerOption option:markerOptionList) {
                         if ((street = getStreetAddress(option.getMarkerOptions().getPosition().latitude, option.getMarkerOptions().getPosition().longitude)) != null){
                             break;
                         }
@@ -119,11 +118,11 @@ public class ConfirmMapActivity extends AppCompatActivity implements OnMapReadyC
         ConfirmMarkerOption curruentMarker = new ConfirmMarkerOption(currentPostion,stop_nm,stop_no, line,true);
         markerOptionList.add(curruentMarker);
 
-        getMarkers("businfo");
-        getMarkers("subwayinfo");
+        getMarkers("businfo", currentPostion);
+        getMarkers("subwayinfo", currentPostion);
 
     }
-    private void getMarkers(String tableName){
+    private void getMarkers(String tableName, LatLng latLng){
 
         DataAdapter mDbHelper = new DataAdapter(this);
         mDbHelper.createDatabase();
