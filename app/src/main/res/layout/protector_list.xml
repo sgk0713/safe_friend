@@ -8,7 +8,7 @@
     android:padding="16dp">
 
     <android.support.design.card.MaterialCardView
-        android:elevation="8dp"
+        android:elevation="32dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="16dp">
@@ -28,6 +28,7 @@
                 android:padding="16dp">
 
                 <TextView
+                    android:layout_marginStart="8dp"
                     android:id="@+id/protector_list_time_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -36,6 +37,7 @@
                     android:textStyle="bold"/>
 
                 <LinearLayout
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
@@ -73,6 +75,7 @@
                     android:layout_height="30dp"/>
 
                 <TextView
+                    android:fontFamily="@font/nanumsquare_eb"
                     android:textColor="@color/mainColor"
                     android:text="수락"
                     android:layout_width="wrap_content"

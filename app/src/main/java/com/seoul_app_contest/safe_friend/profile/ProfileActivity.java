@@ -48,6 +48,7 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     private ProfileContract.Presenter presenter;
     private byte[] imgData;
 
+    @BindView(R.id.profile_address_ll)LinearLayout addressLl;
 
     @BindView(R.id.profile_tb)
     Toolbar toolbar;
@@ -308,6 +309,11 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     public void changeAddress(String address) {
         addressTv.setEnabled(true);
         addressTv.setText(address);
+    }
+
+    @Override
+    public void hideAddress() {
+        addressLl.setVisibility(View.GONE);
     }
 
     @Override

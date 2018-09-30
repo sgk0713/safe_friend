@@ -72,6 +72,11 @@ view.setNavProfile(profile);
             }
 
             @Override
+            public void getLocation(String location) {
+                
+            }
+
+            @Override
             public void getDto(UserDto userDto) {
 
             }

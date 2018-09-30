@@ -128,6 +128,7 @@ public class UserModel {
                 getCurrentUserCallbackListener.getBirthDay(userDto.getBirthDay());
                 getCurrentUserCallbackListener.getPhoneNum(userDto.getPhoneNum());
                 getCurrentUserCallbackListener.getProfile(userDto.getProfile());
+                getCurrentUserCallbackListener.getLocation(userDto.getLocation());
                 getCurrentUserCallbackListener.getUseNum(userDto.getUseNum());
                 getCurrentUserCallbackListener.getLikeNum(userDto.getLikeNum());
                 getCurrentUserCallbackListener.getKindNum(userDto.getKindNum());
@@ -148,6 +149,7 @@ public class UserModel {
         void getLikeNum(int likeNum);
         void getKindNum(int kindNum);
         void getBestNum(int BsetNum);
+        void getLocation(String location);
         void getDto(UserDto userDto);
     }
 

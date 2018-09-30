@@ -18,7 +18,7 @@
     <string name="request_confirm">신청 확인</string>
     <string name="next">다음</string>
     <string name="at">에서</string>
-    <string name="on">에</string>
+    <string name="on">에 안전귀가\n신청합니다.</string>
     <string name="end_sentence"><b>안심 귀가 신청</b>합니다.</string>
     <string name="confirm">확인</string>
     <string name="time_sample">22:00</string>

@@ -30,7 +30,7 @@ public class ProfilePresenter implements ProfileContract.Presenter {
                 view.showSticker();
                 view.hideModifyBtn();
                 view.hideWithdrawalBtn();
-
+                view.hideAddress();
                 model.getCurrentUserData("PROTECTORS", new UserModel.GetCurrentUserCallbackListener() {
                     @Override
                     public void getName(String name) {
@@ -79,6 +79,11 @@ public class ProfilePresenter implements ProfileContract.Presenter {
 
                     @Override
                     public void getBestNum(int BsetNum) {
+
+                    }
+
+                    @Override
+                    public void getLocation(String location) {
 
                     }
 
@@ -139,6 +144,11 @@ public class ProfilePresenter implements ProfileContract.Presenter {
 
                     @Override
                     public void getBestNum(int BsetNum) {
+
+                    }
+
+                    @Override
+                    public void getLocation(String location) {
 
                     }
 

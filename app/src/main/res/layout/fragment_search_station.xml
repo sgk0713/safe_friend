@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/selected_button"
             android:text="@string/bus_station"
+            android:fontFamily="@font/nanumsquare_r"
             android:textColor="@color/black"
             android:layout_weight="1"
             android:stateListAnimator="@null"/>
@@ -31,6 +32,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/nonselected_button"
             android:text="@string/subway_station"
+            android:fontFamily="@font/nanumsquare_r"
             android:textColor="@color/black"
             android:layout_weight="1"
             android:stateListAnimator="@null"/>

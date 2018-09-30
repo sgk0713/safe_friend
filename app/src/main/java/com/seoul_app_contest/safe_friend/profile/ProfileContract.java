@@ -23,6 +23,7 @@ public interface ProfileContract {
         void showMode();
         void redirectPostcodeActivity();
         void changeAddress(String address);
+        void hideAddress();
 
         void redirectLoginActivity();
     }
