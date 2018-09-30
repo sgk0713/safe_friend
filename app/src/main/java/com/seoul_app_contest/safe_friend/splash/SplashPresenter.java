@@ -32,12 +32,32 @@ public class SplashPresenter implements SplashContract.Presenter {
             model.isProtector(model.getCurrentUserEmail(), new UserModel.IsProtectorCallbackListener() {
                 @Override
                 public void exist() {
-                    view.redirectProtectorMainActivity();
+                    model.isCheckState("PROTECTORS", model.getUID(), new UserModel.IsCheckStateCallbackListener() {
+                        @Override
+                        public void onWait() {
+                            view.redirectProtectorMainActivity();
+                        }
+
+                        @Override
+                        public void onProgress() {
+                            view.redirectMapsActivity();
+                        }
+                    });
                 }
 
                 @Override
                 public void notExist() {
-                    view.redirectMainActivity();
+                    model.isCheckState("USERS", model.getUID(), new UserModel.IsCheckStateCallbackListener() {
+                        @Override
+                        public void onWait() {
+                            view.redirectMainActivity();
+                        }
+
+                        @Override
+                        public void onProgress() {
+                            view.redirectMapsActivity();
+                        }
+                    });
                 }
             });
         }else {

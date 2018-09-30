@@ -59,7 +59,7 @@ public class ProfilePresenter implements ProfileContract.Presenter {
 
                     @Override
                     public void getProfile(String profile) {
-
+                        view.setProfile(profile);
                     }
 
                     @Override
@@ -84,12 +84,12 @@ public class ProfilePresenter implements ProfileContract.Presenter {
 
                     @Override
                     public void getLocation(String location) {
-
+                        view.setLocation(location);
                     }
 
                     @Override
                     public void getDto(UserDto userDto) {
-                        view.setStickerNum("좋아요 " + userDto.getLikeNum() + "개  " + "친절해요 " + userDto.getKindNum() +"개 " + "최고에요 " + userDto.getBestNum() +"개");
+                        view.setStickerNum("좋아요 " + userDto.getLikeNum() + "개  " + "친절해요 " + userDto.getKindNum() + "개 " + "최고에요 " + userDto.getBestNum() + "개");
                     }
                 });
             }
@@ -149,7 +149,7 @@ public class ProfilePresenter implements ProfileContract.Presenter {
 
                     @Override
                     public void getLocation(String location) {
-
+                        view.setLocation(location);
                     }
 
                     @Override
@@ -191,7 +191,23 @@ public class ProfilePresenter implements ProfileContract.Presenter {
     @Override
     public void requestAuthNum(String phoneNum) {
         isPhoneAuth = false;
-//        model.sen
+        if (model.checkPhoneNumType(phoneNum)) {
+            view.showToast("요청중..");
+            model.sendAuthNum(phoneNum, new UserModel.SendAuthNumCallbackListener() {
+                @Override
+                public void onSuccess() {
+                    view.showToast("문자메시지가 전송되었습니다.");
+                }
+
+                @Override
+                public void onFail(String e) {
+                    view.showToast("문자메시지 발송에 실패했습니다.");
+                }
+            });
+        }else {
+
+        }
+
     }
 
     @Override
@@ -199,7 +215,7 @@ public class ProfilePresenter implements ProfileContract.Presenter {
         if (model.checkAuthNum(authNum)) {
             view.showToast("확인되었습니다.");
             isPhoneAuth = true;
-        }else {
+        } else {
             view.showToast("올바른 인증번호를 입력해주세요.");
         }
     }
@@ -211,7 +227,7 @@ public class ProfilePresenter implements ProfileContract.Presenter {
             model.updateUserData(model.getAddress(), model.getPhoneNum());
             view.showToast("수정되었습니다.");
             view.showMode();
-        }else {
+        } else {
             view.showToast("전화번호 인증을 완료해주세요.");
         }
     }

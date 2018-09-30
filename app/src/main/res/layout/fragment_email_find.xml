@@ -35,6 +35,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
+            android:layout_marginRight="8dp"
             android:orientation="vertical"
             android:layout_weight="1"
             android:layout_width="0dp"
@@ -75,6 +76,8 @@
         android:orientation="horizontal">
 
         <LinearLayout
+
+            android:layout_marginRight="8dp"
             android:orientation="vertical"
             android:gravity="center_vertical"
             android:layout_weight="1"

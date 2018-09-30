@@ -65,7 +65,6 @@ public class UserModel {
 
     public UserModel() {
         firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.getCurrentUser().getUid();
         firestore = FirebaseFirestore.getInstance().collection("USERS");
         firebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
     }
@@ -571,5 +570,32 @@ public class UserModel {
 
     public String getLocation() {
         return location;
+    }
+
+    public void isCheckState(String coll, final String uid, final IsCheckStateCallbackListener isCheckStateCallbackListener){
+        firestore_ = FirebaseFirestore.getInstance().collection(coll);
+        Log.d("BEOM123", "uid : " + uid);
+        firestore_.document(uid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.getResult().exists()) {
+                    Log.d("BEOM123", "exist");
+                    UserDto userDto = task.getResult().toObject(UserDto.class);
+
+                    Log.d("BEOM123", "userDto : " + userDto.getState());
+                    if (userDto.getState() == 0) {
+                        isCheckStateCallbackListener.onWait();
+                    }else {
+                        isCheckStateCallbackListener.onProgress();
+                    }
+                }
+
+            }
+        });
+    }
+
+    public interface IsCheckStateCallbackListener {
+        void onWait();
+        void onProgress();
     }
 }

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.seoul_app_contest.safe_friend.login.LoginActivity;
 import com.seoul_app_contest.safe_friend.main.MainActivity;
 import com.seoul_app_contest.safe_friend.R;
+import com.seoul_app_contest.safe_friend.map.MapsActivity;
 import com.seoul_app_contest.safe_friend.protector_main.ProtectorMainActivity;
 
 public class SplashActivity extends AppCompatActivity implements SplashContract.View{
@@ -69,5 +70,12 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
                         finish();
                     }
                 }).show();
+    }
+
+    @Override
+    public void redirectMapsActivity() {
+        Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

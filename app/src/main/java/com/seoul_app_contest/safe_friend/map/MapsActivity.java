@@ -221,6 +221,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             }
 
             @Override
+            public void getLocation(String location) {
+
+            }
+
+            @Override
             public void getDto(UserDto userDto) {
              mUserDto = userDto;
             }

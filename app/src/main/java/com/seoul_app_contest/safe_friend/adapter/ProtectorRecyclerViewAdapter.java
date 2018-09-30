@@ -19,6 +19,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.seoul_app_contest.safe_friend.R;
 import com.seoul_app_contest.safe_friend.RequestModel;
+import com.seoul_app_contest.safe_friend.dto.UserDto;
 
 import java.util.ArrayList;
 
@@ -66,6 +67,8 @@ public class ProtectorRecyclerViewAdapter extends RecyclerView.Adapter<Protector
             public void onClick(View view) {
                 Log.d("BEOM123", "click.");
                 Log.d("BEOM123", "arrayList.get(i).getMeetingTime() : " + arrayList.get(i).getMeetingTime());
+                FirebaseFirestore.getInstance().collection("USERS").document(arrayList.get(i).getUid()).collection("WITH").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(new UserDto());
+
                 FirebaseFirestore.getInstance().collection("WAITING_LIST").document(arrayList.get(i).getUid()).update("pUid", FirebaseAuth.getInstance().getCurrentUser().getUid());
                 FirebaseFirestore.getInstance().collection("WAITING_LIST").document(arrayList.get(i).getUid()).update("isWaiting", false);
             }

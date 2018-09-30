@@ -11,6 +11,7 @@ public interface ProfileContract {
         void setAddress(String address);
         void setPhoneNum(String phoneNum);
         void setUseNum(String useNum);
+        void setLocation(String location);
         void setBirthDay(String birthDay);
         void showSticker();
         void setStickerNum(String stickerNum);

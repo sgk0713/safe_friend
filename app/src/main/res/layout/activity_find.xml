@@ -8,6 +8,7 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:elevation="0dp"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
         <android.support.v7.widget.Toolbar
@@ -15,6 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/mainColor"
+            android:elevation="0dp"
             android:theme="@style/AppTheme">
 
             <android.support.constraint.ConstraintLayout
@@ -30,10 +32,10 @@
                     app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
-                    android:theme="@style/toolbarText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="아이디 / 비밀번호 찾기"
+                    android:theme="@style/toolbarText"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -42,40 +44,45 @@
         </android.support.v7.widget.Toolbar>
 
         <LinearLayout
-            android:gravity="center_vertical"
-            android:background="@color/subColor"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
+            android:layout_height="60dp"
+            android:background="@color/subColor"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
             <Button
                 android:id="@+id/find_email_btn"
-                android:textColor="@color/mainColor"
-                android:text="아이디 찾기"
-                android:background="@android:color/transparent"
-                android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:stateListAnimator="@null"
+                android:text="아이디 찾기"
+                android:textColor="@color/mainColor"/>
+
             <View
-                android:background="@color/mainColor"
                 android:layout_width="3dp"
-                android:layout_height="16dp"/>
+                android:layout_height="16dp"
+                android:background="@color/mainColor"/>
+
             <Button
                 android:id="@+id/find_password_btn"
-                android:text="비밀번호 찾기"
-                android:textColor="@color/black"
-                android:background="@android:color/transparent"
-                android:layout_weight="1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:stateListAnimator="@null"
+                android:text="비밀번호 찾기"
+                android:textColor="@color/black"/>
         </LinearLayout>
 
     </android.support.design.widget.AppBarLayout>
 
     <FrameLayout
         android:id="@+id/find_fl"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     </FrameLayout>
 

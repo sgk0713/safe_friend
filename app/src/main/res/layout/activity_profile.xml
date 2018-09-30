@@ -34,10 +34,10 @@
                     app:layout_constraintTop_toTopOf="parent"/>
 
                 <TextView
-                    android:theme="@style/toolbarText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="내 정보"
+                    android:theme="@style/toolbarText"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -147,11 +147,13 @@
 
                 <TextView
                     android:id="@+id/profile_gender_tv"
+
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:fontFamily="@font/nanumsquare_l"
-                    android:text="남"/>
+                    android:text="남"
+                    android:textSize="14sp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -169,12 +171,14 @@
                     android:theme="@style/RegisterTextTheme"/>
 
                 <TextView
+
                     android:id="@+id/profile_birthday_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:fontFamily="@font/nanumsquare_l"
-                    android:text="1994.08.31"/>
+                    android:text="1994.08.31"
+                    android:textSize="14sp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -207,7 +211,8 @@
                         android:background="@android:color/transparent"
                         android:enabled="false"
                         android:fontFamily="@font/nanumsquare_l"
-                        android:text="경기도 안산시 상록구 사동"/>
+                        android:text="경기도 안산시 상록구 사동"
+                        android:textSize="14sp"/>
 
                     <Button
                         android:id="@+id/profile_address_btn"
@@ -248,7 +253,8 @@
                         android:background="@android:color/transparent"
                         android:enabled="false"
                         android:fontFamily="@font/nanumsquare_l"
-                        android:text="경기도 안산시 상록구 사동"/>
+                        android:text="경기도 안산시 상록구 사동"
+                        android:textSize="14sp"/>
 
                 </LinearLayout>
 
@@ -285,9 +291,11 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:background="@android:color/transparent"
                             android:enabled="false"
                             android:fontFamily="@font/nanumsquare_l"
-                            android:text="010-2434-7280"/>
+                            android:text="010-2434-7280"
+                            android:textSize="14sp"/>
 
                         <Button
                             android:id="@+id/profile_phone_num_btn"
@@ -309,7 +317,7 @@
                 android:layout_marginTop="16dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -318,18 +326,19 @@
 
 
                 <LinearLayout
-                    android:visibility="gone"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2">
 
                     <EditText
-                        android:hint="인증번호 입"
                         android:id="@+id/profile_auth_num_edt"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="@font/nanumsquare_l"/>
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/nanumsquare_l"
+                        android:hint="인증번호 입력"
+                        android:textSize="14sp"/>
 
                     <Button
                         android:id="@+id/profile_auth_num_btn"
@@ -363,12 +372,14 @@
                     android:theme="@style/RegisterTextTheme"/>
 
                 <TextView
+
                     android:id="@+id/profile_use_num_tv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:fontFamily="@font/nanumsquare_l"
-                    android:text="3"/>
+                    android:text="3"
+                    android:textSize="14sp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -393,7 +404,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
                     android:fontFamily="@font/nanumsquare_l"
-                    android:text="3"/>
+                    android:text="3"
+                    android:textSize="14sp"/>
             </LinearLayout>
 
         </LinearLayout>

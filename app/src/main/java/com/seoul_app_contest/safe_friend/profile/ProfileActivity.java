@@ -78,6 +78,8 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     @BindView(R.id.profile_set_cl)
     ConstraintLayout profileSetCl;
 
+    @BindView(R.id.profile_location_tv)EditText locationTv;
+
     @BindView(R.id.profile_withdrawal_btn)
     Button withdrawalBtn;
 
@@ -213,6 +215,11 @@ public class ProfileActivity extends AppCompatActivity implements ProfileContrac
     @Override
     public void setUseNum(String useNum) {
         useNumTv.setText(useNum + "회");
+    }
+
+    @Override
+    public void setLocation(String location) {
+        locationTv.setText(location);
     }
 
     @Override
