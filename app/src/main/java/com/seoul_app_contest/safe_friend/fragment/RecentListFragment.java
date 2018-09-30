@@ -44,6 +44,7 @@ public class RecentListFragment extends Fragment {
     ArrayList<StationDto> resultArray = new ArrayList<>();
     DBHelperLastItem dbHelperLastItem;
 
+    String stop_nm, stop_no, xcode, ycode, line;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -73,15 +74,21 @@ public class RecentListFragment extends Fragment {
                     dbHelperLastItem.sortAsLRU(resultArray.get(position).line, resultArray.get(position).stop_nm,
                             Float.valueOf(resultArray.get(position).xcode), Float.valueOf(resultArray.get(position).ycode));
                 }
+                stop_nm = resultArray.get(position).stop_nm;
+                stop_no = resultArray.get(position).stop_no;
+                xcode = resultArray.get(position).xcode;
+                ycode = resultArray.get(position).ycode;
+                line = resultArray.get(position).line;
+
+                Intent intent = new Intent(activity, ConfirmMapActivity.class);
+                intent.putExtra("stop_nm", stop_nm);
+                intent.putExtra("stop_no", stop_no);
+                intent.putExtra("xcode", xcode);
+                intent.putExtra("ycode", ycode);
+                intent.putExtra("line", line);
+                Log.d("station_name", stop_nm);
                 resetArray();
                 stationRecyclerViewAdapter.notifyDataSetChanged();
-                Intent intent = new Intent(activity, ConfirmMapActivity.class);
-                intent.putExtra("stop_nm", resultArray.get(position).stop_nm);
-                intent.putExtra("stop_no", resultArray.get(position).stop_no);
-                intent.putExtra("xcode", resultArray.get(position).xcode);
-                intent.putExtra("ycode", resultArray.get(position).ycode);
-                intent.putExtra("line", resultArray.get(position).line);
-                Log.d("station_name", resultArray.get(position).stop_nm);
                 startActivity(intent);
             }
         });

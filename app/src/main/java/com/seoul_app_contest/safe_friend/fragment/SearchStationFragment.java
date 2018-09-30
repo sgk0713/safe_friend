@@ -40,12 +40,15 @@ public class SearchStationFragment extends Fragment{
     public void onAttach(Context context) {
         super.onAttach(context);
         activity = (SearchPlaceActivity) getActivity();
+        Log.d("WAITING_DEBUG", "onatach90");
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
+        recyclerView.setAdapter(busStationRecyclerViewAdapter);
         activity = null;
+        Log.d("WAITING_DEBUG", "ondetach90");
     }
 
     StationRecyclerViewAdapter busStationRecyclerViewAdapter, subwayStationRecyclerViewAdapter, currentAdapter;
