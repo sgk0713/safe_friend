@@ -1,11 +1,17 @@
 package com.seoul_app_contest.safe_friend.map;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Location;
+import android.net.Uri;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
@@ -33,14 +39,38 @@ class UserMapController extends MapController {
         ((Activity)context).findViewById(R.id.mapBottomBarInfo_A_CallButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("onClickA", "@@@@@@");
+               String phone = ((TextView)mActivity.findViewById(R.id.mapBottomBarInfo_A_Phone)).getText().toString().replace("-","");
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+phone));
+                if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                mActivity.startActivity(intent);
             }
         });
 
         ((Activity)context).findViewById(R.id.mapBottomBarInfo_B_CallButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("onClickB", "@@@@@@");
+                String phone = ((TextView)mActivity.findViewById(R.id.mapBottomBarInfo_B_Phone)).getText().toString().replace("-","");
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+phone));
+                if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
+                mActivity.startActivity(intent);
             }
         });
     }

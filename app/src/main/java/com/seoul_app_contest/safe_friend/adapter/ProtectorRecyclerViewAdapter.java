@@ -78,10 +78,6 @@ public class ProtectorRecyclerViewAdapter extends RecyclerView.Adapter<Protector
 
                 Intent intent = new Intent(context, MapsActivity.class);
                 intent.putExtra("TYPE", "follower");
-
-                intent.putExtra("PID",mUserModel.getPid());
-                intent.putExtra("UID",mUserModel.getUID());
-
                 context.startActivity(intent);
 
 
