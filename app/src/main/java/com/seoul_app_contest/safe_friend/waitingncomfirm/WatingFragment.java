@@ -68,7 +68,6 @@ public class WatingFragment extends Fragment {
             }
         });
 
-
         imgAndroid3 = mView.findViewById(R.id.thridLoading);
         anim3 = AnimationUtils.loadAnimation(view.getContext(), R.anim.loading_third);
         anim3.setAnimationListener(new Animation.AnimationListener() {
