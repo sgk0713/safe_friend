@@ -42,13 +42,18 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.seoul_app_contest.safe_friend.PermissionUtil;
 import com.seoul_app_contest.safe_friend.R;
+import com.seoul_app_contest.safe_friend.UserModel;
+import com.seoul_app_contest.safe_friend.dto.UserDto;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -60,10 +65,11 @@ import java.util.TimerTask;
  **/
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    private final String USERNAME = "사용자";
-    private final String UID = "qwertyui123456789";
+    private String USERNAME,PHONENO,LOCATION;
+    private String TYPE;
     private final String FID = "qwertyui987654321";
-
+    private UserDto mUserDto = null;
+    private UserModel mUserModel = null;
     private boolean mMoveMapByUser = false;
     private boolean mMoveMapByFollower = false;
 
@@ -123,7 +129,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             if(mMoveMapByUser)
                 mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mMapController.getLocation().getLatitude(),mMapController.getLocation().getLongitude()), 17));
-            mDatabaseReference.child(UID + "/Location").setValue(new MapModel(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()));
+            mDatabaseReference.child(mUserDto.getUid() + "/Location").setValue(new MapModel(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()));
         }
     };
 
@@ -137,10 +143,92 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         Log.d("onCreate", "@@@@@@@@@@@@@");
 
         setContentView(R.layout.activity_map);
+        mUserModel = new UserModel();
+        mUserModel.isUser(mUserModel.getCurrentUserEmail(), new UserModel.IsUserCallbackListener() {
+            @Override
+            public void exist() {
+                TYPE = "user";
+            }
+
+            @Override
+            public void notExist() {
+
+            }
+        });
+
+        mUserModel.isProtector(mUserModel.getCurrentUserEmail(), new UserModel.IsProtectorCallbackListener() {
+                    @Override
+                    public void exist() {
+                        TYPE = "follower";
+                    }
+
+                    @Override
+                    public void notExist() {
+
+                    }
+                }
+
+        );
+        mUserModel.getCurrentUserData(mUserModel.getCurrentUserEmail(), new UserModel.GetCurrentUserCallbackListener() {
+            @Override
+            public void getName(String name) {
+
+            }
+
+            @Override
+            public void getGender(String gender) {
+
+            }
+
+            @Override
+            public void getBirthDay(String birthday) {
+
+            }
+
+            @Override
+            public void getAddress(String address) {
+
+            }
+
+            @Override
+            public void getPhoneNum(String phoneNum) {
+
+            }
+
+            @Override
+            public void getProfile(String profile) {
+
+            }
+
+            @Override
+            public void getUseNum(int useNum) {
+
+            }
+
+            @Override
+            public void getLikeNum(int likeNum) {
+
+            }
+
+            @Override
+            public void getKindNum(int kindNum) {
+
+            }
+
+            @Override
+            public void getBestNum(int BsetNum) {
+
+            }
+
+            @Override
+            public void getDto(UserDto userDto) {
+             mUserDto = userDto;
+            }
+        });
 
         //final String TYPE = getIntent().getStringExtra("TYPE");
         //테스트코드
-        final String TYPE = "user";
+
         TextView tobBarTextView = findViewById(R.id.topBarTextView);
         tobBarTextView.setText((TYPE == "user" ? "지킴이":USERNAME)+"님의 현재 위치입니다.");
 
@@ -163,7 +251,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
 
         mMapController = getController(TYPE);
-
+        //mMapController.changeViewInfo(mUserDto.getUid(),mUserDto.getName(),mUserDto.getLocation(), mUserDto.getPhoneNum());
         //거리에 따라 버튼을 보여주기 위함.
         ImageButton cancelButton = findViewById(R.id.mapCancelButton);
         cancelButton.setOnClickListener(mMapController.mOnClickListener);
@@ -175,18 +263,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-
-        TimerTask tt = new TimerTask() {
-            @Override
-            public void run() {
-                testFollower();
-            }
-        };
-
-        timer= new Timer();
-        timer.schedule(tt, 0, 3000);
     }
-    Timer timer;
+
     private void drawMarker(MapModel mMapModel) {
         if (mMarker != null) mMarker.setPosition(new LatLng(mMapModel.getmLat(), mMapModel.getmLng()));
         else {
@@ -218,7 +296,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     mFusedLocationClient = null;
                 }
             });
-            timer.cancel();
+
             mDatabaseReference.child(FID).removeEventListener(mChildEventListener);
 
 
@@ -311,49 +389,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         builder.create();
     }
 
-    double ln = 127.00792;
-    double la = 37.491898;
-
-    private void testFollower() {
-        MapModel mMapModel = new MapModel(la, ln);
-        ln -= 0.00001;
-        la -= 0.00001;
-        mDatabaseReference.child(FID + "/Location").setValue(mMapModel);
-    }
-
-    //    public String getCurrentAddress(LatLng latlng) {
-//        //지오코더... GPS를 주소로 변환
-//        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-//
-//        List<Address> addresses;
-//
-//        try {
-//
-//            addresses = geocoder.getFromLocation(
-//                    latlng.latitude,
-//                    latlng.longitude,
-//                    1);
-//        } catch (IOException ioException) {
-//            //네트워크 문제
-//            Toast.makeText(this, "지오코더 서비스 사용불가", Toast.LENGTH_LONG).show();
-//            return "지오코더 서비스 사용불가";
-//        } catch (IllegalArgumentException illegalArgumentException) {
-//            Toast.makeText(this, "잘못된 GPS 좌표", Toast.LENGTH_LONG).show();
-//            return "잘못된 GPS 좌표";
-//
-//        }
-//
-//
-//        if (addresses == null || addresses.size() == 0) {
-//            Toast.makeText(this, "주소 미발견", Toast.LENGTH_LONG).show();
-//            return "주소 미발견";
-//
-//        } else {
-//            Address address = addresses.get(0);
-//            return address.getAddressLine(0).toString();
-//        }
-//
-//    }
     private MapController getController(String type) {
         if (type.equals("follower")) {
             return new FollowerMapController(this);

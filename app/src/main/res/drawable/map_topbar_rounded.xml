@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item>
@@ -13,8 +11,8 @@
 
                 <shape>
                     <solid android:color="#66000000" />
-                    <corners android:bottomLeftRadius="30dip"
-                        android:bottomRightRadius="30dip"/>
+                    <corners android:bottomLeftRadius="20dip"
+                        android:bottomRightRadius="20dip"/>
                 </shape>
 
             </item>
@@ -24,13 +22,12 @@
             <item android:bottom="3dp">
                 <shape>
                     <solid android:color="#FFFFFF" />
-                    <corners android:bottomLeftRadius="30dip"
-                        android:bottomRightRadius="30dip"/>
+                    <corners android:bottomLeftRadius="20dip"
+                        android:bottomRightRadius="20dip"/>
                 </shape>
             </item>
 
         </layer-list>
 
     </item>
-
 </selector>

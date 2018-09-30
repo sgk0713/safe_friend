@@ -24,6 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/nanumsquare_b"
+        android:layout_marginBottom="4dp"
         android:textSize="20sp"
         android:text="안심귀가서비스"
         app:layout_constraintBottom_toTopOf="@id/watingTitleGuideline"
