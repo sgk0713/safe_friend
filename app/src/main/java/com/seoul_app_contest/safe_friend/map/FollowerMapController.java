@@ -30,8 +30,9 @@ class FollowerMapController extends MapController {
     FollowerMapController(Context context, final String UID, final String PID) {
         super(context,UID,PID);
         this.UID = UID;
+
         Log.d("OnClickListener",""+UID);
-        Log.d("OnClickListenerP",""+PID);
+
         mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,7 +40,7 @@ class FollowerMapController extends MapController {
                     case R.id.mapCancelButton: {
                             Intent intent = new Intent(mContext,EndServiceActivity.class);
                         FirebaseFirestore.getInstance().collection("PROTECTORS").document(UID).update("state", 0);
-                        FirebaseFirestore.getInstance().collection("USERS").document(PID).collection("WITH").document().delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                        FirebaseFirestore.getInstance().collection("USERS").document("TfDKTwmFHmU0KrO6LRF62jDQblm2").collection("WITH").document().delete().addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 Log.d("Wating_DEBUG", "WITH 삭제완료");
