@@ -49,7 +49,11 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.seoul_app_contest.safe_friend.EndServiceActivity;
 import com.seoul_app_contest.safe_friend.PermissionUtil;
 import com.seoul_app_contest.safe_friend.R;
 import com.seoul_app_contest.safe_friend.UserModel;
@@ -63,16 +67,18 @@ import java.util.TimerTask;
  * Activity 생명주기
  * onCreate(Activity가 최초 생성할 때 호출) -> onStart(사용자에게 보여지기 직전에 호출) -> onResume(상호작용을 하기 직전에 호출)
  **/
+
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
-    private String USERNAME,PHONENO,LOCATION;
-    private String TYPE, UID, PID;
-
+    private String USERNAME, PHONENO, LOCATION;
+    private String UID, PID;
+    private UserModel mUserModel = null;
     private boolean mMoveMapByUser = false;
     private boolean mMoveMapByFollower = false;
-
+    private TextView tobBarTextView = null;
     private static FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
     private static DatabaseReference mDatabaseReference = mFirebaseDatabase.getReference();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private FusedLocationProviderClient mFusedLocationClient = null;
     private GoogleMap mGoogleMap = null;
@@ -125,8 +131,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             mMapController.setLocation(mCurrentLocation);
             mMapController.needToActivate();
 
-            if(mMoveMapByUser)
-                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mMapController.getLocation().getLatitude(),mMapController.getLocation().getLongitude()), 17));
+            if (mMoveMapByUser)
+                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mMapController.getLocation().getLatitude(), mMapController.getLocation().getLongitude()), 17));
             mDatabaseReference.child(UID + "/Location").setValue(new MapModel(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()));
         }
     };
@@ -139,34 +145,100 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         Log.d("onCreate", "@@@@@@@@@@@@@");
 
         setContentView(R.layout.activity_map);
+        mUserModel = new UserModel();
+
+        mUserModel.getCurrentUserData("USERS", new UserModel.GetCurrentUserCallbackListener() {
+            @Override
+            public void getName(String name) {
+                USERNAME = name;
+            }
+
+            @Override
+            public void getGender(String gender) {
+
+            }
+
+            @Override
+            public void getBirthDay(String birthday) {
+
+            }
+
+            @Override
+            public void getAddress(String address) {
+
+            }
+
+            @Override
+            public void getPhoneNum(String phoneNum) {
+                PHONENO = phoneNum;
+            }
+
+            @Override
+            public void getProfile(String profile) {
+
+            }
+
+            @Override
+            public void getUseNum(int useNum) {
+
+            }
+
+            @Override
+            public void getLikeNum(int likeNum) {
+
+            }
+
+            @Override
+            public void getKindNum(int kindNum) {
+
+            }
+
+            @Override
+            public void getBestNum(int BsetNum) {
+
+            }
+
+            @Override
+            public void getLocation(String location) {
+                LOCATION = location;
+            }
+
+            @Override
+            public void getDto(UserDto userDto) {
+
+            }
+        });
 
         final String TYPE = getIntent().getStringExtra("TYPE");
         //테스트코드
         final UserModel mUserModel = new UserModel();
         UID = mUserModel.getUID();
-        TextView tobBarTextView = findViewById(R.id.topBarTextView);
-        tobBarTextView.setText((TYPE == "user" ? "지킴이":USERNAME)+"님의 현재 위치입니다.");
+        tobBarTextView = findViewById(R.id.topBarTextView);
+        tobBarTextView.setText((TYPE == "user" ? "지킴이" : "사용자") + "님의 현재 위치입니다.");
 
-        ((Button)findViewById(R.id.mapRefreadButtonUser)).setOnClickListener(new Button.OnClickListener() {
+        ((Button) findViewById(R.id.mapRefreadButtonUser)).setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mMapController.getLocation().getLatitude(),mMapController.getLocation().getLongitude()), 17));
-                    mMoveMapByUser = true;
-                    mMoveMapByFollower = false;
+                tobBarTextView.setText("사용자님의 현재 위치입니다.");
+                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mMapController.getLocation().getLatitude(), mMapController.getLocation().getLongitude()), 17));
+                mMoveMapByUser = true;
+                mMoveMapByFollower = false;
             }
         });
 
-        ((Button)findViewById(R.id.mapRefreadButtonFollower)).setOnClickListener(new Button.OnClickListener() {
+        ((Button) findViewById(R.id.mapRefreadButtonFollower)).setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                    mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mMapController.getOpponentLocation().getLatitude(),mMapController.getOpponentLocation().getLongitude()), 17));
-                    mMoveMapByUser = false;
-                    mMoveMapByFollower = true;
+                tobBarTextView.setText("지킴이님의 현재 위치입니다.");
+                mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mMapController.getOpponentLocation().getLatitude(), mMapController.getOpponentLocation().getLongitude()), 17));
+                mMoveMapByUser = false;
+                mMoveMapByFollower = true;
             }
         });
 
         mMapController = getController(TYPE);
-        //mMapController.changeViewInfo(mUserDto.getUid(),mUserDto.getName(),mUserDto.getLocation(), mUserDto.getPhoneNum());
+        mMapController.changeViewInfo(USERNAME, LOCATION, PHONENO);
+
         //거리에 따라 버튼을 보여주기 위함.
         ImageButton cancelButton = findViewById(R.id.mapCancelButton);
         cancelButton.setOnClickListener(mMapController.mOnClickListener);
@@ -177,34 +249,52 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        if(TYPE.equals("user")){
-        mUserModel.getPid(mUserModel.getCurrentUserEmail(), new UserModel.GetPidCallbackListener() {
-            @Override
-            public void onSuccess(String pid) {
-                PID = pid;
-                mDatabaseReference.child(pid).addChildEventListener(mChildEventListener);
-            }
 
-            @Override
-            public void onFail() {
 
-            }
-        });
-        }else{
-            PID = getIntent().getStringExtra("UID");
+        if (TYPE.equals("user")) {
+            db.collection("USERS").document(UID).update("state", 1);
+            mUserModel.getPid("USERS", new UserModel.GetPidCallbackListener() {
+                @Override
+                public void onSuccess(String pid) {
+                    PID = pid;
+                    mDatabaseReference.child(pid).addChildEventListener(mChildEventListener);
+                }
+                @Override
+                public void onFail() {
+
+                }
+            });
+
+            db.collection("USERS").document(UID).collection("WITH").addSnapshotListener(new EventListener<QuerySnapshot>() {
+                @Override
+                public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                    if(queryDocumentSnapshots != null && queryDocumentSnapshots.isEmpty()){
+                        Intent intent = new Intent(MapsActivity.this, EndServiceActivity.class);
+                        intent.putExtra("TYPE", "user");
+                        db.collection("USERS").document(UID).update("state", 0);
+                        startActivity(intent);
+                    }
+
+                }
+            });
         }
+        else {
+            db.collection("PROTECTORS").document(UID).update("state", 1);
+        }
+
 
     }
 
     private void drawMarker(MapModel mMapModel) {
-        if (mMarker != null) mMarker.setPosition(new LatLng(mMapModel.getmLat(), mMapModel.getmLng()));
+        if (mMarker != null)
+            mMarker.setPosition(new LatLng(mMapModel.getmLat(), mMapModel.getmLng()));
         else {
             mMarker = mGoogleMap.addMarker(mMapController.createMaker(mMapModel));
         }
         mMapController.setOpponentLocation(mMapModel);
 
-        if(mMoveMapByFollower)
-            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mMapController.getOpponentLocation().getLatitude(),mMapController.getOpponentLocation().getLongitude()), 17));
+        if (mMoveMapByFollower)
+            mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mMapController.getOpponentLocation().getLatitude(), mMapController.getOpponentLocation().getLongitude()), 17));
     }
 
     @SuppressWarnings("MissingPermission")
@@ -246,8 +336,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 public void onCameraMoveStarted(int reason) {
                     if (reason == GoogleMap.OnCameraMoveStartedListener.REASON_GESTURE || reason == GoogleMap.OnCameraMoveStartedListener
                             .REASON_API_ANIMATION) {
-                            mMoveMapByUser = false;
-                            mMoveMapByFollower = false;
+                        mMoveMapByUser = false;
+                        mMoveMapByFollower = false;
 
                     }
                 }
