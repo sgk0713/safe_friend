@@ -2,9 +2,10 @@ package com.seoul_app_contest.safe_friend.splash;
 
 import com.seoul_app_contest.safe_friend.UserModel;
 
+
 public class SplashPresenter implements SplashContract.Presenter {
     SplashContract.View view;
-    UserModel model;
+    static public UserModel model;
 
     public SplashPresenter(SplashContract.View view) {
         this.view = view;

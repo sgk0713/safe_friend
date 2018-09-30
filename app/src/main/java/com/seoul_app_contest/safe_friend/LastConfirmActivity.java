@@ -7,11 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.seoul_app_contest.safe_friend.waitingncomfirm.WatingActivity;
-
-import org.w3c.dom.Text;
 
 public class LastConfirmActivity extends AppCompatActivity {
 

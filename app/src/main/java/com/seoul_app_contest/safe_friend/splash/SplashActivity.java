@@ -5,20 +5,15 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
-import android.text.style.ForegroundColorSpan;
-import android.widget.TextView;
-
 import com.seoul_app_contest.safe_friend.login.LoginActivity;
 import com.seoul_app_contest.safe_friend.main.MainActivity;
 import com.seoul_app_contest.safe_friend.R;
 import com.seoul_app_contest.safe_friend.map.MapsActivity;
 import com.seoul_app_contest.safe_friend.protector_main.ProtectorMainActivity;
 
+
+
 public class SplashActivity extends AppCompatActivity implements SplashContract.View{
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +21,7 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
         setContentView(R.layout.activity_splash);
         SplashContract.Presenter presenter = new SplashPresenter(this);
         presenter.checkRemote();
+
 //        TextView textView = findViewById(R.id.splash_tv);
 //        final SpannableStringBuilder sp = new SpannableStringBuilder("세이프랜드");
 //        sp.setSpan(new ForegroundColorSpan(getColor(R.color.title_green)), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -46,6 +42,9 @@ public class SplashActivity extends AppCompatActivity implements SplashContract.
     @Override
     public void redirectMainActivity() {
         Intent intent = new Intent(this, MainActivity.class);
+
+
+
         startActivity(intent);
         finish();
     }
