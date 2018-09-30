@@ -145,71 +145,135 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         Log.d("onCreate", "@@@@@@@@@@@@@");
 
         setContentView(R.layout.activity_map);
-        mUserModel = new UserModel();
-
-        mUserModel.getCurrentUserData("USERS", new UserModel.GetCurrentUserCallbackListener() {
-            @Override
-            public void getName(String name) {
-                USERNAME = name;
-            }
-
-            @Override
-            public void getGender(String gender) {
-
-            }
-
-            @Override
-            public void getBirthDay(String birthday) {
-
-            }
-
-            @Override
-            public void getAddress(String address) {
-
-            }
-
-            @Override
-            public void getPhoneNum(String phoneNum) {
-                PHONENO = phoneNum;
-            }
-
-            @Override
-            public void getProfile(String profile) {
-
-            }
-
-            @Override
-            public void getUseNum(int useNum) {
-
-            }
-
-            @Override
-            public void getLikeNum(int likeNum) {
-
-            }
-
-            @Override
-            public void getKindNum(int kindNum) {
-
-            }
-
-            @Override
-            public void getBestNum(int BsetNum) {
-
-            }
-
-            @Override
-            public void getLocation(String location) {
-                LOCATION = location;
-            }
-
-            @Override
-            public void getDto(UserDto userDto) {
-
-            }
-        });
-
         final String TYPE = getIntent().getStringExtra("TYPE");
+        mUserModel = new UserModel();
+        if(TYPE.equals("user")) {
+            mUserModel.getCurrentUserData("USERS", new UserModel.GetCurrentUserCallbackListener() {
+                @Override
+                public void getName(String name) {
+                    USERNAME = name;
+                }
+
+                @Override
+                public void getGender(String gender) {
+
+                }
+
+                @Override
+                public void getBirthDay(String birthday) {
+
+                }
+
+                @Override
+                public void getAddress(String address) {
+
+                }
+
+                @Override
+                public void getPhoneNum(String phoneNum) {
+                    PHONENO = phoneNum;
+                }
+
+                @Override
+                public void getProfile(String profile) {
+
+                }
+
+                @Override
+                public void getUseNum(int useNum) {
+
+                }
+
+                @Override
+                public void getLikeNum(int likeNum) {
+
+                }
+
+                @Override
+                public void getKindNum(int kindNum) {
+
+                }
+
+                @Override
+                public void getBestNum(int BsetNum) {
+
+                }
+
+                @Override
+                public void getLocation(String location) {
+                    LOCATION = location;
+                }
+
+                @Override
+                public void getDto(UserDto userDto) {
+
+                }
+            });
+        }else{
+            mUserModel.getCurrentUserData("PROTECTORS", new UserModel.GetCurrentUserCallbackListener() {
+                @Override
+                public void getName(String name) {
+                    USERNAME = name;
+                }
+
+                @Override
+                public void getGender(String gender) {
+
+                }
+
+                @Override
+                public void getBirthDay(String birthday) {
+
+                }
+
+                @Override
+                public void getAddress(String address) {
+
+                }
+
+                @Override
+                public void getPhoneNum(String phoneNum) {
+                    PHONENO = phoneNum;
+                }
+
+                @Override
+                public void getProfile(String profile) {
+
+                }
+
+                @Override
+                public void getUseNum(int useNum) {
+
+                }
+
+                @Override
+                public void getLikeNum(int likeNum) {
+
+                }
+
+                @Override
+                public void getKindNum(int kindNum) {
+
+                }
+
+                @Override
+                public void getBestNum(int BsetNum) {
+
+                }
+
+                @Override
+                public void getLocation(String location) {
+                    LOCATION = location;
+                }
+
+                @Override
+                public void getDto(UserDto userDto) {
+
+                }
+            });
+        }
+
+
         //테스트코드
         final UserModel mUserModel = new UserModel();
         UID = mUserModel.getUID();
@@ -271,6 +335,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     if(queryDocumentSnapshots != null && queryDocumentSnapshots.isEmpty()){
                         Intent intent = new Intent(MapsActivity.this, EndServiceActivity.class);
                         intent.putExtra("TYPE", "user");
+                        intent.putExtra("UID",UID);
                         db.collection("USERS").document(UID).update("state", 0);
                         startActivity(intent);
                     }
