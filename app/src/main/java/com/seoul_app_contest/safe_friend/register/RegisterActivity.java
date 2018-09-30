@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.seoul_app_contest.safe_friend.login.LoginActivity;
 import com.seoul_app_contest.safe_friend.R;
 import com.seoul_app_contest.safe_friend.dto.PostDto;
+import com.seoul_app_contest.safe_friend.map.SpinnerAdapter;
 import com.seoul_app_contest.safe_friend.postcode.PostcodeActivity;
 
 import butterknife.BindView;
@@ -52,8 +53,9 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
 
     @BindView(R.id.register_postcode_edt)
     EditText registerPostcodeEdt;
-    @BindView(R.id.register_address_edt)
-    EditText registerAddressEdt;
+//    @BindView(R.id.register_address_edt)
+//    EditText registerAddressEdt;
+    @BindView(R.id.register_location_sp)Spinner registerLocationSp;
 
     @OnClick(R.id.register_postcode_btn)
     void postcodeBtn() {
@@ -94,7 +96,8 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
             day = "0"+day;
         }
         presenter.setBirthDay(registerYearEdt.getText().toString(), month, day);
-        presenter.setAddress(registerPostcodeEdt.getText().toString() + " " + registerAddressEdt.getText().toString());
+//        presenter.setAddress(registerPostcodeEdt.getText().toString() + " " + registerAddressEdt.getText().toString());
+        presenter.setAddress(registerPostcodeEdt.getText().toString());
         presenter.signUp();
     }
 
@@ -125,6 +128,7 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
         sp.setSpan(new ForegroundColorSpan(getColor(R.color.title_blue)), 1, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         sp.setSpan(new ForegroundColorSpan(getColor(R.color.mainColor)), 2, 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         logoTv.append(sp);
+
 //        registerCountryCodeSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 //            @Override
 //            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -136,6 +140,20 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
 //
 //            }
 //        });
+        String[] data = {"동작구청", "서대문구청", "성동구청", "은평구청"};
+        SpinnerAdapter adapter = new SpinnerAdapter(this, data);
+        registerLocationSp.setAdapter(adapter);
+        registerLocationSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                presenter.setLocation(adapterView.getItemAtPosition(i).toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     @Override

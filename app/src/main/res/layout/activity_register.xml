@@ -26,7 +26,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         app:cardCornerRadius="8dp"
-        app:cardElevation="8dp">
+        app:cardElevation="4dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -66,9 +66,9 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="0.5dp"
                 android:layout_marginTop="8dp"
-                android:background="@color/black"/>
+                android:background="@color/lineColor"/>
 
             <EditText
                 android:id="@+id/register_password_edt"
@@ -83,9 +83,9 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="0.5dp"
                 android:layout_marginTop="8dp"
-                android:background="@color/black"/>
+                android:background="@color/lineColor"/>
 
             <EditText
                 android:id="@+id/register_password_confirm_edt"
@@ -107,7 +107,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         app:cardCornerRadius="8dp"
-        app:cardElevation="8dp">
+        app:cardElevation="2dp">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -128,9 +128,9 @@
             <View
                 android:id="@+id/view3"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="0.5dp"
                 android:layout_marginTop="8dp"
-                android:background="@color/black"
+                android:background="@color/lineColor"
                 app:layout_constraintTop_toBottomOf="@id/register_name_edt"/>
 
             <LinearLayout
@@ -145,21 +145,20 @@
                 <TextView
                     android:id="@+id/tv1"
 
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="성별"
                     android:theme="@style/RegisterTextTheme"/>
 
                 <View
-                    android:layout_width="1dp"
+                    android:layout_width="0.5dp"
                     android:layout_height="16dp"
-                    android:layout_marginStart="16dp"
-                    android:background="@color/black"/>
+                    android:background="@color/lineColor"/>
 
                 <RadioGroup
                     android:id="@+id/register_gender_rg"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="@dimen/buttonHeight"
                     android:layout_weight="2"
                     android:gravity="center_horizontal"
@@ -223,10 +222,10 @@
                     android:theme="@style/RegisterTextTheme"/>
 
                 <View
-                    android:layout_width="1dp"
+                    android:layout_width="0.5dp"
                     android:layout_height="16dp"
                     android:layout_marginStart="16dp"
-                    android:background="@color/black"/>
+                    android:background="@color/lineColor"/>
 
                 <EditText
                     android:id="@+id/register_month_edt"
@@ -242,10 +241,10 @@
                     android:theme="@style/RegisterTextTheme"/>
 
                 <View
-                    android:layout_width="1dp"
+                    android:layout_width="0.5dp"
                     android:layout_height="16dp"
                     android:layout_marginStart="16dp"
-                    android:background="@color/black"/>
+                    android:background="@color/lineColor"/>
 
                 <EditText
                     android:id="@+id/register_day_edt"
@@ -272,7 +271,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         app:cardCornerRadius="8dp"
-        app:cardElevation="8dp">
+        app:cardElevation="2dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -293,10 +292,6 @@
                     android:layout_height="wrap_content"
                     android:theme="@style/RegisterTextTheme"/>
 
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="16dp"
-                    android:background="@color/black"/>
 
                 <EditText
                     android:id="@+id/register_phone_num_edt"
@@ -325,9 +320,9 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="0.5dp"
                 android:layout_marginTop="8dp"
-                android:background="@color/black"/>
+                android:background="@color/lineColor"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -372,7 +367,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         app:cardCornerRadius="8dp"
-        app:cardElevation="8dp">
+        app:cardElevation="2dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -387,7 +382,6 @@
 
                 <EditText
                     android:id="@+id/register_postcode_edt"
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -405,23 +399,31 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="0.5dp"
                 android:layout_marginTop="8dp"
-                android:background="@color/black"/>
+                android:background="@color/lineColor"/>
 
             <LinearLayout
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp">
+                <TextView
+                    android:layout_weight="1"
+                    android:text="관리구청"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"/>
+                <Spinner
+                    android:layout_weight="2"
+                    android:id="@+id/register_location_sp"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/dialog_cancel_spinner"
+                    android:spinnerMode="dropdown"
+                    android:overlapAnchor="false"/>
 
-                <EditText
-                    android:id="@+id/register_address_edt"
 
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/buttonHeight"
-                    android:background="@android:color/transparent"
-                    android:hint="주소"
-                    android:theme="@style/RegisterTextTheme"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -449,6 +451,7 @@
             android:theme="@style/RegisterTextTheme"/>
 
         <ImageButton
+            android:id="@+id/register_use_agree_ib"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_chevron_right_black_24dp"/>
@@ -476,6 +479,7 @@
             android:theme="@style/RegisterTextTheme"/>
 
         <ImageButton
+            android:id="@+id/register_privacy_agree_ib"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_chevron_right_black_24dp"/>
@@ -485,8 +489,8 @@
 
     <Button
         android:id="@+id/register_confirm_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/buttonWidth"
+        android:layout_height="@dimen/buttonHeight"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/button_background"
         android:enabled="false"

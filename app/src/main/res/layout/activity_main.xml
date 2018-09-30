@@ -87,7 +87,7 @@
 
             <Button
                 android:id="@+id/main_call_btn"
-                android:layout_width="90dp"
+                android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:background="@drawable/ic_call"
                 app:layout_constraintBottom_toBottomOf="parent"

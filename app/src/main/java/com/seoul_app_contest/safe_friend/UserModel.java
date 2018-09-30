@@ -46,6 +46,7 @@ public class UserModel {
     String address;
     String phoneNum;
     String authNum;
+    String location;
     int state;
     String countryCode;
     boolean checkUseAgree = false;
@@ -176,7 +177,7 @@ public class UserModel {
         Log.d("BEOM123", "checkPrivacyAgree : " + checkPrivacyAgree);
         return email != null && password != null && passwordConfirm != null && name != null &&
                 birthDay != null && gender != null && address != null
-                && phoneNum != null && authNum != null;
+                && phoneNum != null && authNum != null && location != null;
     }
 
     public boolean checkBirthDay() {
@@ -379,7 +380,7 @@ public class UserModel {
 
     public void addFirestore(final AddFirestoreCallbackListener addFirestoreCallbackListener) {
         this.uid = firebaseAuth.getCurrentUser().getUid();
-        firestore.document(uid).set(new UserDto(uid, email, name, birthDay, gender, address, phoneNum, 0)).addOnCompleteListener(new OnCompleteListener<Void>() {
+        firestore.document(uid).set(new UserDto(uid, email, name, birthDay, gender, address, phoneNum,location, 0)).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 addFirestoreCallbackListener.onSuccess();
@@ -555,5 +556,13 @@ public class UserModel {
 
     public interface SendPasswordResetEmailCallbackListener{
         void onSuccess();
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getLocation() {
+        return location;
     }
 }
