@@ -100,9 +100,12 @@ public class ProtectorMainActivity extends AppCompatActivity implements Navigati
         db.collection("WAITING_LIST").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                arrayList.clear();
                 if (queryDocumentSnapshots != null && !queryDocumentSnapshots.isEmpty()) {
                     for(DocumentSnapshot snapshot:queryDocumentSnapshots.getDocuments()) {
-                        if(chargeStreet.equals(snapshot.getString("street"))) {
+                        String tmp = snapshot.getString("street");
+                        Log.d(TAG, "tmp:"+tmp);
+                        if(tmp != null && tmp.equals(chargeStreet)) {
                             arrayList.add(snapshot.toObject(RequestModel.class));
                         }
                     }

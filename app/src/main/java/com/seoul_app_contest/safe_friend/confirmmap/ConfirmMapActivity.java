@@ -61,6 +61,7 @@ public class ConfirmMapActivity extends AppCompatActivity implements OnMapReadyC
         findViewById(R.id.confirmMapSearch).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                markerOptionList.clear();
                 ConfirmMarkerOption curruentMarker = new ConfirmMarkerOption(currentMarker.getPosition(),currentMarker.getTitle(),currentMarker.getSnippet(), line,true);
                 markerOptionList.add(curruentMarker);
                 mGoogleMap.clear();
@@ -75,7 +76,7 @@ public class ConfirmMapActivity extends AppCompatActivity implements OnMapReadyC
                         currentMarker = temp;
                 }
 
-                markerOptionList.clear();
+
 
             }
         });
@@ -87,6 +88,7 @@ public class ConfirmMapActivity extends AppCompatActivity implements OnMapReadyC
         confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if((street=getStreetAddress(currentPostion.latitude, currentPostion.longitude)) == null){
                     for(ConfirmMarkerOption option:markerOptionList) {
                         if ((street = getStreetAddress(option.getMarkerOptions().getPosition().latitude, option.getMarkerOptions().getPosition().longitude)) != null){
@@ -169,7 +171,7 @@ public class ConfirmMapActivity extends AppCompatActivity implements OnMapReadyC
             }
         }
 
-        markerOptionList.clear();
+
 
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(currentPostion));
         mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(17));
