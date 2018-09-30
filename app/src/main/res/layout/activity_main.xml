@@ -39,51 +39,53 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
             <TextView
-                android:textSize="18sp"
                 android:id="@+id/main_tv"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/main_app_btn"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:text="안심귀가서비스"
-                android:fontFamily="@font/nanumsquare_r"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanumsquare_r"
+                android:text="안심귀가서비스"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toTopOf="@id/main_app_btn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.31"/>
+
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/nanumsquare_eb"
-                android:textSize="30sp"
-                android:textStyle="bold"
-                android:textColor="@color/mainColor"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/main_tv"
                 android:text="신청하기"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-            
+                android:textColor="@color/mainColor"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/main_tv"/>
+
             <Button
                 android:id="@+id/main_app_btn"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:background="@drawable/ic_apply_app"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/main_call_btn"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/main_call_btn"
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/nanumsquare_b"
+                android:text="바로신청"
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:text="바로신청"
-                android:fontFamily="@font/nanumsquare_b"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/main_app_btn"
+                app:layout_constraintEnd_toEndOf="@id/main_app_btn"
                 app:layout_constraintStart_toStartOf="@id/main_app_btn"
-                app:layout_constraintEnd_toEndOf="@id/main_app_btn"/>
+                app:layout_constraintTop_toBottomOf="@id/main_app_btn"/>
 
             <Button
                 android:id="@+id/main_call_btn"
@@ -91,22 +93,22 @@
                 android:layout_height="100dp"
                 android:background="@drawable/ic_call"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/main_app_btn"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/nanumsquare_b"
+                android:text="전화신청"
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:text="전화신청"
-                android:fontFamily="@font/nanumsquare_b"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/main_call_btn"
+                app:layout_constraintEnd_toEndOf="@id/main_call_btn"
                 app:layout_constraintStart_toStartOf="@id/main_call_btn"
-                app:layout_constraintEnd_toEndOf="@id/main_call_btn"/>
+                app:layout_constraintTop_toBottomOf="@id/main_call_btn"/>
 
         </android.support.constraint.ConstraintLayout>
 
@@ -114,10 +116,10 @@
 
 
     <android.support.design.widget.NavigationView
-        android:layoutDirection="ltr"
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
+        android:layoutDirection="ltr"
         app:headerLayout="@layout/nav_header"/>
 </android.support.v4.widget.DrawerLayout>

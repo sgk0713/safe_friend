@@ -44,7 +44,7 @@
         <item name="android:layout_marginStart">16dp</item>
         <item name="android:layout_marginEnd">16dp</item>
     </style>
-    <dimen name="toolbarHeight">64dp</dimen>
+    <dimen name="toolbarHeight">80dp</dimen>
     <dimen name="followerBtnTextSize">5dp</dimen>
     <dimen name="followerBtnMargin">10dp</dimen>
     <dimen name="buttonWidth">124dp</dimen>
@@ -57,4 +57,23 @@
     <dimen name="button_margin_bottom">92dp</dimen>
     <style name="spinnerDropDownItemStyle" parent="android:TextAppearance.Widget.TextView.SpinnerItem"/>
     <style name="spinnerItemStyle" parent="android:Widget.TextView.SpinnerItem"/>
+
+    <style name="mainTitleSmall">
+        <item name="android:fontFamily">@font/nanumsquare_r</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="mainTitleBig">
+        <item name="android:fontFamily">@font/nanumsquare_eb</item>
+        <item name="android:textSize">40sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/mainColor</item>
+    </style>
+
+    <style name="toolbarText">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/nanumsquare_eb</item>
+    </style>
+
+
 </resources>
