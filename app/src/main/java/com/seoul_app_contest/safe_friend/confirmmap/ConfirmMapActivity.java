@@ -9,6 +9,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -51,6 +52,15 @@ public class ConfirmMapActivity extends AppCompatActivity implements OnMapReadyC
         Log.d("onCreate", "@@@@@@@@@@@@@");
 
         setContentView(R.layout.activity_confirmmap);
+        findViewById(R.id.map_activity_layout).setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                ((Button)findViewById(R.id.confirmMapSearchButton)).setVisibility(View.VISIBLE);
+                return false;
+            }
+        });
+
+        ((Button)findViewById(R.id.confirmMapSearchButton)).setVisibility(View.GONE);
 
         markerOptionList = new ArrayList<ConfirmMarkerOption>();
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.confirmMap);
@@ -178,12 +188,8 @@ public class ConfirmMapActivity extends AppCompatActivity implements OnMapReadyC
 
         //mGoogleMap.setMaxZoomPreference(17);
         mGoogleMap.setMinZoomPreference(17);
-        mGoogleMap.setOnCameraMoveListener(new GoogleMap.OnCameraMoveListener() {
-            @Override
-            public void onCameraMove() {
-                findViewById(R.id.confirmMapSearchButton).setVisibility(View.VISIBLE);
-            }
-        });
+
+
         mGoogleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
@@ -250,5 +256,7 @@ public class ConfirmMapActivity extends AppCompatActivity implements OnMapReadyC
         }
         return result;
     }//getAddress() end
+
+
 
 }

@@ -19,6 +19,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -136,6 +137,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         Log.d("onCreate", "@@@@@@@@@@@@@");
 
         setContentView(R.layout.activity_map);
+
         //final String TYPE = getIntent().getStringExtra("TYPE");
         //테스트코드
         final String TYPE = "user";
