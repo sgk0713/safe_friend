@@ -219,7 +219,7 @@
                     android:hint="년"
                     android:inputType="numberDecimal"
                     android:maxLength="4"
-                    android:theme="@style/RegisterTextTheme"/>
+                    android:theme="@style/RegisterHintTheme"/>
 
                 <View
                     android:layout_width="0.5dp"
@@ -238,7 +238,7 @@
                     android:hint="월"
                     android:inputType="numberDecimal"
                     android:maxLength="2"
-                    android:theme="@style/RegisterTextTheme"/>
+                    android:theme="@style/RegisterHintTheme"/>
 
                 <View
                     android:layout_width="0.5dp"
@@ -257,7 +257,7 @@
                     android:hint="일"
                     android:inputType="numberDecimal"
                     android:maxLength="2"
-                    android:theme="@style/RegisterTextTheme"/>
+                    android:theme="@style/RegisterHintTheme"/>
             </LinearLayout>
 
 
@@ -303,7 +303,7 @@
                     android:background="@android:color/transparent"
                     android:hint="01012345678"
                     android:inputType="numberDecimal"
-                    android:theme="@style/RegisterTextTheme"/>
+                    android:theme="@style/RegisterHintTheme"/>
 
                 <Button
                     android:id="@+id/register_phone_num_btn"
