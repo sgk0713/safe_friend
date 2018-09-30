@@ -48,8 +48,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
         android:orientation="vertical"
-        android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -65,7 +65,7 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:src="@drawable/ic_profile"
-                app:layout_constraintStart_toStartOf="parent"/>
+                app:layout_constraintStart_toStartOf="parent" />
 
 
             <ImageView
@@ -73,41 +73,43 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:src="@drawable/ic_profile"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent" />
         </android.support.constraint.ConstraintLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp">
+
             <TextView
                 android:id="@+id/qweqwe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nanumsquare_b"
                 android:layout_centerHorizontal="true"
-                android:text="데리러 오실 지킴이님"/>
+                android:fontFamily="@font/nanumsquare_r"
+                android:text="데리러 오실 지킴이님" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@id/qweqwe">
+                android:layout_below="@id/qweqwe"
+                android:layout_centerHorizontal="true">
 
                 <TextView
                     android:id="@+id/followerAName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumsquare_eb"
                     android:layout_marginHorizontal="10dp"
-                    android:text="김한솔"/>
+                    android:fontFamily="@font/nanumsquare_eb"
+                    android:text="김한솔" />
 
                 <TextView
                     android:id="@+id/followerBName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanumsquare_eb"
                     android:layout_marginHorizontal="10dp"
-                    android:text="정희연"/>
+                    android:fontFamily="@font/nanumsquare_eb"
+                    android:text="정희연" />
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
@@ -117,6 +119,7 @@
         android:layout_width="@dimen/buttonWidth"
         android:layout_height="@dimen/buttonHeight"
         android:text="지킴이 위치확인"
+        android:fontFamily="@font/nanumsquare_b"
         android:background="@drawable/button_rounded"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
