@@ -31,6 +31,7 @@
     </style>
 
     <style name="LoginBtn">
+        <item name="android:fontFamily">@font/nanumsquare_b</item>
         <item name="android:text">@string/login_text</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/black</item>

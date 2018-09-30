@@ -9,12 +9,12 @@
     android:padding="32dp"
     tools:context=".login.LoginActivity">
 
-    <TextView
+    <ImageView
+        android:src="@drawable/ic_splash_logo"
         android:id="@+id/login_logo_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:textSize="50sp"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        app:layout_constraintBottom_toTopOf="@id/login_user_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:background="@drawable/selected_login_button"
-        android:drawableStart="@drawable/ic_chevron_right_black_24dp"
+        android:drawableStart="@drawable/left_line"
         android:gravity="start|center_vertical"
         android:paddingStart="16dp"
         android:stateListAnimator="@null"
@@ -57,6 +57,8 @@
         android:id="@+id/card_view"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +68,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:paddingTop="32dp"
+            android:paddingBottom="32dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
 
             <EditText
                 android:id="@+id/login_email_edt"
@@ -121,9 +126,9 @@
         android:stateListAnimator="@null"
         android:textColor="@color/white"
         android:theme="@style/LoginBtn"
-        app:layout_constraintBottom_toTopOf="@id/login_register_btn"
+        android:layout_marginBottom="@dimen/button_margin_bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card_view"/>
+        app:layout_constraintStart_toStartOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

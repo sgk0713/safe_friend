@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
@@ -8,51 +9,56 @@
     android:padding="32dp">
 
     <LinearLayout
-        android:orientation="vertical"
+        android:id="@+id/email_find_linear"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:fontFamily="@font/nanumgothic_b"
-            android:background="@android:color/transparent"
             android:id="@+id/find_email_name_edt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/nanumgothic_b"
             android:hint="이름"/>
 
         <View
-            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
+            android:layout_marginTop="8dp"
             android:background="@color/lineColor"/>
     </LinearLayout>
 
     <LinearLayout
-        android:gravity="center_vertical"
+        android:id="@+id/email_find_linear2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:orientation="horizontal">
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/email_find_linear">
 
         <LinearLayout
-            android:layout_marginRight="8dp"
-            android:orientation="vertical"
-            android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <EditText
-                android:background="@android:color/transparent"
-                android:fontFamily="@font/nanumgothic_b"
                 android:id="@+id/find_email_phone_num_edt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/nanumgothic_b"
                 android:hint="휴대전화번호입력( - 제외 )"/>
 
             <View
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
+                android:layout_marginTop="8dp"
                 android:background="@color/lineColor"/>
         </LinearLayout>
 
@@ -62,39 +68,42 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/registerButtonHeight"
             android:background="@drawable/button_background"
-            android:text="인증번호전송"
             android:fontFamily="@font/nanumgothic_b"
-            android:textSize="11sp"
-            android:textColor="@color/white"/>
+            android:text="인증번호전송"
+            android:textColor="@color/white"
+            android:textSize="11sp"/>
     </LinearLayout>
 
     <LinearLayout
-        android:gravity="center_vertical"
+        android:id="@+id/email_find_linear3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:orientation="horizontal">
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/email_find_linear2">
 
         <LinearLayout
 
-            android:layout_marginRight="8dp"
-            android:orientation="vertical"
-            android:gravity="center_vertical"
-            android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
             <EditText
-                android:background="@android:color/transparent"
                 android:id="@+id/find_email_auth_num_edt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/nanumgothic_b"
                 android:hint="인증번호입력"/>
 
             <View
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
+                android:layout_marginTop="8dp"
                 android:background="@color/lineColor"/>
         </LinearLayout>
 
@@ -104,17 +113,22 @@
             android:layout_width="wrap_content"
             android:layout_height="@dimen/registerButtonHeight"
             android:background="@drawable/button_background"
+            android:fontFamily="@font/nanumgothic_b"
             android:text="확인"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white"
+            android:textSize="11sp"/>
     </LinearLayout>
 
     <Button
-        android:layout_marginTop="128dp"
         android:id="@+id/find_email_confirm_btn"
         android:layout_width="@dimen/buttonWidth"
         android:layout_height="@dimen/buttonHeight"
+        android:layout_marginBottom="@dimen/button_margin_bottom"
         android:background="@drawable/button_background"
         android:text="아이디 찾기"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
-</LinearLayout>
+</android.support.constraint.ConstraintLayout>

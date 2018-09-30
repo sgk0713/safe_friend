@@ -1,6 +1,7 @@
 package com.seoul_app_contest.safe_friend.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -20,6 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.seoul_app_contest.safe_friend.R;
 import com.seoul_app_contest.safe_friend.RequestModel;
 import com.seoul_app_contest.safe_friend.dto.UserDto;
+import com.seoul_app_contest.safe_friend.map.MapsActivity;
 
 import java.util.ArrayList;
 
@@ -71,6 +73,9 @@ public class ProtectorRecyclerViewAdapter extends RecyclerView.Adapter<Protector
 
                 FirebaseFirestore.getInstance().collection("WAITING_LIST").document(arrayList.get(i).getUid()).update("pUid", FirebaseAuth.getInstance().getCurrentUser().getUid());
                 FirebaseFirestore.getInstance().collection("WAITING_LIST").document(arrayList.get(i).getUid()).update("isWaiting", false);
+
+                Intent intent = new Intent(context, MapsActivity.class);
+                context.startActivity(intent);
             }
         });
     }

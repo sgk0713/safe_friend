@@ -27,7 +27,6 @@ public class LoginActivity extends AppCompatActivity implements com.seoul_app_co
     private com.seoul_app_contest.safe_friend.login.LoginContract.Presenter presenter;
     @BindView(R.id.login_user_btn)Button userBtn;
     @BindView(R.id.login_protector_btn)Button protectorBtn;
-    @BindView(R.id.login_logo_tv)TextView loginLogoTv;
 
     @OnClick({R.id.login_user_btn, R.id.login_protector_btn})void loginModeBtn(View view){
         presenter.changeLoginMode(view.getId());
@@ -52,11 +51,11 @@ public class LoginActivity extends AppCompatActivity implements com.seoul_app_co
 
     private void init() {
         ButterKnife.bind(this);
-        final SpannableStringBuilder sp = new SpannableStringBuilder("세이프랜드");
-        sp.setSpan(new ForegroundColorSpan(getColor(R.color.title_green)), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        sp.setSpan(new ForegroundColorSpan(getColor(R.color.title_blue)), 1, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        sp.setSpan(new ForegroundColorSpan(getColor(R.color.mainColor)), 2, 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        loginLogoTv.append(sp);
+//        final SpannableStringBuilder sp = new SpannableStringBuilder("세이프랜드");
+//        sp.setSpan(new ForegroundColorSpan(getColor(R.color.title_green)), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        sp.setSpan(new ForegroundColorSpan(getColor(R.color.title_blue)), 1, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        sp.setSpan(new ForegroundColorSpan(getColor(R.color.mainColor)), 2, 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        loginLogoTv.append(sp);
         final EditText emailEdt = findViewById(R.id.login_email_edt);
         final EditText passwordEdt = findViewById(R.id.login_password_edt);
         Button registerBtn = findViewById(R.id.login_register_btn);
