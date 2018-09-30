@@ -44,7 +44,7 @@
         <item name="android:layout_marginStart">16dp</item>
         <item name="android:layout_marginEnd">16dp</item>
     </style>
-
+    <dimen name="toolbarHeight">64dp</dimen>
     <dimen name="followerBtnTextSize">5dp</dimen>
     <dimen name="followerBtnMargin">10dp</dimen>
     <dimen name="buttonWidth">124dp</dimen>

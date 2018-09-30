@@ -19,6 +19,10 @@ public class UserDto {
     public UserDto() {
     }
 
+    public String getLocation() {
+        return location;
+    }
+
     public UserDto(String uid, String email, String name, String birthDay, String gender, String address, String phoneNum, String location, int state) {
         this.uid = uid;
         this.email = email;

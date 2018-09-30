@@ -180,6 +180,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/profile_address_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -233,26 +234,59 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/nanumsquare_b"
-                    android:text="번호"
+                    android:text="관할구역"
                     android:theme="@style/RegisterTextTheme"/>
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2">
 
+                    <EditText
+                        android:id="@+id/profile_location_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:enabled="false"
+                        android:fontFamily="@font/nanumsquare_l"
+                        android:text="경기도 안산시 상록구 사동"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nanumsquare_b"
+                    android:text="번호"
+                    android:theme="@style/RegisterTextTheme"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
                     <LinearLayout
-                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
                         <EditText
                             android:id="@+id/profile_phone_num_tv"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@android:color/transparent"
                             android:enabled="false"
                             android:fontFamily="@font/nanumsquare_l"
                             android:text="010-2434-7280"/>
@@ -263,13 +297,7 @@
                             android:layout_height="@dimen/buttonHeight"
                             android:background="@drawable/button_background"
                             android:text="인증번호 발송"
-                            android:visibility="visible"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-
+                            android:visibility="gone"/>
                     </LinearLayout>
 
                 </LinearLayout>
@@ -284,18 +312,21 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:visibility="visible">
+
                 <TextView
-                    android:layout_weight="1"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
 
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2">
 
                     <EditText
+                        android:hint="인증번호 입"
                         android:id="@+id/profile_auth_num_edt"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -316,12 +347,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="32dp"
-                android:background="@color/black"/>
+                android:background="@color/lineColor"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 android:orientation="horizontal">
 
                 <TextView

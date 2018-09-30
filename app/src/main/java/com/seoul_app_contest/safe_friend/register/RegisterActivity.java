@@ -1,7 +1,9 @@
 package com.seoul_app_contest.safe_friend.register;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Spannable;
@@ -28,7 +30,7 @@ import butterknife.OnClick;
 public class RegisterActivity extends AppCompatActivity implements RegisterContract.View {
 
     PostDto postDto;
-    @BindView(R.id.register_logo_tv)TextView logoTv;
+//    @BindView(R.id.register_logo_tv)TextView logoTv;
 
     @BindView(R.id.register_email_edt)
     EditText registerEmailEdt;
@@ -111,6 +113,29 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
         presenter.checkAuthNum(registerAuthNumEdt.getText().toString());
     }
 
+    @OnClick(R.id.register_use_agree_ib)void useAgreeIb() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("이용약관동의")
+                .setMessage("~~")
+                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+    }
+    @OnClick(R.id.register_privacy_agree_ib)void privacyAgreeIb() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("개인정보활용동의")
+                .setMessage("~~")
+                .setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                });
+    }
+
     RegisterContract.Presenter presenter;
 
     @Override
@@ -123,11 +148,11 @@ public class RegisterActivity extends AppCompatActivity implements RegisterContr
     private void init() {
         presenter = new RegisterPresenter(this);
         ButterKnife.bind(this);
-        final SpannableStringBuilder sp = new SpannableStringBuilder("세이프랜드");
-        sp.setSpan(new ForegroundColorSpan(getColor(R.color.title_green)), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        sp.setSpan(new ForegroundColorSpan(getColor(R.color.title_blue)), 1, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        sp.setSpan(new ForegroundColorSpan(getColor(R.color.mainColor)), 2, 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        logoTv.append(sp);
+//        final SpannableStringBuilder sp = new SpannableStringBuilder("세이프랜드");
+//        sp.setSpan(new ForegroundColorSpan(getColor(R.color.title_green)), 0, 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        sp.setSpan(new ForegroundColorSpan(getColor(R.color.title_blue)), 1, 2, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        sp.setSpan(new ForegroundColorSpan(getColor(R.color.mainColor)), 2, 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        logoTv.append(sp);
 
 //        registerCountryCodeSp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 //            @Override
