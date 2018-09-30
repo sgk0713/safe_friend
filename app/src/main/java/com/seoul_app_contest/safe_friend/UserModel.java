@@ -134,6 +134,7 @@ public class UserModel {
         firestore.document(firebaseAuth.getCurrentUser().getUid()).collection("WITH").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
                 getPidCallbackListener.onSuccess(task.getResult().getDocuments().get(0).getId());
 //                pid = task.getResult().getDocuments().get(0).getId();
             }
