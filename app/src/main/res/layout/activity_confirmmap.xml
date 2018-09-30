@@ -13,16 +13,17 @@
         android:layout_height="match_parent" />
 
     <Button
-        android:id="@+id/confirmMapSearch"
+        android:id="@+id/confirmMapSearchButton"
         android:layout_width="@dimen/buttonWidth"
         android:layout_height="@dimen/buttonHeight"
+        android:visibility="gone"
         android:text="현 지도에서 검색"
         android:fontFamily="@font/nanumsquare_b"
         android:background="@drawable/button_search"
-        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintBottom_toTopOf="@id/mapBottombar"/>
 
     <android.support.constraint.Guideline
         android:id="@+id/mainMapBottomBarGuideline"

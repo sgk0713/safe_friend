@@ -230,7 +230,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (mLocationPermssionGranted) {
             mGoogleMap.setMyLocationEnabled(true);
             mGoogleMap.getUiSettings().setMyLocationButtonEnabled(true);
-
+            mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(17));
             mGoogleMap.setOnCameraMoveStartedListener(new GoogleMap.OnCameraMoveStartedListener() {
                 @Override
                 public void onCameraMoveStarted(int reason) {

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.location.Location;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.GoogleMap;
@@ -25,12 +27,24 @@ abstract class MapController {
     protected Activity mActivity = null;
 
     MapController(Context context){
+
         mContext = context;
         mActivity = (Activity)mContext;
         mClientLocation.setLatitude(0.0);
         markerOptions = new MarkerOptions();
         markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker_on_map_40));
         markerOptions.draggable(true);
+        int imageViewHeight = mActivity.findViewById(R.id.mapBottomBarInfo_B).getHeight();
+        ((ImageButton)mActivity.findViewById(R.id.mapBottomBarInfo_B_CallButton)).setMaxHeight(imageViewHeight);
+        ((ImageButton)mActivity.findViewById(R.id.mapBottomBarInfo_B_CallButton)).setMaxWidth(imageViewHeight);
+        ((ImageButton)mActivity.findViewById(R.id.mapBottomBarInfo_A_CallButton)).setMaxHeight(imageViewHeight);
+        ((ImageButton)mActivity.findViewById(R.id.mapBottomBarInfo_A_CallButton)).setMaxWidth(imageViewHeight);
+
+        ((ImageButton)mActivity.findViewById(R.id.mapBottomBarInfo_B_CallButton)).setMinimumHeight(imageViewHeight);
+        ((ImageButton)mActivity.findViewById(R.id.mapBottomBarInfo_B_CallButton)).setMinimumWidth(imageViewHeight);
+        ((ImageButton)mActivity.findViewById(R.id.mapBottomBarInfo_A_CallButton)).setMinimumHeight(imageViewHeight);
+        ((ImageButton)mActivity.findViewById(R.id.mapBottomBarInfo_A_CallButton)).setMinimumWidth(imageViewHeight);
+
     }
 
     //상대방 위치에 마커를 찍어줘야함.
