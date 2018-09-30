@@ -7,14 +7,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.seoul_app_contest.safe_friend.R;
 
 public class WatingFragment extends Fragment {
     View mView;
+    private ImageView imgAndroid,imgAndroid2,imgAndroid3,imgAndroid4;
+    private Animation anim,anim2,anim3,anim4;
+
     public WatingFragment(){}
 
     @Nullable
@@ -22,7 +27,87 @@ public class WatingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_waiting,container,false);
         mView = view;
-        Glide.with(this).load(R.drawable.ic_wating_animation_loading).into((ImageView) view.findViewById(R.id.watingGIFImageView));
+        AnimationSet set = new AnimationSet(true);
+
+        imgAndroid = mView.findViewById(R.id.firstLoading);
+        anim = AnimationUtils.loadAnimation(view.getContext(), R.anim.loading_first);
+        anim.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                imgAndroid2.startAnimation(anim2);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        imgAndroid.setAnimation(anim);
+
+        imgAndroid2 = mView.findViewById(R.id.secondLoading);
+        anim2 = AnimationUtils.loadAnimation(view.getContext(), R.anim.loading_second);
+        anim2.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                imgAndroid3.startAnimation(anim3);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+
+        imgAndroid3 = mView.findViewById(R.id.thridLoading);
+        anim3 = AnimationUtils.loadAnimation(view.getContext(), R.anim.loading_third);
+        anim3.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                imgAndroid4.startAnimation(anim4);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
+
+        imgAndroid4 = mView.findViewById(R.id.lastLoading);
+        anim4 = AnimationUtils.loadAnimation(view.getContext(), R.anim.loading_last);
+        anim4.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                imgAndroid.startAnimation(anim);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+
         Button watingButtnon = view.findViewById(R.id.watingButton);
         watingButtnon.setOnClickListener(new View.OnClickListener() {
             @Override

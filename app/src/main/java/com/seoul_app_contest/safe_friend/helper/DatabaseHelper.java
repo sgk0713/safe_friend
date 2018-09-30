@@ -10,7 +10,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
+//0 - primarykey autoincrement(integer)
+//1 - stop_no 정류장 번호(string)
+// 2 - stop_nm 정류장 이름(string)
+//3 - xcode(float)
+//4 - ycode(flaot)
+// 5 - line **몇호선인지 subwayinfo테이블에만 해당됨
 public class DatabaseHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
