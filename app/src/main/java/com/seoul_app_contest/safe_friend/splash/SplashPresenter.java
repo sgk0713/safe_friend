@@ -41,7 +41,7 @@ public class SplashPresenter implements SplashContract.Presenter {
 
                         @Override
                         public void onProgress() {
-                            view.redirectMapsActivity();
+                            view.redirectMapsActivity("follower");
                         }
                     });
                 }
@@ -56,7 +56,7 @@ public class SplashPresenter implements SplashContract.Presenter {
 
                         @Override
                         public void onProgress() {
-                            view.redirectMapsActivity();
+                            view.redirectMapsActivity("user");
                         }
                     });
                 }

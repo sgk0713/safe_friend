@@ -6,7 +6,7 @@ public interface SplashContract {
         void redirectMainActivity();
         void redirectProtectorMainActivity();
         void showDialog(String title, String msg);
-        void redirectMapsActivity();
+        void redirectMapsActivity(String type);
     }
     interface Presenter{
         void checkRemote();

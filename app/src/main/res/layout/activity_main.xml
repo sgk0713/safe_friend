@@ -66,7 +66,7 @@
 
             <Button
 
-                app:layout_constraintVertical_bias="0.475"
+
                 android:id="@+id/main_app_btn"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
@@ -79,7 +79,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/nanumsquare_b"
                 android:text="바로신청"
                 android:textColor="@color/black"
