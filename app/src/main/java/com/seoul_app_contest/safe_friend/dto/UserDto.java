@@ -9,6 +9,7 @@ public class UserDto {
     String address;
     String phoneNum;
     String profile;
+    String location;
     int state;
     int useNum;
     int likeNum;
@@ -18,7 +19,7 @@ public class UserDto {
     public UserDto() {
     }
 
-    public UserDto(String uid, String email, String name, String birthDay, String gender, String address, String phoneNum, int state) {
+    public UserDto(String uid, String email, String name, String birthDay, String gender, String address, String phoneNum, String location, int state) {
         this.uid = uid;
         this.email = email;
         this.name = name;
@@ -29,6 +30,7 @@ public class UserDto {
         this.state = state;
         this.useNum = 0;
         this.profile = "";
+        this.location = location;
     }
 
     public String getProfile() {

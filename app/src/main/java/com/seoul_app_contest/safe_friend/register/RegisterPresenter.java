@@ -162,4 +162,9 @@ public class RegisterPresenter implements RegisterContract.Presenter {
     public void setCountryCode(String countryCode) {
         model.setCountryCode(countryCode);
     }
+
+    @Override
+    public void setLocation(String location) {
+        model.setLocation(location);
+    }
 }

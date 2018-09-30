@@ -22,6 +22,7 @@ public interface RegisterContract {
         void setPasswordConfirm(String passwordConfirm);
         void setAddress(String address);
         void setCountryCode(String countryCode);
+        void setLocation(String location);
 
     }
 }
