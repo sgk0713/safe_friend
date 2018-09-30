@@ -67,8 +67,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     private String USERNAME,PHONENO,LOCATION;
     private String TYPE;
-    private UserDto mUserDto = null;
-    private UserModel mUserModel = null;
     private boolean mMoveMapByUser = false;
     private boolean mMoveMapByFollower = false;
 
@@ -128,7 +126,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             if(mMoveMapByUser)
                 mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mMapController.getLocation().getLatitude(),mMapController.getLocation().getLongitude()), 17));
-            mDatabaseReference.child(mUserDto.getUid() + "/Location").setValue(new MapModel(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()));
+            mDatabaseReference.child("123" + "/Location").setValue(new MapModel(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()));
         }
     };
 
@@ -140,97 +138,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         Log.d("onCreate", "@@@@@@@@@@@@@");
 
         setContentView(R.layout.activity_map);
-        mUserModel = new UserModel();
 
-        mUserModel.isUser(mUserModel.getCurrentUserEmail(), new UserModel.IsUserCallbackListener() {
-            @Override
-            public void exist() {
-                TYPE = "user";
-            }
-
-            @Override
-            public void notExist() {
-
-            }
-        });
-
-        mUserModel.isProtector(mUserModel.getCurrentUserEmail(), new UserModel.IsProtectorCallbackListener() {
-                    @Override
-                    public void exist() {
-                        TYPE = "follower";
-                    }
-
-                    @Override
-                    public void notExist() {
-
-                    }
-                }
-
-        );
-        mUserModel.getPid(mUserModel.getCurrentUserEmail());
-        mUserModel.getCurrentUserData(mUserModel.getCurrentUserEmail(), new UserModel.GetCurrentUserCallbackListener() {
-            @Override
-            public void getName(String name) {
-
-            }
-
-            @Override
-            public void getGender(String gender) {
-
-            }
-
-            @Override
-            public void getBirthDay(String birthday) {
-
-            }
-
-            @Override
-            public void getAddress(String address) {
-
-            }
-
-            @Override
-            public void getPhoneNum(String phoneNum) {
-
-            }
-
-            @Override
-            public void getProfile(String profile) {
-
-            }
-
-            @Override
-            public void getUseNum(int useNum) {
-
-            }
-
-            @Override
-            public void getLikeNum(int likeNum) {
-
-            }
-
-            @Override
-            public void getKindNum(int kindNum) {
-
-            }
-
-            @Override
-            public void getBestNum(int BsetNum) {
-
-            }
-
-            @Override
-            public void getLocation(String location) {
-
-            }
-
-            @Override
-            public void getDto(UserDto userDto) {
-             mUserDto = userDto;
-            }
-        });
-
-        //final String TYPE = getIntent().getStringExtra("TYPE");
+        final String TYPE = getIntent().getStringExtra("TYPE");
         //테스트코드
 
         TextView tobBarTextView = findViewById(R.id.topBarTextView);
@@ -285,7 +194,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onResume() {
         super.onResume();
         Log.d("onResume", "@@@@@@@@@@@@@");
-        mDatabaseReference.child(mUserModel.getPid()).addChildEventListener(mChildEventListener);
+        mDatabaseReference.child("sd").addChildEventListener(mChildEventListener);
         getCurrentLocation();
     }
 
@@ -301,7 +210,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
             });
 
-            mDatabaseReference.child(mUserModel.getPid()).removeEventListener(mChildEventListener);
+            mDatabaseReference.child("sd").removeEventListener(mChildEventListener);
 
 
         }

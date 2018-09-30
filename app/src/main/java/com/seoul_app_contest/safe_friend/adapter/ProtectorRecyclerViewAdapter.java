@@ -1,5 +1,6 @@
 package com.seoul_app_contest.safe_friend.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -20,6 +21,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.seoul_app_contest.safe_friend.R;
 import com.seoul_app_contest.safe_friend.RequestModel;
+import com.seoul_app_contest.safe_friend.UserModel;
 import com.seoul_app_contest.safe_friend.dto.UserDto;
 import com.seoul_app_contest.safe_friend.map.MapsActivity;
 
@@ -31,7 +33,7 @@ import butterknife.ButterKnife;
 public class ProtectorRecyclerViewAdapter extends RecyclerView.Adapter<ProtectorRecyclerViewAdapter.ProtectorRecyclerViewHolder>{
     private Context context;
     private ArrayList<RequestModel> arrayList = new ArrayList<>();
-
+    private UserModel mUserModel = null;
     public ProtectorRecyclerViewAdapter(Context context, ArrayList<RequestModel> arrayList) {
         this.context = context;
         this.arrayList = arrayList;
@@ -67,14 +69,56 @@ public class ProtectorRecyclerViewAdapter extends RecyclerView.Adapter<Protector
         protectorRecyclerViewHolder.confirmLl_.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("BEOM123", "click.");
-                Log.d("BEOM123", "arrayList.get(i).getMeetingTime() : " + arrayList.get(i).getMeetingTime());
-                FirebaseFirestore.getInstance().collection("USERS").document(arrayList.get(i).getUid()).collection("WITH").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(new UserDto());
-                FirebaseFirestore.getInstance().collection("WAITING_LIST").document(arrayList.get(i).getUid()).update("pUid", FirebaseAuth.getInstance().getCurrentUser().getUid());
-                FirebaseFirestore.getInstance().collection("WAITING_LIST").document(arrayList.get(i).getUid()).update("isWaiting", false);
+                mUserModel = new UserModel();
 
-                Intent intent = new Intent(context, MapsActivity.class);
-                context.startActivity(intent);
+                mUserModel.isUser(mUserModel.getCurrentUserEmail(), new UserModel.IsUserCallbackListener() {
+                    @Override
+                    public void exist() {
+                        Log.d("BEOM123", "click.");
+                        Log.d("BEOM123", "arrayList.get(i).getMeetingTime() : " + arrayList.get(i).getMeetingTime());
+                        FirebaseFirestore.getInstance().collection("USERS").document(arrayList.get(i).getUid()).collection("WITH").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(new UserDto());
+
+                        FirebaseFirestore.getInstance().collection("WAITING_LIST").document(arrayList.get(i).getUid()).update("pUid", FirebaseAuth.getInstance().getCurrentUser().getUid());
+                        FirebaseFirestore.getInstance().collection("WAITING_LIST").document(arrayList.get(i).getUid()).update("isWaiting", false);
+
+                        Intent intent = new Intent(context, MapsActivity.class);
+                        intent.putExtra("TYPE", "user" );
+                        intent.putExtra("PID",mUserModel.getPid());
+                        intent.putExtra("UID",mUserModel.getUID());
+                        context.startActivity(intent);
+                    }
+
+                    @Override
+                    public void notExist() {
+
+                    }
+                });
+
+                mUserModel.isProtector(mUserModel.getCurrentUserEmail(), new UserModel.IsProtectorCallbackListener() {
+                            @Override
+                            public void exist() {
+                                Log.d("BEOM123", "click.");
+                                Log.d("BEOM123", "arrayList.get(i).getMeetingTime() : " + arrayList.get(i).getMeetingTime());
+                                FirebaseFirestore.getInstance().collection("USERS").document(arrayList.get(i).getUid()).collection("WITH").document(FirebaseAuth.getInstance().getCurrentUser().getUid()).set(new UserDto());
+
+                                FirebaseFirestore.getInstance().collection("WAITING_LIST").document(arrayList.get(i).getUid()).update("pUid", FirebaseAuth.getInstance().getCurrentUser().getUid());
+                                FirebaseFirestore.getInstance().collection("WAITING_LIST").document(arrayList.get(i).getUid()).update("isWaiting", false);
+
+                                Intent intent = new Intent(context, MapsActivity.class);
+                                intent.putExtra("TYPE", "follower" );
+                                intent.putExtra("PID",mUserModel.getPid());
+                                intent.putExtra("UID",mUserModel.getUID());
+                                context.startActivity(intent);
+                            }
+
+                            @Override
+                            public void notExist() {
+
+                            }
+                        }
+
+                );
+
             }
         });
     }
