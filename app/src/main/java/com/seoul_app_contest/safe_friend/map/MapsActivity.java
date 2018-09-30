@@ -66,7 +66,8 @@ import java.util.TimerTask;
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private String USERNAME,PHONENO,LOCATION;
-    private String TYPE;
+    private String TYPE, UID, PID;
+
     private boolean mMoveMapByUser = false;
     private boolean mMoveMapByFollower = false;
 
@@ -126,7 +127,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             if(mMoveMapByUser)
                 mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mMapController.getLocation().getLatitude(),mMapController.getLocation().getLongitude()), 17));
-            mDatabaseReference.child("123" + "/Location").setValue(new MapModel(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()));
+            mDatabaseReference.child(UID + "/Location").setValue(new MapModel(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude()));
         }
     };
 
@@ -141,7 +142,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         final String TYPE = getIntent().getStringExtra("TYPE");
         //테스트코드
-
+        final UserModel mUserModel = new UserModel();
+        UID = mUserModel.getUID();
         TextView tobBarTextView = findViewById(R.id.topBarTextView);
         tobBarTextView.setText((TYPE == "user" ? "지킴이":USERNAME)+"님의 현재 위치입니다.");
 
@@ -176,6 +178,19 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        mUserModel.getPid(mUserModel.getCurrentUserEmail(), new UserModel.GetPidCallbackListener() {
+            @Override
+            public void onSuccess(String pid) {
+                PID = pid;
+                mDatabaseReference.child(pid).addChildEventListener(mChildEventListener);
+            }
+
+            @Override
+            public void onFail() {
+
+            }
+        });
+
     }
 
     private void drawMarker(MapModel mMapModel) {
@@ -194,7 +209,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onResume() {
         super.onResume();
         Log.d("onResume", "@@@@@@@@@@@@@");
-        mDatabaseReference.child("sd").addChildEventListener(mChildEventListener);
         getCurrentLocation();
     }
 
@@ -210,7 +224,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
             });
 
-            mDatabaseReference.child("sd").removeEventListener(mChildEventListener);
+            mDatabaseReference.child(PID).removeEventListener(mChildEventListener);
 
 
         }
@@ -306,6 +320,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         if (type.equals("follower")) {
             return new FollowerMapController(this);
         } else {
+
             return new UserMapController(this);
         }
     }
